@@ -2,7 +2,9 @@
   display: flex;
   align-items: center;
   cursor: pointer;
-  padding: 1rem;
+  padding-block: 1rem;
+  padding-left: 1rem;
+  padding-right: 2rem;
   transition: background-color .12s ease-in-out;
 }
 .song-card:hover {
@@ -16,11 +18,11 @@
 }
 .song__title {
   margin-top: 0;
-  margin-bottom: .1rem;
+  margin-bottom: .2rem;
   font-size: 1.5rem;
 }
 .song__artist {
-  font-size: 1.3rem;
+  font-size: 1.25rem;
   color: var(--gray200);
 }
 .song__image {

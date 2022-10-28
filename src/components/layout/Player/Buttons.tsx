@@ -3,10 +3,9 @@ const Buttons = () => {
     <div className='player__buttons'>
       <svg
         xmlns="http://www.w3.org/2000/svg"
-        width="30"
+        width="32"
         height="30"
         viewBox="0 0 24 24"
-        style={{ msFilter: "" }}
         fill="#ffffff"
       >
         <path d="M16 7l-7 5 7 5zm-7 5V7H7v10h2z"></path>
@@ -14,8 +13,8 @@ const Buttons = () => {
       <button className='player__play'>
         <svg
           xmlns="http://www.w3.org/2000/svg"
-          width="26"
-          height="26"
+          width="28"
+          height="28"
           viewBox="0 0 24 24"
           fill="#7434DB"
         >
@@ -24,10 +23,9 @@ const Buttons = () => {
       </button>
       <svg
         xmlns="http://www.w3.org/2000/svg"
-        width="30"
+        width="32"
         height="30"
         viewBox="0 0 24 24"
-        style={{ msFilter: "" }}
         fill="#ffffff"
       >
         <path d="M7 7v10l7-5zm9 10V7h-2v10z"></path>

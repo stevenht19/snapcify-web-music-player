@@ -7,18 +7,58 @@
   padding-right: 3rem;
   padding-left: 1rem;
 }
+.player__controls {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  padding-block: 1rem;
+  padding-inline: 3rem;
+  border-radius: 2rem 2rem 0 0;
+}
 .player__buttons {
   display: flex;
   align-items: center;
   gap: 1rem;
-  padding-block: 1.2rem;
-  padding-inline: 3rem;
-  border-radius: 2rem 2rem 0 0;
+}
+.player__controls {
+  flex-basis: 35%;
+  flex-direction: column;
+  gap: .75rem;
 }
 .player__play {
   display: flex;
   align-items: center;
   padding: 1rem;
-  border-radius: 1.5rem;
-  background-color: var(--white);
+  border-radius: 1.7rem;
+  background-color: #fff;
+}
+.bar {
+  display: flex;
+  width: 100%;
+  overflow-x: hidden;
+  align-items: center;
+  gap: 1rem;
+}
+.bar__time {
+  font-size: 1.1rem;
+  color: #cbcbcb;
+}
+.bar__progress {
+  width: 100%;
+  background-color: var(--gray100);
+  overflow-x: hidden;
+  height: 5px;
+  position: relative;
+  border-radius: 1rem;
+}
+.bar__progress::before {
+  content: "";
+  height: inherit;
+  border-radius: inherit;
+  position: absolute;
+  background-color: var(--primary);
+  width: 100%;
+  left: -100%;
+  border-radius: inherit;
+  transform: translateX(20%);
 }
