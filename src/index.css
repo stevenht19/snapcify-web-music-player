@@ -1,8 +1,28 @@
 html {
   font-size: 62.5%;
 }
+:root {
+  background-color: #242424;
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-text-size-adjust: 100%;
+}
 body {
   margin: 0;
   font-size: 1.6rem;
   color: rgba(255, 255, 255, 0.87);
+}
+#root {
+  display: grid;
+  height: 100vh;
+  max-height: 100vh;
+  grid-template-columns: auto 1fr;
+  grid-template-rows: 1fr auto;
+}
+#root main {
+  padding-block: 3rem;
+  padding-left: 5.5rem;
+  background-image: linear-gradient(to bottom, #050505, #18181C);
 }
