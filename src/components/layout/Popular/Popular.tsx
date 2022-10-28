@@ -1,7 +1,14 @@
+import { SongCard } from '@/components/atoms/Song'
+
 const Popular = () => {
   return (
     <section>
-      Popular
+      <h2>Popular</h2>
+      <SongCard />
+      <SongCard />
+      <SongCard />
+      <SongCard />
+      <SongCard />
     </section>
   )
 }

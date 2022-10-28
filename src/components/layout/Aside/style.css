@@ -1,0 +1,32 @@
+.aside {
+  background-color: var(--gray700);
+  padding-block: 1.6rem;
+  padding-left: 2rem;
+  width: 20rem;
+}
+.logo {
+  font-size: 2.2rem;
+}
+.navbar {
+  display: flex;
+  flex-direction: column;
+  gap: 2.4rem;
+  padding-top: 2rem;
+  font-weight: 700;
+  font-size: 1.5rem;
+}
+.navbar__item {
+  display: flex;
+  align-items: center;
+  gap: 1.8rem;
+  position: relative;
+}
+.navbar__item::after {
+  content: "";
+  position: absolute;
+  right: 0;
+  width: 3px;
+  height: 100%;
+  border-radius: 2px;
+  background-color: var(--primary);
+}
