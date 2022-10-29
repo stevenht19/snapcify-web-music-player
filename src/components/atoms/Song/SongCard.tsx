@@ -1,17 +1,26 @@
+import { useMusicPlayer } from '@/hooks'
 import Song from './Song'
 import './style.css'
 
-const SongItem = () => {
-  const random = Math.random() * 5
-
+const SongCard = (props) => {
+  const { selectedSong, onPlay } = useMusicPlayer()
+  console.log(props)
+  const onClick = () => { 
+    //PASAR SONG
+    onPlay(
+      props,
+      selectedSong.url !== props.url
+    )
+  }
+  
   return (
-    <div className='song-card'>
+    <div className='song-card' onClick={onClick}>
       {
-        random > 4 ? (
+        props.isPlaying ? (
           <svg
             xmlns="http://www.w3.org/2000/svg"
-            width="26"
-            height="26"
+            width="25"
+            height="25"
             viewBox="0 0 24 24"
             fill="#7434DB"
           >
@@ -30,7 +39,7 @@ const SongItem = () => {
           </svg>
         ) 
       }
-      <Song />
+      <Song {...props} />
       <span className='song__duration'>
         3:21
       </span>
@@ -38,4 +47,4 @@ const SongItem = () => {
   )
 }
 
-export default SongItem
+export default SongCard

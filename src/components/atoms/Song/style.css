@@ -1,3 +1,8 @@
+@keyframes onRotate {
+  to {
+    transform: rotate(360deg);
+  }
+}
 .song-card {
   display: flex;
   align-items: center;
@@ -12,7 +17,9 @@
 }
 .song__content {
   display: flex;
+  min-width: 20rem;
   align-items: center;
+  user-select: none;
   padding-inline: 2rem;
   gap: 1.2rem;
 }
@@ -29,6 +36,9 @@
   width: 4.5rem;
   height: 4.5rem;
   border-radius: 50%;
+}
+.song__image--active {
+  animation: onRotate 40s linear infinite;
 }
 .song__duration {
   margin-left: auto;

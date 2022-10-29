@@ -1,0 +1,1 @@
+export { default as useMusicPlayer } from './useMusicPlayer'

@@ -1,21 +1,34 @@
+import { Song } from '@/models'
 import './style.css'
 
-const Song = () => {
+type Props = {
+  image: Song['image'],
+  title: Song['title'],
+  artist: Song['artist'],
+  rotate?: boolean
+}
+
+const SongTrack = ({ 
+  title, 
+  image, 
+  artist, 
+  rotate 
+}: Props) => {
   return (
-    <div className='song__content'>
+    <div className={'song__content'}>
       <div>
         <img
-          src='https://upload.wikimedia.org/wikipedia/en/5/5e/The_Car_by_Arctic_Monkeys_album.jpg'
+          src={image}
           alt='song name'
-          className='song__image'
+          className={'song__image' + (rotate ? ' song__image--active' : '')}
         />
       </div>
       <div>
-        <h2 className='song__title'>The Car</h2>
-        <span className='song__artist'>Arctic Monkeys</span>
+        <h2 className='song__title'>{title}</h2>
+        <span className='song__artist'>{artist}</span>
       </div>
     </div>
   )
 }
 
-export default Song
+export default SongTrack

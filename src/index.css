@@ -30,7 +30,6 @@ body {
   height: 100vh;
   max-height: 100vh;
   grid-template-columns: auto 1fr;
-  grid-template-rows: 1fr auto;
 }
 #root main {
   padding-block: 3rem;

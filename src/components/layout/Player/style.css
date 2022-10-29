@@ -1,17 +1,26 @@
+@keyframes onAppear {
+  to {
+    transform: translateY(0);
+  }
+}
 .player {
   display: flex;
   align-items: center;
   justify-content: space-between;
   background-color: var(--gray500);
-  grid-column: 1 / 4;
+  position: fixed;
+  bottom: 0;
+  width: 100%;
   padding-right: 3rem;
   padding-left: 1rem;
+  transform: translateY(100%);
+  animation: onAppear .18s cubic-bezier(0.075, 0.82, 0.165, 1) forwards;
 }
 .player__controls {
   display: flex;
   align-items: center;
   gap: 1rem;
-  padding-block: 1rem;
+  padding-block: 1.2rem;
   padding-inline: 3rem;
   border-radius: 2rem 2rem 0 0;
 }
@@ -28,7 +37,7 @@
 .player__play {
   display: flex;
   align-items: center;
-  padding: 1rem;
+  padding: 1.1rem;
   border-radius: 1.7rem;
   background-color: #fff;
 }
