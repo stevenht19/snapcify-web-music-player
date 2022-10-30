@@ -6,6 +6,7 @@ import Top from '@/components/layout/Top'
 import Popular from '@/components/layout/Popular'
 
 export default function App() {
+
   return <MusicPlayerProvider>
     <Aside />
     <main style={{

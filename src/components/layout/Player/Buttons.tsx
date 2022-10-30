@@ -27,7 +27,10 @@ const Buttons = ({
       >
         <path d="M16 7l-7 5 7 5zm-7 5V7H7v10h2z"></path>
       </svg>
-      <button className='player__play' onClick={onPlaySong}>
+      <button 
+        className='player__play' 
+        onClick={onPlaySong}
+      >
         {
           play ?
             <svg

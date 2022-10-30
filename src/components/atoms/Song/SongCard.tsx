@@ -1,16 +1,13 @@
 import { useMusicPlayer } from '@/hooks'
-import Song from './Song'
+import { Song } from '@/models'
+import SongTrack from './Song'
 import './style.css'
 
-const SongCard = (props) => {
+const SongCard = (props: Song) => {
   const { selectedSong, onPlay } = useMusicPlayer()
-  console.log(props)
+
   const onClick = () => { 
-    //PASAR SONG
-    onPlay(
-      props,
-      selectedSong.url !== props.url
-    )
+    onPlay(props, selectedSong.url !== props.url)
   }
   
   return (
@@ -39,7 +36,7 @@ const SongCard = (props) => {
           </svg>
         ) 
       }
-      <Song {...props} />
+      <SongTrack {...props} />
       <span className='song__duration'>
         3:21
       </span>
