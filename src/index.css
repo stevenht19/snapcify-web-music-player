@@ -11,6 +11,11 @@ html {
   -moz-osx-font-smoothing: grayscale;
   -webkit-text-size-adjust: 100%;
   --white: rgba(255, 255, 255, 0.87);
+  --sm: 30em;
+  --md: 48em;
+  --lg: 62em;
+  --xl: 80em;
+  --2xl: 96em;
   --primary: #7434DB;
   --gray100: #7D7F83;
   --gray200: #6B6B70;

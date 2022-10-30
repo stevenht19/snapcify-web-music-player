@@ -1,6 +1,7 @@
 import { useState } from 'react'
 import { Song } from '@/components/atoms/Song'
-import usePlayerContext from '@/hooks/useMusicPlayer'
+import { useMusicPlayer } from '@/hooks'
+import { useControls } from './hooks/useControls'
 import Buttons from './Buttons'
 import Volume from './Volume'
 import Bar from './Bar'
@@ -13,34 +14,17 @@ type TimeState = {
 }
 
 const Player = () => {
-  const { play, selectedSong, onPlay } = usePlayerContext()
+  const { play, selectedSong, onPlay } = useMusicPlayer()
+  const { 
+    currentTime, 
+    barTime, 
+    isSliding, 
+    onChangeSlide, 
+    onSetTotalTime, 
+    onDragEnd
+  } = useControls()
 
-  const [currentTime, setCurrentTime] = useState<TimeState>({ x: 0, xmax: 0 })
-  const [barTime, setBarTime] = useState<number>(0)
-  const [isSliding, setIsSliding] = useState(false)
-  
   if (selectedSong.id === 10) return null
-
-  const onSetTotalTime = (time: TimeState) => {
-    setCurrentTime({
-      x: time.x,
-      xmax: time.xmax
-    })
-  }
-
-  const onChangeSlide = (x: number) => {
-    setBarTime(x)
-
-    setCurrentTime({
-      ...currentTime, 
-      x
-    })
-    setIsSliding(true)
-  }
-
-  const onDragEnd = () => {
-    setIsSliding(false)
-  }
 
   return (
     <div className='player'>
