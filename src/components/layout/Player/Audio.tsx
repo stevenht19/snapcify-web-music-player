@@ -4,16 +4,18 @@ import { Song } from '@/models'
 type Props = {
   play: boolean
   isSliding: boolean
-  selectedSong: Song
   barTime: number
+  selectedSong: Song
+  onEnded: (_song: Song) => void
   onSetTotalTime: (_: { x: number, xmax: number }) => void
 }
 
 const Audio = ({ 
   play, 
   selectedSong, 
-  barTime, 
-  isSliding, 
+  barTime,
+  isSliding,
+  onEnded, 
   onSetTotalTime 
 }: Props) => {
   const ref = useRef<HTMLAudioElement>(null)
@@ -35,8 +37,7 @@ const Audio = ({
 
   const onLoadedSong = () => {
     if (!ref.current) return
-    console.log(ref.current.duration)
-    console.log(ref.current)
+
     onSetTotalTime({ 
       x: ref.current.currentTime, 
       xmax: ref.current.duration
@@ -44,12 +45,16 @@ const Audio = ({
   }
 
   const onTimeUpdate = () => {
-    if (!ref.current) return
-    if (isSliding && barTime > 0) return
+    if (!ref.current || isSliding && barTime >= 0) return
+
     onSetTotalTime({
       x: ref.current?.currentTime,
       xmax: ref.current?.duration
     })
+  }
+
+  const onPause = () => {
+    onEnded(selectedSong)
   }
 
   return (
@@ -58,6 +63,7 @@ const Audio = ({
       src={selectedSong.url}
       onLoadedMetadata={onLoadedSong}
       onTimeUpdate={onTimeUpdate}
+      onEnded={onPause}
     />
   )
 }

@@ -1,15 +1,15 @@
-import Slider from 'react-input-slider'
+import Slider from '@/components/atoms/Slider'
 
 type SliderEvent = {
   x: number
-  xmax: number
+  y: number
 }
 
 type Props = {
-  x: SliderEvent['x'],
-  xmax: SliderEvent['xmax'],
-  onChangeSlide: (x: number) => void
+  x: SliderEvent['x']
+  xmax: number
   onDragEnd: () => void
+  onChangeSlide: (x: number) => void
 }
 
 const getCurrentTime = (x: number): string => {
@@ -18,34 +18,28 @@ const getCurrentTime = (x: number): string => {
 
 const Bar = ({ 
   x, 
-  xmax, 
-  onChangeSlide, 
-  onDragEnd 
+  xmax,
+  onDragEnd,
+  onChangeSlide 
 }: Props) => {
   const currentTime = getCurrentTime(x)
   const end = ((xmax / 60) - 0.21).toFixed(2).replace('.', ':')
   
-  const onChange = (e: { x: number, y: number }) => {
+  const onChange = (e: SliderEvent) => {
     onChangeSlide(e.x)
   }
 
   return (
     <div className='bar'>
       <span className='bar__time'>{currentTime}</span>
-      <Slider
-        axis='x'
-        x={x} 
-        xmax={Math.floor(xmax)} 
+      <Slider 
+        x={x}
+        xmax={Math.floor(xmax)}
         onChange={onChange}
         onDragEnd={onDragEnd}
-        styles={{
-          track: {
-            backgroundColor: 'var(--gray100)',
-          },
-          active: {
-            background: 'var(--primary)'
-          },
-        }}
+        trackColor={'var(--gray100)'}
+        activeColor={'var(--primary)'}
+        thumbColor={'var(--primary)'}
       />
       <span className='bar__time'>{end}</span>
     </div>

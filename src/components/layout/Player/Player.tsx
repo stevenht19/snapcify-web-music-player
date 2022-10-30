@@ -18,8 +18,8 @@ const Player = () => {
   const [currentTime, setCurrentTime] = useState<TimeState>({ x: 0, xmax: 0 })
   const [barTime, setBarTime] = useState<number>(0)
   const [isSliding, setIsSliding] = useState(false)
-
-  if (!selectedSong.id) return null
+  
+  if (selectedSong.id === 10) return null
 
   const onSetTotalTime = (time: TimeState) => {
     setCurrentTime({
@@ -54,18 +54,16 @@ const Player = () => {
           onPlay={onPlay}
           selectedSong={selectedSong}
         />
-        {
-          currentTime.xmax !== 0 &&
-          <Bar 
-            onChangeSlide={onChangeSlide}
-            onDragEnd={onDragEnd}
-            {...currentTime}
-          />
-        }
+        <Bar 
+          onChangeSlide={onChangeSlide}
+          onDragEnd={onDragEnd}
+          {...currentTime}
+        />
         <Audio 
           play={play} 
           selectedSong={selectedSong}
           onSetTotalTime={onSetTotalTime}
+          onEnded={onPlay}
           isSliding={isSliding}
           barTime={barTime}
         />

@@ -7,6 +7,7 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
+  flex-wrap: wrap;
   background-color: var(--gray500);
   position: fixed;
   bottom: 0;
@@ -20,10 +21,8 @@
   display: flex;
   align-items: center;
   flex-direction: column;
-  width: 35%;
-  left: 50%;
-  bottom: 0;
-  gap: 1rem;
+  width: 65rem;
+  gap: 1.2rem;
   padding-block: 1.15rem;
   padding-inline: 3rem;
 }
@@ -55,23 +54,8 @@
 .bar .css-2bvlrv-Slider {
   flex: auto;
 }
-/*
-.bar__progress {
-  width: 100%;
-  background-color: var(--gray100);
-  overflow-x: hidden;
-  height: 5px;
-  position: relative;
-  border-radius: 1rem;
+.player__volume {
+  display: inherit;
+  gap: 1rem;
+  align-items: inherit;
 }
-.bar__progress::before {
-  content: "";
-  height: inherit;
-  border-radius: inherit;
-  position: absolute;
-  background-color: var(--primary);
-  width: 100%;
-  left: -100%;
-  border-radius: inherit;
-  transform: translateX(20%);
-}*/

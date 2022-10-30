@@ -41,7 +41,7 @@ const initialState: MusicPlayerState = {
   play: false,
   songs: songs,
   selectedSong: {
-    id: 0,
+    id: 10,
     title: '',
     artist: '',
     image: '',
@@ -53,7 +53,7 @@ export const MusicPlayerContext = createContext({
   play: false,
   songs: songs,
   selectedSong: {
-    id: 0,
+    id: 10,
     image: '',
     url: '',
     title: '',
