@@ -2,8 +2,10 @@ import './style.css'
 
 const Aside = () => {
   return (
-    <aside className='aside'>
-      <h1 className='logo'>Snapcify</h1>
+    <aside className={'aside'}>
+      <h1 className='logo'>
+        Snapcify
+      </h1>
       <nav className='navbar'>
         <ul>
           <li className='navbar__item'>

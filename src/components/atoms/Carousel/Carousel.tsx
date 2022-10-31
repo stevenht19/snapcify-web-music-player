@@ -8,8 +8,11 @@ type Props = {
 const Carousel = ({ children }: Props) => {
   return (
     <Swiper
-      slidesPerView={3.3}
+      slidesPerView={2.2}
       breakpoints={{
+        632: {
+          slidesPerView: 3.3
+        },
         1250: {
           slidesPerView: 5.5
         }

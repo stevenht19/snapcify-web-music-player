@@ -1,7 +1,13 @@
-.search__form {
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-right: var(--separation);
+}
+.searcher {
   position: relative;
 }
-.search__form svg {
+.searcher svg {
   position: absolute;
   left: 1.2rem;
   top: 1.2rem;
@@ -12,9 +18,13 @@
   padding-left: 4.5rem;
   background-color: var(--gray600);
   color: inherit;
-  min-width: 35rem;
+  width: 100%;
+  max-width: 60rem;
   border: 2px solid var(--gray400);
 }
 .search__input::placeholder {
   color: var(--gray200);
+}
+.header__open {
+  color: var(--white);
 }
