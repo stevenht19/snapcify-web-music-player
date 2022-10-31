@@ -2,7 +2,12 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
+  gap: 2rem;
   padding-right: var(--separation);
+}
+.header form {
+  width: 100%;
+  max-width: 40rem;
 }
 .searcher {
   position: relative;
@@ -18,9 +23,8 @@
   padding-left: 4.5rem;
   background-color: var(--gray600);
   color: inherit;
-  width: 100%;
-  max-width: 60rem;
   border: 2px solid var(--gray400);
+  width: 100%;
 }
 .search__input::placeholder {
   color: var(--gray200);

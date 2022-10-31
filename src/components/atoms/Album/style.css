@@ -1,5 +1,6 @@
 .album-card {
   user-select: none;
+  cursor: pointer;
 }
 .album__image {
   border-radius: 1rem;

@@ -10,7 +10,7 @@ html {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   -webkit-text-size-adjust: 100%;
-  --separation: 5.5rem;
+  --separation: 5rem;
   --white: rgba(255, 255, 255, 0.87);
   --primary: #7434DB;
   --gray100: #7D7F83;
@@ -34,7 +34,7 @@ body {
 }
 header, main {
   padding-top: 2.5rem;
-  padding-left: 5.5rem;
+  padding-left: var(--separation);
 }
 input {
   outline-width: 0;

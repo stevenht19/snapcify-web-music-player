@@ -4,6 +4,7 @@ import { Song } from '@/models'
 type Props = {
   play: boolean
   isSliding: boolean
+  volume: number
   barTime: number
   selectedSong: Song
   onEnded: (_song: Song) => void
@@ -11,11 +12,12 @@ type Props = {
 }
 
 const Audio = ({ 
-  play, 
+  play,
+  volume,
   selectedSong, 
   barTime,
   isSliding,
-  onEnded, 
+  onEnded,
   onSetTotalTime 
 }: Props) => {
   const ref = useRef<HTMLAudioElement>(null)
@@ -34,6 +36,12 @@ const Audio = ({
       ref.current.currentTime = barTime
     }
   }, [barTime, isSliding])
+
+  useEffect(() => {
+    if (ref.current) {
+      ref.current.volume = volume
+    }
+  }, [volume])
 
   const onLoadedSong = () => {
     if (!ref.current) return
@@ -60,6 +68,7 @@ const Audio = ({
   return (
     <audio
       ref={ref}
+      controls={false}
       src={selectedSong.url}
       onLoadedMetadata={onLoadedSong}
       onTimeUpdate={onTimeUpdate}

@@ -1,26 +1,22 @@
-import { useState } from 'react'
-import { Song } from '@/components/atoms/Song'
 import { useMusicPlayer } from '@/hooks'
 import { useControls } from './hooks/useControls'
+import { Song } from '@/components/atoms/Song'
 import Buttons from './Buttons'
 import Volume from './Volume'
 import Bar from './Bar'
 import Audio from './Audio'
 import './style.css'
 
-type TimeState = {
-  x: number,
-  xmax: number
-}
-
 const Player = () => {
   const { play, selectedSong, onPlay } = useMusicPlayer()
   const { 
     currentTime, 
-    barTime, 
-    isSliding, 
+    barTime,
+    volume,
+    isSliding,
     onChangeSlide, 
-    onSetTotalTime, 
+    onSetTotalTime,
+    onChangeVolume,
     onDragEnd
   } = useControls()
 
@@ -44,15 +40,19 @@ const Player = () => {
           {...currentTime}
         />
         <Audio 
-          play={play} 
+          play={play}
+          barTime={barTime}
+          isSliding={isSliding}
+          volume={volume}
           selectedSong={selectedSong}
           onSetTotalTime={onSetTotalTime}
           onEnded={onPlay}
-          isSliding={isSliding}
-          barTime={barTime}
         />
       </div>
-      <Volume />
+      <Volume 
+        volume={volume} 
+        onChangeVolume={onChangeVolume} 
+      />
     </div>
   )
 }

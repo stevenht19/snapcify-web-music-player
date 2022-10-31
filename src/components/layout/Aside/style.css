@@ -18,7 +18,7 @@
   display: flex;
   align-items: center;
   gap: 1.8rem;
-  padding-right: 11rem;
+  padding-right: calc(var(--separation) * 2.3);
   position: relative;
 }
 .navbar__item::after {

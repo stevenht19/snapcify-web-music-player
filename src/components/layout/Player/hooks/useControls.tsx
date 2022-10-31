@@ -5,21 +5,24 @@ type TimeState = {
   xmax: number
 }
 
-
 export const useControls = () => {
   const [currentTime, setCurrentTime] = useState<TimeState>({ x: 0, xmax: 0 })
   const [barTime, setBarTime] = useState<number>(0)
-  const [isSliding, setIsSliding] = useState(false)
+  const [volume, setVolume] = useState<number>(0.75)
+  const [isSliding, setIsSliding] = useState<boolean>(false)
 
-
-  const onSetTotalTime = (time: TimeState) => {
+  const onSetTotalTime = ({ x, xmax }: TimeState) => {
     setCurrentTime({
-      x: time.x,
-      xmax: time.xmax
+      x,
+      xmax
     })
   }
 
-  const onChangeSlide = (x: number) => {
+  const onChangeVolume = (x: TimeState['x']) => {
+    setVolume(x / 100)
+  }
+
+  const onChangeSlide = (x: TimeState['x']) => {
     setBarTime(x)
 
     setCurrentTime({
@@ -36,9 +39,11 @@ export const useControls = () => {
   return {
     currentTime,
     barTime,
+    volume,
     isSliding,
     onChangeSlide,
     onSetTotalTime,
+    onChangeVolume,
     onDragEnd
   }
 }
