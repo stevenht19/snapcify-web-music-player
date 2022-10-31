@@ -11,11 +11,6 @@ html {
   -moz-osx-font-smoothing: grayscale;
   -webkit-text-size-adjust: 100%;
   --white: rgba(255, 255, 255, 0.87);
-  --sm: 30em;
-  --md: 48em;
-  --lg: 62em;
-  --xl: 80em;
-  --2xl: 96em;
   --primary: #7434DB;
   --gray100: #7D7F83;
   --gray200: #6B6B70;
@@ -31,10 +26,11 @@ body {
   font-family: 'Inter', sans-serif;
 }
 #root {
-  display: grid;
+  display: flex;
+  /*display: grid;*/
   height: 100vh;
   max-height: 100vh;
-  grid-template-columns: auto 1fr;
+  /*grid-template-columns: auto 1fr;*/
 }
 #root main {
   padding-block: 3rem;
@@ -55,4 +51,5 @@ img {
 button {
   border: none;
   background-color: transparent;
+  outline-width: 0;
 }

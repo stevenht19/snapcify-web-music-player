@@ -1,8 +1,21 @@
 .aside {
+  position: absolute;
+  top: 0;
+  left: 0;
   background-color: var(--gray700);
   padding-block: 1.6rem;
   padding-left: 2rem;
-  width: 20rem;
+  height: inherit;
+  flex: 0 0 auto;
+  transform: translateX(-100%);
+  z-index: 9;
+}
+
+@media screen and (min-width: 52em) {
+  .aside {
+    position: static;
+    transform: translateX(0);
+  } 
 }
 .logo {
   font-size: 2.2rem;
@@ -19,6 +32,7 @@
   display: flex;
   align-items: center;
   gap: 1.8rem;
+  padding-right: 10rem;
   position: relative;
 }
 .navbar__item::after {

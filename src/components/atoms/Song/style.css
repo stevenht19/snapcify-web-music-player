@@ -40,9 +40,3 @@
 .song__image--active {
   animation: onRotate 40s linear infinite;
 }
-.song__duration {
-  margin-left: auto;
-  color: #dcdcdc;
-  font-size: 1.2rem;
-  font-weight: 200;
-}
