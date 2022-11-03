@@ -1,6 +1,6 @@
 import { useMusicPlayer } from '@/hooks'
-import { useControls } from './hooks/useControls'
 import { Song } from '@/components/atoms/Song'
+import { useControls } from './hooks/useControls'
 import Buttons from './Buttons'
 import Volume from './Volume'
 import Bar from './Bar'
@@ -20,7 +20,7 @@ const Player = () => {
     onDragEnd
   } = useControls()
 
-  if (selectedSong.id === 10) return null
+  if (!selectedSong.id.length) return null
 
   return (
     <div className='player'>

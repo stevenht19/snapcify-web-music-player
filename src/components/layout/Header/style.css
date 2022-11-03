@@ -25,6 +25,7 @@
   background-color: var(--gray600);
   color: inherit;
   font-family: inherit;
+  transition: border-color .22s ease-in-out;
   width: 100%;
 }
 .search__input::placeholder {

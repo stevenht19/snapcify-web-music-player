@@ -1,30 +1,11 @@
-import { createContext, useReducer } from 'react'
+import { createContext, useReducer, useEffect } from 'react'
 import { Song } from '@/models'
+import { SongResponse } from '@/models/responses'
+import { songAdapter } from '@/adapters'
 
-const songs: Song[] = [
-  { 
-    id: 0,
-    title: 'The Car',
-    artist: 'Arctic Monkeys',
-    image: 'https://upload.wikimedia.org/wikipedia/en/5/5e/The_Car_by_Arctic_Monkeys_album.jpg',
-    url: 'https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview122/v4/96/7e/ea/967eea0f-3d8e-9bb6-b4c5-fb255f50b906/mzaf_16046209671483865399.plus.aac.ep.m4a'
-  },
-  { 
-    id: 1,
-    title: 'The Car',
-    artist: 'Arctic Monkeys',
-    image: 'https://upload.wikimedia.org/wikipedia/commons/e/e7/%22AM%22_%28Arctic_Monkeys%29.jpg',
-    url: 'https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview122/v4/b5/52/bd/b552bda7-a5bf-1c5f-91da-48e0b8783817/mzaf_12548670210804317750.plus.aac.ep.m4a'},
-  { 
-    id: 2,
-    title: 'The Car',
-    artist: 'Arctic Monkeys',
-    image: 'https://upload.wikimedia.org/wikipedia/commons/f/f9/Suckitandsee.jpg',
-    url: 'https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview122/v4/74/ae/67/74ae6789-eb84-84aa-6772-c624adb48884/mzaf_15235529366602780394.plus.aac.ep.m4a'},
-]
-
-type MusicPlayerState = {
+interface MusicPlayerState {
   play: boolean
+  isLoading: boolean
   selectedSong: Song
   songs: Song[]
 }
@@ -35,13 +16,19 @@ type ReducerAction = {
     song: Song
     hasChanged?: boolean
   }
+} | {
+  type: 'SET_SONGS',
+  payload: Song[]
+} | {
+  type: 'SET_LOADING'
 }
 
 const initialState: MusicPlayerState = {
   play: false,
-  songs: songs,
+  isLoading: true,
+  songs: [],
   selectedSong: {
-    id: 10,
+    id: '',
     title: '',
     artist: '',
     image: '',
@@ -49,17 +36,22 @@ const initialState: MusicPlayerState = {
   }
 }
 
-export const MusicPlayerContext = createContext({
+interface Context extends MusicPlayerState { 
+  onPlay: (_song: Song, _hasChanged?: boolean) => void
+}
+
+export const MusicPlayerContext = createContext<Context>({
   play: false,
-  songs: songs,
+  isLoading: true,
+  songs: [],
   selectedSong: {
-    id: 10,
+    id: '',
     image: '',
     url: '',
     title: '',
     artist: ''
   },
-  onPlay: (_song: Song, _hasChanged?: boolean) => {}
+  onPlay: (_song, _hasChanged) => {}
 })
 
 const musicPlayerReducer = (state: MusicPlayerState, action: ReducerAction) => {
@@ -76,12 +68,44 @@ const musicPlayerReducer = (state: MusicPlayerState, action: ReducerAction) => {
             {...song, isPlaying: false }
           )
       }
+    case 'SET_SONGS':
+      return {
+        ...state,
+        songs: action.payload
+      }
+    case 'SET_LOADING':
+      return {
+        ...state,
+        isLoading: !state.isLoading
+      }
     default: return state
   }
 }
 
+const API = `${import.meta.env.VITE_API}/songs`
+
 function PlayerContextProvider(props: { children: React.ReactNode }) {
   const [playerState, dispatch] = useReducer(musicPlayerReducer, initialState)
+
+  useEffect(() => {
+    const getSongs = async () => {
+      try {
+        const response: SongResponse[] = await (await fetch(API)).json()
+        const songs: Song[] = response.map((res) => songAdapter(res))
+        setTimeout(() => {
+          dispatch({ 
+            type: 'SET_SONGS', 
+            payload: songs 
+          })
+        }, 1500)
+      } catch (e) {
+        console.log(e)
+      } finally {
+        dispatch({ type: 'SET_LOADING' })
+      }
+    }
+    getSongs()
+  }, [])
 
   const onPlay = (song: Song, hasChanged?: boolean) => {
     dispatch({
