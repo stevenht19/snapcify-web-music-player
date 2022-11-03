@@ -33,8 +33,10 @@ body {
   background-image: linear-gradient(to bottom, #050505, #18181C);
 }
 header, main {
-  padding-top: 2.5rem;
   padding-left: var(--separation);
+}
+header, main {
+  padding-top: 2.7rem;
 }
 input {
   outline-width: 0;

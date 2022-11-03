@@ -1,4 +1,4 @@
-import { useCallback, useState } from 'react'
+import { useState } from 'react'
 
 type TimeState = {
   x: number,
@@ -8,23 +8,24 @@ type TimeState = {
 export const useControls = () => {
   const [currentTime, setCurrentTime] = useState<TimeState>({ x: 0, xmax: 0 })
   const [barTime, setBarTime] = useState<number>(0)
-  const [volume, setVolume] = useState<number>(0.75)
+  const [volume, setVolume] = useState<number>(0.50)
+  const [actualVolume, setActualVolume] = useState<number>(volume)
   const [isSliding, setIsSliding] = useState<boolean>(false)
+  const [isMuted, setIsMuted] = useState<boolean>(false)
 
-  const onSetTotalTime = ({ x, xmax }: TimeState) => {
+  const onChangeTime = ({ x, xmax }: TimeState): void => {
     setCurrentTime({
       x,
       xmax
     })
   }
 
-  const onChangeVolume = (x: TimeState['x']) => {
+  const onChangeVolume = (x: TimeState['x']): void => {
     setVolume(x / 100)
   }
 
-  const onChangeSlide = (x: TimeState['x']) => {
+  const onChangeSlide = (x: TimeState['x']): void => {
     setBarTime(x)
-
     setCurrentTime({
       ...currentTime, 
       x
@@ -32,7 +33,7 @@ export const useControls = () => {
     setIsSliding(true)
   }
 
-  const onDragEnd = () => {
+  const onDragEnd = (): void => {
     setIsSliding(false)
   }
 
@@ -42,7 +43,7 @@ export const useControls = () => {
     volume,
     isSliding,
     onChangeSlide,
-    onSetTotalTime,
+    onChangeTime,
     onChangeVolume,
     onDragEnd
   }

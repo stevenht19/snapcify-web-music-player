@@ -3,7 +3,6 @@
     transform: translateY(0);
   }
 }
-
 .player {
   display: flex;
   flex-direction: column;
@@ -11,6 +10,7 @@
   justify-content: center;
   background-color: var(--gray500);
   position: fixed;
+  padding-bottom: .3rem;
   bottom: 0;
   left: 0;
   right: 0;
@@ -29,8 +29,8 @@
 @media screen and (min-width: 52em) {
   .player {
     display: flex;
-    flex-direction: row;
     justify-content: space-between;
+    flex-direction: row;
     padding-right: 3rem;
     padding-left: 1rem;
   }
@@ -69,13 +69,20 @@
 .player__volume, .player .song__content {
   display: none;
 }
+.volume__button {
+  display: inherit;
+}
+.volume__button:hover svg {
+  fill: rgb(255, 255, 255);
+}
 @media screen and (min-width: 52em) {
   .player .song__content {
     display: flex;
   }
   .player__volume {
     display: inherit;
-    gap: 1rem;
     align-items: inherit;
+    max-width: 18rem;
+    gap: 1rem;
   } 
 }

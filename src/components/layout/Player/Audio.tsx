@@ -8,7 +8,7 @@ type Props = {
   barTime: number
   selectedSong: Song
   onEnded: (_song: Song) => void
-  onSetTotalTime: (_: { x: number, xmax: number }) => void
+  onChangeTime: (_: { x: number, xmax: number }) => void
 }
 
 const Audio = ({ 
@@ -17,60 +17,51 @@ const Audio = ({
   selectedSong, 
   barTime,
   isSliding,
-  onEnded,
-  onSetTotalTime 
+  onChangeTime,
+  onEnded
 }: Props) => {
   const ref = useRef<HTMLAudioElement>(null)
   
-  useEffect(() => {
-    if (!ref.current) return
-    if (play) {
-      ref.current.play()
-    } else {
-      ref.current.pause()
-    }
-  }, [play, selectedSong])
+  if (ref.current) {
+    play ? ref.current.play() : ref.current.pause()
+  }
 
   useEffect(() => {
-    if (ref.current && !isSliding) {
-      ref.current.currentTime = barTime
+    if (!isSliding) {
+      ref.current && (ref.current.currentTime = barTime)
     }
   }, [barTime, isSliding])
 
   useEffect(() => {
-    if (ref.current) {
-      ref.current.volume = volume
-    }
+    ref.current && (ref.current.volume = volume)
   }, [volume])
 
-  const onLoadedSong = () => {
+  const onLoaded = () => {
     if (!ref.current) return
 
-    onSetTotalTime({ 
+    onChangeTime({ 
       x: ref.current.currentTime, 
       xmax: ref.current.duration
     })
   }
 
   const onTimeUpdate = () => {
-    if (!ref.current || isSliding && barTime >= 0) return
+    if ((!ref.current) || (isSliding && barTime >= 0)) return
 
-    onSetTotalTime({
+    onChangeTime({
       x: ref.current?.currentTime,
       xmax: ref.current?.duration
     })
   }
 
-  const onPause = () => {
-    onEnded(selectedSong)
-  }
+  const onPause = () => onEnded(selectedSong)
 
   return (
     <audio
       ref={ref}
       controls={false}
       src={selectedSong.url}
-      onLoadedMetadata={onLoadedSong}
+      onLoadedMetadata={onLoaded}
       onTimeUpdate={onTimeUpdate}
       onEnded={onPause}
     />

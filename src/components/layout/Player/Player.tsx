@@ -9,13 +9,13 @@ import './style.css'
 
 const Player = () => {
   const { play, selectedSong, onPlay } = useMusicPlayer()
-  const { 
-    currentTime, 
+  const {
+    currentTime,
     barTime,
     volume,
     isSliding,
-    onChangeSlide, 
-    onSetTotalTime,
+    onChangeSlide,
+    onChangeTime,
     onChangeVolume,
     onDragEnd
   } = useControls()
@@ -26,7 +26,7 @@ const Player = () => {
     <div className='player'>
       <Song
         rotate={play}
-        {...selectedSong} 
+        {...selectedSong}
       />
       <div className='player__controls'>
         <Buttons
@@ -34,24 +34,24 @@ const Player = () => {
           onPlay={onPlay}
           selectedSong={selectedSong}
         />
-        <Bar 
+        <Bar
           onChangeSlide={onChangeSlide}
           onDragEnd={onDragEnd}
           {...currentTime}
         />
-        <Audio 
+        <Audio
           play={play}
           barTime={barTime}
           isSliding={isSliding}
           volume={volume}
           selectedSong={selectedSong}
-          onSetTotalTime={onSetTotalTime}
+          onChangeTime={onChangeTime}
           onEnded={onPlay}
         />
       </div>
-      <Volume 
-        volume={volume} 
-        onChangeVolume={onChangeVolume} 
+      <Volume
+        volume={volume}
+        onChangeVolume={onChangeVolume}
       />
     </div>
   )
