@@ -1,1 +1,1 @@
-export type { default as SongResponse } from './Song'
+export type { default as SongResponse } from '../SongResponse'

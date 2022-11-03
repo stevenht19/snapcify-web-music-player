@@ -1,27 +1,8 @@
 import { createContext, useReducer, useEffect } from 'react'
-import { Song } from '@/models'
-import { SongResponse } from '@/models/responses'
+import { MusicPlayerState } from '@/types'
 import { songAdapter } from '@/adapters'
-
-interface MusicPlayerState {
-  play: boolean
-  isLoading: boolean
-  selectedSong: Song
-  songs: Song[]
-}
-
-type ReducerAction = {
-  type: 'PLAY',
-  payload: {
-    song: Song
-    hasChanged?: boolean
-  }
-} | {
-  type: 'SET_SONGS',
-  payload: Song[]
-} | {
-  type: 'STOP_LOADING'
-}
+import { musicPlayerReducer } from '@/reducers'
+import { Song, SongResponse } from '@/models'
 
 const initialState: MusicPlayerState = {
   play: false,
@@ -53,34 +34,6 @@ export const MusicPlayerContext = createContext<Context>({
   },
   onPlay: (_song, _hasChanged) => {}
 })
-
-const musicPlayerReducer = (state: MusicPlayerState, action: ReducerAction) => {
-  switch (action.type) {
-    case 'PLAY':
-      return {
-        ...state,
-        play: action.payload.hasChanged ? true : !state.play,
-        selectedSong: action.payload.song,
-        songs: state
-          .songs
-          .map((song) => (song.id === action.payload.song.id) ? 
-            {...song, isPlaying: !song.isPlaying } : 
-            {...song, isPlaying: false }
-          )
-      }
-    case 'SET_SONGS':
-      return {
-        ...state,
-        songs: action.payload
-      }
-    case 'STOP_LOADING':
-      return {
-        ...state,
-        isLoading: false
-      }
-    default: return state
-  }
-}
 
 const API = `${import.meta.env.VITE_API}/songs`
 

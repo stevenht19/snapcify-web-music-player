@@ -3,12 +3,13 @@ import { useMusicPlayer } from '@/hooks'
 import Album from '@/components/atoms/Album'
 import Carousel from '@/components/atoms/Carousel'
 import { AlbumSkeleton } from '@/components/atoms/Skeleton'
+import './style.css'
 
 const Top = () => {
   const { isLoading } = useMusicPlayer()
 
   return (
-    <div>
+    <div className='top'>
       <h2>Top Songs</h2>
       <Carousel>
         {

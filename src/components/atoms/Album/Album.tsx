@@ -1,5 +1,4 @@
 import './style.css'
-//PICK PROPS FROM MODEL
 
 const Album = () => {
   return (
