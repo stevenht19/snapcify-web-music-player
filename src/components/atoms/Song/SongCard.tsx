@@ -12,7 +12,7 @@ const SongCard = (props: Song) => {
 
   return (
     <div className='song-card' onClick={onClick}>
-      <div>
+      <button>
         {
           props.isPlaying ? (
             <svg
@@ -37,7 +37,7 @@ const SongCard = (props: Song) => {
               </svg>
             )
         }
-      </div>
+      </button>
       <SongTrack {...props} />
     </div>
   )

@@ -20,7 +20,7 @@ type ReducerAction = {
   type: 'SET_SONGS',
   payload: Song[]
 } | {
-  type: 'SET_LOADING'
+  type: 'STOP_LOADING'
 }
 
 const initialState: MusicPlayerState = {
@@ -73,10 +73,10 @@ const musicPlayerReducer = (state: MusicPlayerState, action: ReducerAction) => {
         ...state,
         songs: action.payload
       }
-    case 'SET_LOADING':
+    case 'STOP_LOADING':
       return {
         ...state,
-        isLoading: !state.isLoading
+        isLoading: false
       }
     default: return state
   }
@@ -92,16 +92,14 @@ function PlayerContextProvider(props: { children: React.ReactNode }) {
       try {
         const response: SongResponse[] = await (await fetch(API)).json()
         const songs: Song[] = response.map((res) => songAdapter(res))
-        setTimeout(() => {
-          dispatch({ 
-            type: 'SET_SONGS', 
-            payload: songs 
-          })
-        }, 1500)
+        dispatch({ 
+          type: 'SET_SONGS', 
+          payload: songs 
+        })
       } catch (e) {
         console.log(e)
       } finally {
-        dispatch({ type: 'SET_LOADING' })
+        dispatch({ type: 'STOP_LOADING' })
       }
     }
     getSongs()

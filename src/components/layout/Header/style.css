@@ -25,19 +25,15 @@
   background-color: var(--gray600);
   color: inherit;
   font-family: inherit;
-  transition: border-color .22s ease-in-out;
+  transition: border-color, background-color .22s ease;
   width: 100%;
 }
 .search__input::placeholder {
   color: rgb(206, 206, 206);
 }
 .search__input:focus {
+  background-color: #000;
   border-color: var(--primary);
-}
-@media screen and (min-width: 52em) {
-  .search__input:hover {
-    border-color: var(--primary);
-  }
 }
 .header__open {
   color: var(--white);

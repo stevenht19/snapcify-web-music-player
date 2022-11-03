@@ -4,7 +4,7 @@
 }
 .album__image {
   border-radius: 1rem;
-  box-shadow: rgba(19, 3, 47, 0.637) 0px 3px 15px;
+  box-shadow: rgba(5, 5, 5, .8) 0px 3px 15px;
 }
 .album__title {
   margin-top: 1.4rem;

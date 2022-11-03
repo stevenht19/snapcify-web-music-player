@@ -2,7 +2,7 @@ import './style.css'
 
 const Aside = () => {
   return (
-    <aside className={'aside'}>
+    <aside className='aside'>
       <h1 className='logo'>
         Snapcify
       </h1>

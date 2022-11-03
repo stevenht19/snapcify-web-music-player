@@ -15,7 +15,7 @@ const SongTrack = ({
   rotate 
 }: Props) => {
   return (
-    <div className={'song__content'}>
+    <div className='song__content'>
       <div>
         <img
           src={image}
