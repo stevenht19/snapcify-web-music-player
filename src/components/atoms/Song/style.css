@@ -5,6 +5,7 @@
 }
 .song-card {
   display: flex;
+  margin-block: .5rem;
   align-items: center;
   cursor: pointer;
   padding-block: 1rem;
@@ -27,7 +28,8 @@
 .song__title {
   margin-top: 0;
   margin-bottom: .2rem;
-  font-size: 1.5rem;
+  font-weight: 500;
+  font-size: 1.4rem;
 }
 .song__artist {
   font-size: 1.3rem;

@@ -2,14 +2,15 @@
   user-select: none;
   cursor: pointer;
 }
-.top-card:hover .top__image {
-  filter: opacity(.5);
-}
 .top-card:hover .top__play {
   opacity: 1;
 }
 .top__cover {
   position: relative;
+  border-radius: 1rem;
+}
+.top-card:hover .top__image {
+  filter: opacity(0.6);
 }
 .top__play {
   opacity: 0;
@@ -21,7 +22,7 @@
   transform: translate(-50%, -50%);
 }
 .top__image {
-  border-radius: 1rem;
+  border-radius: inherit;
   transition: filter .22s ease;
   box-shadow: rgba(5, 5, 5, .8) 0px 3px 15px;
 }

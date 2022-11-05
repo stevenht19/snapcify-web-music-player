@@ -2,6 +2,7 @@
   display: flex;
   align-items: center;
   padding-block: 1rem;
+  margin-block: .5rem;
   padding-left: 2rem;
 }
 .song__image--skeleton {

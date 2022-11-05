@@ -3,7 +3,7 @@
   bottom: 0;
   left: 0;
   right: 0;
-  height: 10.2rem;
+  height: 10rem;
 }
 .player__container {
   height: inherit;
@@ -16,20 +16,17 @@
 }
 .player__controls {
   display: flex;
+  flex-direction: column;
+  align-items: center;
   position: absolute;
   left: 50%;
   transform: translateX(-50%);
-  flex-direction: column;
-  align-items: center;
   gap: 1.2rem;
   width: 75%;
   padding-block: 1.15rem;
   padding-inline: 3rem;
 }
 @media screen and (min-width: 52em) {
-  .player--centered {
-    justify-content: center;
-  }
   .player__controls {
     width: 35%;
   }

@@ -1,8 +1,8 @@
 import { createContext, useReducer, useEffect } from 'react'
 import { MusicPlayerState } from '@/types'
+import { Song, SongResponse } from '@/models'
 import { songAdapter } from '@/adapters'
 import { musicPlayerReducer } from '@/reducers'
-import { Song, SongResponse } from '@/models'
 
 const initialState: MusicPlayerState = {
   play: false,
@@ -36,11 +36,12 @@ function PlayerContextProvider(props: { children: React.ReactNode }) {
         const response: SongResponse[] = await (await fetch(API)).json()
         const songs: Song[] = response.map((res) => songAdapter(res))
         const breakpoint = Math.floor(songs.length / 2)
+
         dispatch({ 
           type: 'SET_SONGS', 
           payload: {
-            top: songs.slice(breakpoint),
-            popular: songs.slice(0, breakpoint)
+            topSongs: songs.slice(breakpoint),
+            popularSongs: songs.slice(0, breakpoint)
           }
         })
       } catch (e) {
