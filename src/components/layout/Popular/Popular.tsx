@@ -1,14 +1,13 @@
 import { useMusicPlayer } from '@/hooks'
 import { SongSkeleton } from '@/components/atoms/Skeleton'
 import { SongCard } from '@/components/atoms/Song'
+import './style.css'
 
 const Popular = () => {
   const { songs, isLoading } = useMusicPlayer()
 
   return (
-    <section style={{
-      paddingRight: '5rem'
-    }}>
+    <section className='popular'>
       <h2>Popular</h2>
       {
         isLoading ?
@@ -19,7 +18,7 @@ const Popular = () => {
         songs.map((song) => (
           <SongCard
             key={song.id}
-            {...song}
+            song={song}
           />
         ))
       }

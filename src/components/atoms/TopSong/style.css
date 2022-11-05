@@ -10,7 +10,7 @@
   border-radius: 1rem;
 }
 .top-card:hover .top__image {
-  filter: opacity(0.6);
+  filter: opacity(0.55);
 }
 .top__play {
   opacity: 0;

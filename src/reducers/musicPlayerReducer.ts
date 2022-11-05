@@ -2,7 +2,7 @@ import { MusicPlayerState } from '@/types'
 import { Song } from '@/models'
 
 type ReducerAction = {
-  type: 'PLAY',
+  type: 'PLAY' | 'PLAY_TOP',
   payload: {
     song: Song
     hasChanged?: boolean
@@ -17,6 +17,12 @@ type ReducerAction = {
   type: 'STOP_LOADING'
 }
 
+const playSong = (song: Song, id: Song['id']) => {
+  return (song.id === id) ? 
+    {...song, isPlaying: !song.isPlaying } : 
+    {...song, isPlaying: false }
+}
+
 const musicPlayerReducer = (state: MusicPlayerState, action: ReducerAction) => {
   switch (action.type) {
     case 'PLAY':
@@ -24,12 +30,16 @@ const musicPlayerReducer = (state: MusicPlayerState, action: ReducerAction) => {
         ...state,
         play: action.payload.hasChanged ? true : !state.play,
         selectedSong: action.payload.song,
-        songs: state
-          .songs
-          .map((song) => (song.id === action.payload.song.id) ? 
-            {...song, isPlaying: !song.isPlaying } : 
-            {...song, isPlaying: false }
-          )
+        songs: state.songs
+          .map((song) => playSong(song, action.payload.song.id))
+      }
+    case 'PLAY_TOP':
+      return {
+        ...state,
+        play: action.payload.hasChanged ? true : !state.play,
+        selectedSong: action.payload.song,
+        topSongs: state.topSongs
+          .map((song) => playSong(song, action.payload.song.id))
       }
     case 'SET_SONGS':
       return {

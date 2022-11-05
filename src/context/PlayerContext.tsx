@@ -17,7 +17,7 @@ type Props = {
 }
 
 interface Context extends MusicPlayerState { 
-  onPlay: (_song: Song, _hasChanged?: boolean) => void
+  onPlay: (_song: Song, _hasChanged?: boolean, _type?: 'PLAY_TOP') => void
 }
 
 export const MusicPlayerContext = createContext<Context>({
@@ -26,7 +26,7 @@ export const MusicPlayerContext = createContext<Context>({
   songs: [],
   topSongs: [],
   selectedSong: null,
-  onPlay: (_song, _hasChanged) => {}
+  onPlay: (_song, _hasChanged, _type) => {}
 })
 
 const API = `${import.meta.env.VITE_API}/songs`
@@ -57,15 +57,16 @@ export default function PlayerContextProvider({ children }: Props) {
     getSongs()
   }, [])
 
-  const onPlay = (song: Song, hasChanged?: boolean) => {
+  const onPlay = (song: Song, hasChanged?: boolean, type?: 'PLAY_TOP') => {
     dispatch({
-      type: 'PLAY',
+      type: type || 'PLAY',
       payload: { 
         song,
         ...(hasChanged && { hasChanged })
       }
     })
   }
+  
   return (
     <MusicPlayerContext.Provider value={{
       ...playerState,
