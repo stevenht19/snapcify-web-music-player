@@ -9,7 +9,10 @@ type ReducerAction = {
   }
 } | {
   type: 'SET_SONGS',
-  payload: Song[]
+  payload: {
+    top: Song[]
+    popular: Song[]
+  }
 } | {
   type: 'STOP_LOADING'
 }
@@ -31,7 +34,8 @@ const musicPlayerReducer = (state: MusicPlayerState, action: ReducerAction) => {
     case 'SET_SONGS':
       return {
         ...state,
-        songs: action.payload
+        topSongs: action.payload.top,
+        songs: action.payload.popular
       }
     case 'STOP_LOADING':
       return {

@@ -5,8 +5,8 @@ type Props = {
   play: boolean
   isSliding: boolean
   volume: number
-  barTime: number
   selectedSong: Song
+  barTime: number
   onEnded: (_song: Song) => void
   onChangeTime: (_: { x: number, xmax: number }) => void
 }

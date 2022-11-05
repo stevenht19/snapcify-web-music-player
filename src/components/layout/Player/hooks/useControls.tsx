@@ -8,10 +8,8 @@ type TimeState = {
 export const useControls = () => {
   const [currentTime, setCurrentTime] = useState<TimeState>({ x: 0, xmax: 0 })
   const [barTime, setBarTime] = useState<number>(0)
-  const [volume, setVolume] = useState<number>(0.50)
-  const [actualVolume, setActualVolume] = useState<number>(volume)
+  const [volume, setVolume] = useState<number>(0.10)
   const [isSliding, setIsSliding] = useState<boolean>(false)
-  const [isMuted, setIsMuted] = useState<boolean>(false)
 
   const onChangeTime = ({ x, xmax }: TimeState): void => {
     setCurrentTime({

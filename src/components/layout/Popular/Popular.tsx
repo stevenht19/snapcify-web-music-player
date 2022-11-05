@@ -10,7 +10,7 @@ const Popular = () => {
       <h2>Popular</h2>
       {
         isLoading ?
-          [1, 2, 3].map((n) => (
+          [1, 2, 3, 4, 5, 6].map((n) => (
             <SongSkeleton key={n} />
           ))
         :

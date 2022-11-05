@@ -7,7 +7,7 @@ const SongCard = (props: Song) => {
   const { selectedSong, onPlay } = useMusicPlayer()
 
   const onClick = () => {
-    onPlay(props, selectedSong.url !== props.url)
+    onPlay(props, selectedSong?.url !== props.url)
   }
 
   return (

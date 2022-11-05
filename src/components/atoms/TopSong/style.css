@@ -1,0 +1,36 @@
+.top-card {
+  user-select: none;
+  cursor: pointer;
+}
+.top-card:hover .top__image {
+  filter: opacity(.5);
+}
+.top-card:hover .top__play {
+  opacity: 1;
+}
+.top__cover {
+  position: relative;
+}
+.top__play {
+  opacity: 0;
+  position: absolute;
+  transition: opacity .12s ease-in;
+  top: 50%;
+  left: 50%;
+  z-index: 19;
+  transform: translate(-50%, -50%);
+}
+.top__image {
+  border-radius: 1rem;
+  transition: filter .22s ease;
+  box-shadow: rgba(5, 5, 5, .8) 0px 3px 15px;
+}
+.top__title {
+  margin-top: 1.4rem;
+  font-size: 1.8rem;
+  margin-bottom: .5rem;
+}
+.top__artist {
+  color: var(--gray200);
+  font-size: 1.4rem;
+}

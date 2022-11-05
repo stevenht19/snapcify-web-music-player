@@ -1,2 +1,2 @@
 export { default as SongSkeleton } from './SongSkeleton'
-export { default as AlbumSkeleton } from './AlbumSkeleton'
+export { default as TopSongSkeleton } from './TopSongSkeleton'

@@ -3,6 +3,7 @@ import Slider from 'react-input-slider'
 type Props = {
   x: number
   xmax: number
+  disabled?: boolean
   trackColor?: string
   activeColor?: string
   thumbColor?: string
@@ -12,8 +13,9 @@ type Props = {
 
 const InputSlider = ({
   x, 
-  xmax, 
-  onChange, 
+  xmax,
+  disabled,
+  onChange,
   onDragEnd, 
   trackColor, 
   activeColor, 
@@ -23,13 +25,18 @@ const InputSlider = ({
     <Slider
       axis='x'
       x={x}
-      xmax={Math.floor(xmax)} 
+      xmax={Math.floor(xmax)}
       onChange={onChange}
+      disabled={!!disabled}
       onDragEnd={onDragEnd}
       styles={{
         ...(trackColor && { track: { backgroundColor: trackColor }}),
         ...(activeColor && { active: { backgroundColor: activeColor }}),
         ...(thumbColor && { thumb: { backgroundColor: thumbColor }}),
+        disabled: {
+          opacity: 0.6,
+          width: '100%'
+        }
       }}
     />
   )

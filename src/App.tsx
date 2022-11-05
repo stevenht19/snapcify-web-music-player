@@ -18,14 +18,17 @@ export default function App() {
     <div style={{
       display: 'flex',
       flexDirection: 'column',
-      overflowX: 'hidden'
+      flex: 1,
+      overflowX: 'hidden',
+      overflowY: 'scroll'
     }}>
       <Header />
       <main style={{
         display: 'flex',
         flexDirection: 'column',
         gap: '2.5rem',
-        flex: 1
+        flex: 1,
+        paddingBottom: '12rem'
       }}>
         <Top />
         <section style={{ paddingRight: '5rem' }}>

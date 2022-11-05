@@ -8,13 +8,8 @@ const initialState: MusicPlayerState = {
   play: false,
   isLoading: true,
   songs: [],
-  selectedSong: {
-    id: '',
-    title: '',
-    artist: '',
-    image: '',
-    url: '',
-  }
+  topSongs: [],
+  selectedSong: null
 }
 
 interface Context extends MusicPlayerState { 
@@ -25,13 +20,8 @@ export const MusicPlayerContext = createContext<Context>({
   play: false,
   isLoading: true,
   songs: [],
-  selectedSong: {
-    id: '',
-    image: '',
-    url: '',
-    title: '',
-    artist: ''
-  },
+  topSongs: [],
+  selectedSong: null,
   onPlay: (_song, _hasChanged) => {}
 })
 
@@ -45,9 +35,13 @@ function PlayerContextProvider(props: { children: React.ReactNode }) {
       try {
         const response: SongResponse[] = await (await fetch(API)).json()
         const songs: Song[] = response.map((res) => songAdapter(res))
+        const breakpoint = Math.floor(songs.length / 2)
         dispatch({ 
           type: 'SET_SONGS', 
-          payload: songs 
+          payload: {
+            top: songs.slice(breakpoint),
+            popular: songs.slice(0, breakpoint)
+          }
         })
       } catch (e) {
         console.log(e)

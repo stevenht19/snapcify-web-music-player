@@ -1,25 +1,29 @@
 import { SwiperSlide } from 'swiper/react'
 import { useMusicPlayer } from '@/hooks'
-import Album from '@/components/atoms/Album'
+import { TopSongSkeleton } from '@/components/atoms/Skeleton'
+import Album from '@/components/atoms/TopSong'
 import Carousel from '@/components/atoms/Carousel'
-import { AlbumSkeleton } from '@/components/atoms/Skeleton'
-import './style.css'
 
 const Top = () => {
-  const { isLoading } = useMusicPlayer()
+  const { topSongs, isLoading } = useMusicPlayer()
 
   return (
-    <div className='top'>
+    <div>
       <h2>Top Songs</h2>
       <Carousel>
         {
-          [1, 2, 3, 4, 5, 6, 7].map(() => (
+          isLoading ? 
+          [1, 2, 3, 4, 5, 6, 7].map((n) => (
             <SwiperSlide>
-              {
-                isLoading ?
-                <AlbumSkeleton />
-                : <Album />
-              }
+              <TopSongSkeleton key={n} />
+            </SwiperSlide>
+          )) : 
+          topSongs.map((props) => (
+            <SwiperSlide>
+              <Album 
+                key={props.id} 
+                {...props} 
+              />
             </SwiperSlide>
           ))
         }

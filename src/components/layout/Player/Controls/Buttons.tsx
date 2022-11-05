@@ -2,32 +2,37 @@ import { Song } from '@/models'
 
 type Props = {
   play: boolean
-  selectedSong: Song
+  isDisabled: boolean
+  selectedSong: Song | null
   onPlay: (_song: Song) => void
 }
 
 const Buttons = ({
   play,
   onPlay,
+  isDisabled,
   selectedSong
 }: Props) => {
 
   const onPlaySong = () => {
-    onPlay(selectedSong)
+    !!selectedSong && onPlay(selectedSong)
   }
 
   return (
-    <div className='player__buttons'>
-      <svg
-        xmlns="http://www.w3.org/2000/svg"
-        width="32"
-        height="30"
-        viewBox="0 0 24 24"
-        fill="#ffffff"
-      >
-        <path d="M16 7l-7 5 7 5zm-7 5V7H7v10h2z"></path>
-      </svg>
+    <div className={`player__buttons${isDisabled ? ' player__buttons--disabled' : ''}`}>
+      <button>
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          width="32"
+          height="30"
+          viewBox="0 0 24 24"
+          fill={isDisabled ? 'var(--gray100)' : '#ffffff'}
+        >
+          <path d="M16 7l-7 5 7 5zm-7 5V7H7v10h2z"></path>
+        </svg>
+      </button>
       <button
+        disabled={isDisabled}
         className='player__play'
         onClick={onPlaySong}
       >
@@ -52,7 +57,7 @@ const Buttons = ({
               xmlns="http://www.w3.org/2000/svg"
               width="24"
               height="24"
-              fill="var(--primary)"
+              fill={isDisabled ? 'var(--gray500)' : 'var(--primary)'}
               stroke="currentColor"
               strokeWidth="0"
               viewBox="0 0 512 512"
@@ -64,15 +69,17 @@ const Buttons = ({
             </svg>
         }
       </button>
-      <svg
-        xmlns="http://www.w3.org/2000/svg"
-        width="32"
-        height="30"
-        viewBox="0 0 24 24"
-        fill="#ffffff"
-      >
-        <path d="M7 7v10l7-5zm9 10V7h-2v10z"></path>
-      </svg>
+      <button>
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          width="32"
+          height="30"
+          viewBox="0 0 24 24"
+          fill={isDisabled ? 'var(--gray100)' : '#ffffff'}
+        >
+          <path d="M7 7v10l7-5zm9 10V7h-2v10z"></path>
+        </svg>
+      </button>
     </div>
   )
 }

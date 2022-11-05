@@ -2,7 +2,7 @@ import skeleton from '@/assets/skeleton.png'
 import SkeletonText from './SkeletonText'
 import './style.css'
 
-const AlbumSkeleton = () => {
+const TopSongSkeleton = () => {
   return (
     <div className='album-skeleton'>
       <div>
@@ -20,4 +20,4 @@ const AlbumSkeleton = () => {
   )
 }
 
-export default AlbumSkeleton
+export default TopSongSkeleton
