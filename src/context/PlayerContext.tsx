@@ -12,6 +12,10 @@ const initialState: MusicPlayerState = {
   selectedSong: null
 }
 
+type Props = {
+  children: React.ReactNode
+}
+
 interface Context extends MusicPlayerState { 
   onPlay: (_song: Song, _hasChanged?: boolean) => void
 }
@@ -27,7 +31,7 @@ export const MusicPlayerContext = createContext<Context>({
 
 const API = `${import.meta.env.VITE_API}/songs`
 
-function PlayerContextProvider(props: { children: React.ReactNode }) {
+export default function PlayerContextProvider({ children }: Props) {
   const [playerState, dispatch] = useReducer(musicPlayerReducer, initialState)
 
   useEffect(() => {
@@ -67,8 +71,7 @@ function PlayerContextProvider(props: { children: React.ReactNode }) {
       ...playerState,
       onPlay
     }}>
-      {props.children}
+      {children}
     </MusicPlayerContext.Provider>
   )
 }
-export default PlayerContextProvider

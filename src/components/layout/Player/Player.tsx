@@ -5,10 +5,8 @@ import './style.css'
 const Player = () => {
   return (
     <div className='player'>
-      <div className='player__container'>
-        <Track />
-        <Controls />
-      </div>
+      <Track />
+      <Controls />
     </div>
   )
 }

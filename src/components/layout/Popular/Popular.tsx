@@ -6,7 +6,9 @@ const Popular = () => {
   const { songs, isLoading } = useMusicPlayer()
 
   return (
-    <section>
+    <section style={{
+      paddingRight: '5rem'
+    }}>
       <h2>Popular</h2>
       {
         isLoading ?

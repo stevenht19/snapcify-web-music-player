@@ -1,16 +1,8 @@
 .player {
-  position: fixed;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  height: 10rem;
-}
-.player__container {
-  height: inherit;
-  position: relative;
   display: flex;
   justify-content: space-between;
   align-items: center;
+  position: relative;
   padding-right: 2rem;
   background-color: var(--gray500);
 }
