@@ -7,6 +7,7 @@ import { musicPlayerReducer } from '@/reducers'
 const initialState: MusicPlayerState = {
   play: false,
   isLoading: true,
+  isDisabled: true,
   fromCarousel: false,
   songs: [],
   topSongs: [],
@@ -18,17 +19,18 @@ type Props = {
 }
 
 interface Context extends MusicPlayerState { 
-  onPlay: (_song: Song, _hasChanged?: boolean, _type?: 'PLAY_TOP') => void
+  onPlay: (_song: Song, _type?: 'PLAY_TOP') => void
 }
 
 export const MusicPlayerContext = createContext<Context>({
   play: false,
   isLoading: true,
+  isDisabled: true,
   fromCarousel: false,
   songs: [],
   topSongs: [],
   selectedSong: null,
-  onPlay: (_song, _hasChanged, _type) => {}
+  onPlay: (_song, _type) => {}
 })
 
 const API = `${import.meta.env.VITE_API}/songs`
@@ -60,22 +62,19 @@ export default function PlayerContextProvider({ children }: Props) {
   }, [])
 
   const onPlay = (
-    song: Song, 
-    hasChanged?: boolean, 
+    song: Song,
     type?: 'PLAY_TOP'
   ) => {
     dispatch({
       type: type || 'PLAY',
-      payload: { 
-        song,
-        ...(hasChanged && { hasChanged })
-      }
+      payload: song
     })
   }
   
   return (
     <MusicPlayerContext.Provider value={{
       ...playerState,
+      isDisabled: !playerState.selectedSong,
       onPlay
     }}>
       {children}

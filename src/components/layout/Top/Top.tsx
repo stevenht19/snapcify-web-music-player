@@ -2,7 +2,7 @@ import { SwiperSlide } from 'swiper/react'
 import { useMusicPlayer } from '@/hooks'
 import { TopSongSkeleton } from '@/components/atoms/Skeleton'
 import Carousel from '@/components/atoms/Carousel'
-import TopSong from '@/components/atoms/TopSong'
+import TopSong from '@/components/atoms/Card/TopSong'
 
 const Top = () => {
   const { topSongs, isLoading } = useMusicPlayer()

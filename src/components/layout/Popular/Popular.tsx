@@ -1,6 +1,6 @@
 import { useMusicPlayer } from '@/hooks'
 import { SongSkeleton } from '@/components/atoms/Skeleton'
-import { SongCard } from '@/components/atoms/Song'
+import { SongCard } from '@/components/atoms/Card'
 import './style.css'
 
 const Popular = () => {

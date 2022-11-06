@@ -8,10 +8,10 @@ type Props = {
 }
 
 const SongCard = ({ song }: Props) => {
-  const { selectedSong, onPlay } = useMusicPlayer()
+  const { onPlay } = useMusicPlayer()
 
   const onClick = () => {
-    onPlay(song, selectedSong?.url !== song.url)
+    onPlay(song)
   }
 
   return (

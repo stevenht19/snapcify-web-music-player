@@ -1,14 +1,14 @@
 import { useMusicPlayer } from '@/hooks'
-import { Song } from '@/components/atoms/Song'
+import { Track } from '@/components/atoms/Card'
 
-const Track = () => {
+const SongTrack = () => {
   const { play, selectedSong } = useMusicPlayer()
 
   if (!selectedSong) return null
 
   return (
     <div className='player__track'>
-      <Song
+      <Track
         rotate={play}
         {...selectedSong}
       />
@@ -16,4 +16,4 @@ const Track = () => {
   )
 }
 
-export default Track
+export default SongTrack

@@ -1,6 +1,5 @@
 import { useMusicPlayer } from '@/hooks'
 import { Song } from '@/models'
-import { memo } from 'react'
 import './style.css'
 
 type Props = {
@@ -8,10 +7,10 @@ type Props = {
 }
 
 const TopSong = ({ song }: Props) => {
-  const { selectedSong, onPlay } = useMusicPlayer()
+  const { onPlay } = useMusicPlayer()
 
   const onClick = () => {
-    onPlay(song, selectedSong?.url !== song.url, 'PLAY_TOP')
+    onPlay(song, 'PLAY_TOP')
   }
 
   return (

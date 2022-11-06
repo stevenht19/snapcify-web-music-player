@@ -6,7 +6,13 @@ import Audio from './Audio'
 import Volume from './Volume'
 
 const Controls = () => {
-  const { play, onPlay, selectedSong, fromCarousel } = useMusicPlayer()
+  const {
+    play, 
+    onPlay,
+    isDisabled, 
+    selectedSong, 
+    fromCarousel 
+  } = useMusicPlayer()
 
   const {
     currentTime,
@@ -23,18 +29,19 @@ const Controls = () => {
     <div className='player__controls'>
       <Buttons
         play={play}
-        isDisabled={!selectedSong}
+        isDisabled={isDisabled}
         onPlay={onPlay}
+        fromCarousel={fromCarousel}
         selectedSong={selectedSong}
       />
       <Bar
-        isDisabled={!selectedSong}
+        isDisabled={isDisabled}
         onChangeSlide={onChangeSlide}
         onDragEnd={onDragEnd}
         {...currentTime}
       />
       {
-        selectedSong ?
+        (!!selectedSong && !isDisabled) ?
           <Audio
             play={play}
             barTime={barTime}
@@ -48,7 +55,7 @@ const Controls = () => {
       }
     </div>
     {
-      !!selectedSong ? (
+      !isDisabled ? (
         <Volume
           volume={volume}
           onChangeVolume={onChangeVolume}

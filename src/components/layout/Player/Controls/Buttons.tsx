@@ -1,21 +1,24 @@
+import { MusicPlayerState } from '@/types'
 import { Song } from '@/models'
 
 type Props = {
-  play: boolean
+  play: MusicPlayerState['play']
   isDisabled: boolean
-  selectedSong: Song | null
-  onPlay: (_song: Song) => void
+  selectedSong: MusicPlayerState['selectedSong']
+  fromCarousel: MusicPlayerState['fromCarousel']
+  onPlay: (_song: Song, _type?: 'PLAY_TOP') => void
 }
 
 const Buttons = ({
   play,
   onPlay,
+  fromCarousel,
   isDisabled,
   selectedSong
 }: Props) => {
 
   const onPlaySong = () => {
-    !!selectedSong && onPlay(selectedSong)
+    !!selectedSong && onPlay(selectedSong, fromCarousel ? 'PLAY_TOP' : undefined)
   }
 
   return (

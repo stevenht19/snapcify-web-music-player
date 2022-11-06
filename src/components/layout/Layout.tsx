@@ -1,5 +1,5 @@
 import { Outlet } from 'react-router-dom'
-import MusicPlayerProvider from '@/context/PlayerContext'
+import { MusicPlayerProvider } from '@/context'
 import Aside from './Aside'
 import Header from './Header'
 import Player from './Player'

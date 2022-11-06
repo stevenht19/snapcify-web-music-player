@@ -5,16 +5,16 @@ import {
   Route 
 } from 'react-router-dom'
 import { Layout } from './components/layout'
-import Home from './pages/Home'
-import Search, { loader } from './pages/Search'
+import HomePage from './pages/Home'
+import ResultsPage, { loader } from './pages/Results'
 
 const router = createBrowserRouter(
   createRoutesFromElements(
     <Route path='/' element={<Layout />}>
-      <Route index element={<Home />} />
+      <Route index element={<HomePage />} />
       <Route 
         path='/search' 
-        element={<Search />} 
+        element={<ResultsPage />} 
         loader={loader}
       />
     </Route>

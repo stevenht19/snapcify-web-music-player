@@ -45,5 +45,6 @@ button {
   outline-width: 0;
 }
 a {
+  color: unset;
   text-decoration: none;
 }

@@ -19,7 +19,6 @@
   align-items: center;
   gap: 1.8rem;
   padding-right: calc(var(--separation) * 2.3);
-  color: var(--white);
   position: relative;
 }
 .navbar__item::after {

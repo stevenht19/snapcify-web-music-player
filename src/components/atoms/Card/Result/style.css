@@ -1,0 +1,5 @@
+.result {
+  width: 15rem;
+  padding: .5rem;
+  background-color: var(--gray700);
+}

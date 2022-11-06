@@ -5,7 +5,9 @@ const Aside = () => {
   return (
     <aside className='aside'>
       <h1 className='logo'>
-        Snapcify
+        <Link to='/'>
+          Snapcify
+        </Link>
       </h1>
       <nav className='navbar'>
         <ul>

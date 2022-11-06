@@ -1,10 +1,21 @@
+import ProgressBar from '@badrap/bar-of-progress'
 import { useNavigation, Form } from 'react-router-dom'
 
+const progress = new ProgressBar({
+  color: 'var(--primary)'
+});
+
 const Search = () => {
-  const navigation = useNavigation()
+  const { state } = useNavigation()
+
+  if (state === 'loading') {
+    progress.start();
+  } else {
+    progress.finish()
+  }
 
   return (
-    <Form method='get' action='/search'>
+    <Form method='get' action='/search' replace>
       <div className='searcher'>
         <svg
           xmlns="http://www.w3.org/2000/svg"
