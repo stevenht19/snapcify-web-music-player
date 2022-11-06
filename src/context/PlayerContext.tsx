@@ -7,6 +7,7 @@ import { musicPlayerReducer } from '@/reducers'
 const initialState: MusicPlayerState = {
   play: false,
   isLoading: true,
+  fromCarousel: false,
   songs: [],
   topSongs: [],
   selectedSong: null
@@ -23,6 +24,7 @@ interface Context extends MusicPlayerState {
 export const MusicPlayerContext = createContext<Context>({
   play: false,
   isLoading: true,
+  fromCarousel: false,
   songs: [],
   topSongs: [],
   selectedSong: null,
@@ -40,7 +42,7 @@ export default function PlayerContextProvider({ children }: Props) {
         const response: SongResponse[] = await (await fetch(API)).json()
         const songs: Song[] = response.map((res) => songAdapter(res))
         const breakpoint = Math.floor(songs.length / 2)
-
+        
         dispatch({ 
           type: 'SET_SONGS', 
           payload: {
@@ -57,7 +59,11 @@ export default function PlayerContextProvider({ children }: Props) {
     getSongs()
   }, [])
 
-  const onPlay = (song: Song, hasChanged?: boolean, type?: 'PLAY_TOP') => {
+  const onPlay = (
+    song: Song, 
+    hasChanged?: boolean, 
+    type?: 'PLAY_TOP'
+  ) => {
     dispatch({
       type: type || 'PLAY',
       payload: { 

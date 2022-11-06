@@ -24,6 +24,7 @@ body {
   margin: 0;
   font-size: 1.6rem;
   color: var(--white);
+  height: 100vh;
   font-family: 'Inter', sans-serif;
   background-image: linear-gradient(to bottom, #050505, #18181C);
 }
@@ -31,6 +32,7 @@ input {
   outline-width: 0;
 }
 ul {
+  list-style: none;
   padding-left: 0;
 }
 img {
@@ -41,4 +43,7 @@ button {
   border: none;
   background-color: transparent;
   outline-width: 0;
+}
+a {
+  text-decoration: none;
 }

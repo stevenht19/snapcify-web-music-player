@@ -1,5 +1,6 @@
 import { useMusicPlayer } from '@/hooks'
 import { Song } from '@/models'
+import { memo } from 'react'
 import './style.css'
 
 type Props = {

@@ -6,7 +6,7 @@ import Audio from './Audio'
 import Volume from './Volume'
 
 const Controls = () => {
-  const { play, onPlay, selectedSong } = useMusicPlayer()
+  const { play, onPlay, selectedSong, fromCarousel } = useMusicPlayer()
 
   const {
     currentTime,
@@ -40,6 +40,7 @@ const Controls = () => {
             barTime={barTime}
             isSliding={isSliding}
             volume={volume}
+            fromCarousel={fromCarousel}
             selectedSong={selectedSong}
             onChangeTime={onChangeTime}
             onEnded={onPlay}

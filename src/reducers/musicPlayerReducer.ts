@@ -30,6 +30,7 @@ const musicPlayerReducer = (state: MusicPlayerState, action: ReducerAction) => {
         ...state,
         play: action.payload.hasChanged ? true : !state.play,
         selectedSong: action.payload.song,
+        fromCarousel: false,
         songs: state.songs
           .map((song) => playSong(song, action.payload.song.id))
       }
@@ -38,6 +39,7 @@ const musicPlayerReducer = (state: MusicPlayerState, action: ReducerAction) => {
         ...state,
         play: action.payload.hasChanged ? true : !state.play,
         selectedSong: action.payload.song,
+        fromCarousel: true,
         topSongs: state.topSongs
           .map((song) => playSong(song, action.payload.song.id))
       }
