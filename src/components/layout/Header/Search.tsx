@@ -5,7 +5,7 @@ const progress = new ProgressBar({
   color: 'var(--primary)'
 });
 
-const Search = () => {
+export default function Search() {
   const { state } = useNavigation()
 
   if (state === 'loading') {
@@ -38,5 +38,3 @@ const Search = () => {
     </Form>
   )
 }
-
-export default Search

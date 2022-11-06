@@ -1,12 +1,10 @@
 import {
   useLoaderData,
+  redirect,
   LoaderFunctionArgs,
-  Await
 } from 'react-router-dom'
-import { Suspense } from 'react'
 import { Song } from '@/models'
 import { searchSongsByQuery } from '@/services'
-import TailSpin from '@/components/atoms/Spinner'
 import Results from '@/components/layout/Results'
 
 type Response = {
@@ -20,20 +18,15 @@ export default function ResultsPage() {
   return (
     <div>
       <h2>Results of {query}</h2>
-      {
-        <Suspense fallback={<TailSpin />}>
-          <Await
-            resolve={results}
-          >
-            {(resolvedResults) => <Results items={resolvedResults} />}
-          </Await>
-        </Suspense>
-      }
+      <Results items={results} />
     </div>
   )
 }
 export async function loader({ request }: LoaderFunctionArgs) {
   const url = new URL(request.url)
   const query = url.searchParams.get('q')
+  if (!query?.trim().length) {
+    return redirect('/')
+  }
   return { results: await searchSongsByQuery(), query }
 }
