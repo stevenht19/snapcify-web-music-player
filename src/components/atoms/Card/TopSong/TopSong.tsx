@@ -1,5 +1,7 @@
 import { useMusicPlayer } from '@/hooks'
 import { Song } from '@/models'
+import Artist from '../components/Artist'
+import Title from '../components/Title'
 import './style.css'
 
 type Props = {
@@ -59,8 +61,8 @@ const TopSong = ({ song }: Props) => {
           alt='Album name'
         />
       </div>
-      <h2 className='top__title'>{song.title}</h2>
-      <span className='top__artist'>{song.artist}</span>
+      <Title title={song.title} />
+      <Artist artist={song.artist} />
     </div>
   )
 }

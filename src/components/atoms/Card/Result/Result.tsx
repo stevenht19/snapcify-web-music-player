@@ -1,4 +1,6 @@
 import { Song } from '@/models'
+import Title from '../components/Title'
+import Artist from '../components/Artist'
 import './style.css'
 
 const Result = (props: Song) => {
@@ -7,8 +9,10 @@ const Result = (props: Song) => {
       <div>
         <img src={props.image} alt={props.title} />
       </div>
-      <h2>{props.title}</h2>
-      <span>{props.artist}</span>
+      <div className='result__content'>
+        <Title title={props.title} />
+        <Artist artist={props.artist} />
+      </div>
     </div>
   )
 }

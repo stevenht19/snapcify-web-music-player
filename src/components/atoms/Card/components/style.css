@@ -1,0 +1,9 @@
+.card__title {
+  margin-top: 1.4rem;
+  font-size: 1.8rem;
+  margin-bottom: .5rem;
+}
+.card__artist {
+  color: var(--gray200);
+  font-size: 1.4rem;
+}

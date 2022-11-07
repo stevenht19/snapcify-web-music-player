@@ -15,7 +15,7 @@ const Results = ({ items }: Props) => {
             key={song.id}
             {...song}
           />
-        ))
+        )).slice(1)
       }
     </div>
   )
