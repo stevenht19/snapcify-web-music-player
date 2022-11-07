@@ -7,8 +7,10 @@ import Volume from './Volume'
 
 const Controls = () => {
   const {
-    play, 
+    play,
+    onPrevious,
     onPlay,
+    onNext,
     isDisabled, 
     selectedSong,
     categorie,
@@ -31,7 +33,9 @@ const Controls = () => {
         play={play}
         categorie={categorie}
         isDisabled={isDisabled}
+        onPrevious={onPrevious}
         onPlay={onPlay}
+        onNext={onNext}
         selectedSong={selectedSong}
       />
       <Bar

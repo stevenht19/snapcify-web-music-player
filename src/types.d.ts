@@ -6,6 +6,7 @@ export interface MusicPlayerState {
   isDisabled: boolean
   categorie: 'CAROUSEL' | 'POPULAR' | null
   selectedSong: Song | null
+  selectedIndex: number | null
   songs: Song[]
   topSongs: Song[]
 }

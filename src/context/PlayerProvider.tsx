@@ -10,12 +10,15 @@ const initialState: MusicPlayerState = {
   isDisabled: true,
   categorie: null,
   selectedSong: null,
+  selectedIndex: null,
   songs: [],
   topSongs: [],
 }
 
 interface Context extends MusicPlayerState { 
+  onPrevious: () => void
   onPlay: (_song: Song, _cat: MusicPlayerState['categorie']) => void
+  onNext: () => void
 }
 
 export const MusicPlayerContext = createContext<Context>({
@@ -24,9 +27,12 @@ export const MusicPlayerContext = createContext<Context>({
   isLoading: true,
   isDisabled: true,
   selectedSong: null,
+  selectedIndex: null,
   songs: [],
   topSongs: [],
-  onPlay: (_song, _cat) => {}
+  onPrevious: () => {},
+  onPlay: (_song, _cat) => {},
+  onNext: () => {}
 })
 
 export default function PlayerContextProvider({ children }: {
@@ -42,6 +48,10 @@ export default function PlayerContextProvider({ children }: {
       }))
   }, [])
 
+  const onPrevious = () => {
+    dispatch({ type: 'PREVIOUS' })
+  }
+
   const onPlay = (
     song: Song,
     categorie: MusicPlayerState['categorie']
@@ -49,15 +59,22 @@ export default function PlayerContextProvider({ children }: {
     dispatch({
       type: 'PLAY',
       payload: {
-        song, categorie
+        song, 
+        categorie
       }
     })
+  }
+
+  const onNext = () => {
+    dispatch({ type: 'NEXT' })
   }
   
   return (
     <MusicPlayerContext.Provider value={{
       ...playerState,
       onPlay,
+      onNext,
+      onPrevious,
       isDisabled: !playerState.selectedSong,
     }}>
       {children}

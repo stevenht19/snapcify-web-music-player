@@ -6,12 +6,16 @@ type Props = {
   selectedSong: MusicPlayerState['selectedSong']
   categorie: MusicPlayerState['categorie']
   isDisabled: MusicPlayerState['isDisabled']
+  onPrevious: () => void
   onPlay: (_song: Song, _cat: MusicPlayerState['categorie']) => void
+  onNext: () => void
 }
 
 const Buttons = ({
   play,
+  onPrevious,
   onPlay,
+  onNext,
   categorie,
   isDisabled,
   selectedSong
@@ -23,7 +27,7 @@ const Buttons = ({
 
   return (
     <div className={`player__buttons${isDisabled ? ' player__buttons--disabled' : ''}`}>
-      <button>
+      <button disabled={isDisabled} onClick={onPrevious}>
         <svg
           xmlns="http://www.w3.org/2000/svg"
           width="32"
@@ -72,7 +76,7 @@ const Buttons = ({
             </svg>
         }
       </button>
-      <button>
+      <button disabled={isDisabled} onClick={onNext}>
         <svg
           xmlns="http://www.w3.org/2000/svg"
           width="32"
