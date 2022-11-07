@@ -1,23 +1,23 @@
-import { MusicPlayerState } from '@/types'
 import { useEffect, useRef } from 'react'
+import { MusicPlayerState } from '@/types'
 import { Song } from '@/models'
 
 type Props = {
   play: MusicPlayerState['play']
-  fromCarousel: MusicPlayerState['fromCarousel']
+  categorie: MusicPlayerState['categorie']
   selectedSong: Song
   isSliding: boolean
   volume: number
   barTime: number
-  onEnded: (_song: Song, type?: 'PLAY_TOP') => void
+  onEnded: (_song: Song, _cat: MusicPlayerState['categorie']) => void
   onChangeTime: (_: { x: number, xmax: number }) => void
 }
 
 const Audio = ({ 
   play,
   volume,
+  categorie,
   isSliding,
-  fromCarousel,
   selectedSong, 
   barTime,
   onChangeTime,
@@ -58,7 +58,7 @@ const Audio = ({
   }
 
   const onPause = () => {
-    onEnded(selectedSong, fromCarousel ? 'PLAY_TOP' : undefined)
+    onEnded(selectedSong, categorie)
   }
 
   return (

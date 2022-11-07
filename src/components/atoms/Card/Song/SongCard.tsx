@@ -11,7 +11,7 @@ const SongCard = ({ song }: Props) => {
   const { onPlay } = useMusicPlayer()
 
   const onClick = () => {
-    onPlay(song)
+    onPlay(song, 'POPULAR')
   }
 
   return (

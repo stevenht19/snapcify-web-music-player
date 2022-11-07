@@ -10,7 +10,7 @@ const TopSong = ({ song }: Props) => {
   const { onPlay } = useMusicPlayer()
 
   const onClick = () => {
-    onPlay(song, 'PLAY_TOP')
+    onPlay(song, 'CAROUSEL')
   }
 
   return (

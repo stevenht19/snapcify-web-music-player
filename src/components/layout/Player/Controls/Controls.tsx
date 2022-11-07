@@ -10,8 +10,8 @@ const Controls = () => {
     play, 
     onPlay,
     isDisabled, 
-    selectedSong, 
-    fromCarousel 
+    selectedSong,
+    categorie,
   } = useMusicPlayer()
 
   const {
@@ -29,9 +29,9 @@ const Controls = () => {
     <div className='player__controls'>
       <Buttons
         play={play}
+        categorie={categorie}
         isDisabled={isDisabled}
         onPlay={onPlay}
-        fromCarousel={fromCarousel}
         selectedSong={selectedSong}
       />
       <Bar
@@ -44,10 +44,10 @@ const Controls = () => {
         (!!selectedSong && !isDisabled) ?
           <Audio
             play={play}
+            categorie={categorie}
             barTime={barTime}
             isSliding={isSliding}
             volume={volume}
-            fromCarousel={fromCarousel}
             selectedSong={selectedSong}
             onChangeTime={onChangeTime}
             onEnded={onPlay}

@@ -2,22 +2,64 @@ import { MusicPlayerState } from '@/types'
 import { Song } from '@/models'
 
 type ReducerAction = {
-  type: 'PLAY' | 'PLAY_TOP',
-  payload: Song
+  type: 'PLAY',
+  payload: {
+    song: Song
+    categorie: MusicPlayerState['categorie']
+  }
 } | {
   type: 'SET_SONGS',
   payload: {
     topSongs: Song[]
     popularSongs: Song[]
   }
-} | {
-  type: 'STOP_LOADING'
 }
 
-const playSong = (song: Song, id: Song['id']) => {
+const changePlayingState = (song: Song, id: Song['id']) => {
   return (song.id === id) ? 
     {...song, isPlaying: !song.isPlaying } : 
     {...song, isPlaying: false }
+}
+
+const evalSongs = (
+  state: MusicPlayerState,
+  selectedSong: Song,
+  categorie: MusicPlayerState['categorie']
+) => {
+  switch (categorie) {
+    case 'CAROUSEL': 
+      return {
+        ...(state.categorie !== 'CAROUSEL' ? 
+          {
+            songs: state
+              .songs
+              .map((song) => ({ ...song, isPlaying: false })),
+            topSongs: state
+              .topSongs
+              .map((song) => (changePlayingState(song, selectedSong.id)))
+          } :
+          { topSongs: state
+              .topSongs
+              .map((song) => (changePlayingState(song, selectedSong.id))) }
+        )
+    }
+    case 'POPULAR': 
+      return {
+        ...(state.categorie !== 'POPULAR' ?
+          { 
+            topSongs: state
+              .topSongs
+              .map((song) => ({...song, isPlaying: false })),
+            songs: state
+              .songs
+              .map((song) => changePlayingState(song, selectedSong.id))
+          } : 
+          { songs: state
+              .songs
+              .map((song) => changePlayingState(song, selectedSong.id)) }
+        )
+      }
+  }
 }
 
 const musicPlayerReducer = (state: MusicPlayerState, action: ReducerAction) => {
@@ -25,32 +67,16 @@ const musicPlayerReducer = (state: MusicPlayerState, action: ReducerAction) => {
     case 'PLAY':
       return {
         ...state,
-        play: (state.selectedSong?.id === action.payload.id) ? !state.play : true,
-        selectedSong: action.payload,
-        fromCarousel: false,
-        songs: state.songs
-          .map((song) => playSong(song, action.payload.id)),
-        topSongs: state.topSongs.map((song) => ({...song, isPlaying: false}))
-      }
-    case 'PLAY_TOP':
-      return {
-        ...state,
-        play: (state.selectedSong?.id === action.payload.id) ? !state.play : true,
-        selectedSong: action.payload,
-        fromCarousel: true,
-        songs: state.songs.map((song) => ({...song, isPlaying: false})),
-        topSongs: state.topSongs
-          .map((song) => playSong(song, action.payload.id))
+        play: (state.selectedSong?.id === action.payload.song.id) ? !state.play : true,
+        selectedSong: action.payload.song,
+        categorie: action.payload.categorie,
+        ...(evalSongs(state, action.payload.song, action.payload.categorie))
       }
     case 'SET_SONGS':
       return {
         ...state,
         topSongs: action.payload.topSongs,
-        songs: action.payload.popularSongs
-      }
-    case 'STOP_LOADING':
-      return {
-        ...state,
+        songs: action.payload.popularSongs,
         isLoading: false
       }
     default: return state
