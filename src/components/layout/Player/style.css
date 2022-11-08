@@ -34,9 +34,16 @@
 .player__play {
   display: flex;
   align-items: center;
-  padding: 1.1rem;
+  padding: 1.3rem;
   border-radius: 1.7rem;
   background-color: #fff;
+  transition: transform .22s cubic-bezier(0.075, 0.82, 0.165, 1);
+}
+.player__play:hover {
+  transform: scale(1.04);
+}
+.player__arrow:hover svg {
+  fill: #fff;
 }
 .bar {
   display: flex;

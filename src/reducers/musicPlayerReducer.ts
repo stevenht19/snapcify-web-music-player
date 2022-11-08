@@ -45,9 +45,7 @@ function getSongsByCategorie(
   selectedCategorie?: MusicPlayerState['categorie']
 ) {
   if (selectedCategorie === 'POPULAR') {
-    console.log('render in popular', state.categorie)
     if (state.categorie !== 'POPULAR' && state.categorie !== null) {
-      console.log('play despues del carousel')
       return {
         topSongs: state.topSongs.map((song) => ({
           ...song,
@@ -56,7 +54,6 @@ function getSongsByCategorie(
         songs: state.songs.map((song, i) => changeSingleSong(song, i, actualIndex))
       }
     } else {
-      console.log('solo play and pause')
       return {
         songs: state
           .songs
@@ -65,9 +62,7 @@ function getSongsByCategorie(
     }
   } 
   if ((selectedCategorie) === 'CAROUSEL') {
-    console.log('render in carousel')
     if (state.categorie !== 'CAROUSEL' && state.categorie !== null) {
-      console.log('limpiar popular')
       return {
         songs: state.songs
           .map((song) => ({
@@ -126,7 +121,6 @@ const musicPlayerReducer = (state: MusicPlayerState, action: ReducerAction) => {
       let songs = getState(state)
       let size = songs.length
       let index = state.selectedIndex !== size ? state.selectedIndex!++ : 0
-
       return {
         ...state,
         play: true,

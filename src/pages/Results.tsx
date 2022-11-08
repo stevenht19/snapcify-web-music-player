@@ -1,7 +1,7 @@
 import {
   useLoaderData,
-  redirect,
   LoaderFunctionArgs,
+  redirect,
 } from 'react-router-dom'
 import { Song } from '@/models'
 import { searchSongsByQuery } from '@/services'
@@ -25,8 +25,10 @@ export default function ResultsPage() {
 export async function loader({ request }: LoaderFunctionArgs) {
   const url = new URL(request.url)
   const query = url.searchParams.get('q')
-  if (!query?.trim().length) {
-    return redirect('/')
+  if (!query?.trim().length) return redirect('/')
+
+  return { 
+    results: await searchSongsByQuery(), 
+    query 
   }
-  return { results: await searchSongsByQuery(), query }
 }
