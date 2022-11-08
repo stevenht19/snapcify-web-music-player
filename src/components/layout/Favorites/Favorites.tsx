@@ -4,10 +4,7 @@ const Favorites = () => {
   return (
     <div>
       <h2>Favorites</h2>
-      {/*
-        [1, 2, 3, 4].map(() => (
-        ))
-        */}
+      <p>There's no favorites yet.</p>
     </div>
   )
 }

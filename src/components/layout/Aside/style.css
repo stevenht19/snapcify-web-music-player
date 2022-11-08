@@ -17,7 +17,8 @@
   align-items: center;
   gap: 1.8rem;
   font-size: 1.4rem;
-  padding-block: 1.2rem;
+  padding-block: 1.3rem;
+  font-weight: 700;
   padding-left: 2rem;
   padding-right: calc(var(--separation) * 2.3);
   position: relative;

@@ -21,7 +21,6 @@ function getState (
   state: MusicPlayerState,
   categorie?: MusicPlayerState['categorie']
 ): Song[] {
-  console.log('desde get state', categorie || state.categorie)
   if ((categorie || state.categorie) === 'POPULAR') {
     return state.songs
   } else {

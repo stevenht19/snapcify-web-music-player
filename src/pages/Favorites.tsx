@@ -1,7 +1,10 @@
-export default function Favorites() {
+import Favorites from '@/components/layout/Favorites/Favorites'
+
+export default function FavoritesPage() {
   return (
-    <div>
-      <h2>My Favorites</h2>
-    </div>
+    <Favorites />
   )
+}
+export async function loader() {
+  return new Promise((resolve) => setTimeout(resolve, 500))
 }

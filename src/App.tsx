@@ -7,7 +7,7 @@ import {
 import { Layout } from '@/components/layout'
 import HomePage from '@/pages/Home'
 import ResultsPage, { loader } from '@/pages/Results'
-import Favorites from '@/pages/Favorites'
+import Favorites, { loader as favoritesLoader } from '@/pages/Favorites'
 
 const router = createBrowserRouter(
   createRoutesFromElements(
@@ -24,6 +24,7 @@ const router = createBrowserRouter(
       <Route 
         path='/favorites'
         element={<Favorites />}
+        loader={favoritesLoader}
       />
     </Route>
 ))
