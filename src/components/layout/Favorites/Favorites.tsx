@@ -1,4 +1,5 @@
-import { SongCard } from '@/components/atoms/Card'
+//import { SongCard } from '@/components/atoms/Card'
+import useIndexedDB from '@/hooks/useIndexedDB'
 
 const Favorites = () => {
   return (
