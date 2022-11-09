@@ -14,14 +14,13 @@ const Top = () => {
         {
           isLoading ? 
           [1, 2, 3, 4, 5, 6, 7].map((n) => (
-            <SwiperSlide>
-              <TopSongSkeleton key={n} />
+            <SwiperSlide key={n}>
+              <TopSongSkeleton />
             </SwiperSlide>
           )) : 
           topSongs.map((song) => (
-            <SwiperSlide>
-              <TopSong 
-                key={song.id} 
+            <SwiperSlide key={song.id}>
+              <TopSong
                 song={song}
               />
             </SwiperSlide>

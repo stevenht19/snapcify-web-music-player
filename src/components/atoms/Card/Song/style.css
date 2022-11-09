@@ -5,12 +5,16 @@
 }
 .song-card {
   display: flex;
-  margin-block: .5rem;
-  align-items: center;
   cursor: pointer;
-  padding-block: 1rem;
-  padding-left: 1rem;
+  padding-inline: 1rem;
+  margin-block: .5rem;
   transition: background-color .12s ease-in-out;
+}
+.song-card div:first-child {
+  display: inherit;
+  justify-content: flex-start;
+  flex: 1;
+  padding-block: .5rem;
 }
 @media screen and (min-width: 62em) {
   .song-card:hover {
@@ -19,7 +23,6 @@
 }
 .song__content {
   display: flex;
-  min-width: 20rem;
   align-items: center;
   user-select: none;
   padding-inline: 2rem;

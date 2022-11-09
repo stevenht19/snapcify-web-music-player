@@ -5,5 +5,6 @@ interface Song {
   title: string
   artist: string
   isPlaying?: boolean
+  isFavorite?: boolean
 }
 export default Song

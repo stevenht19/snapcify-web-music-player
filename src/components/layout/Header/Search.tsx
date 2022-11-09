@@ -2,6 +2,7 @@ import ProgressBar from '@badrap/bar-of-progress'
 import { useNavigation, Form } from 'react-router-dom'
 
 const progress = new ProgressBar({
+  size: 1,
   color: 'var(--primary)'
 });
 

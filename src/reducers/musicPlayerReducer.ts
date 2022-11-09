@@ -5,7 +5,7 @@ type ReducerAction = {
   type: 'PLAY',
   payload: {
     song: Song
-    categorie: MusicPlayerState['categorie']
+    categorie?: MusicPlayerState['categorie']
   }
 } | {
   type: 'PREVIOUS' | 'NEXT',
@@ -14,6 +14,11 @@ type ReducerAction = {
   payload: {
     topSongs: Song[]
     popularSongs: Song[]
+  }
+} | {
+  type: 'FAVORITE',
+  payload: {
+    id: Song['id']
   }
 }
 
@@ -138,6 +143,12 @@ const musicPlayerReducer = (state: MusicPlayerState, action: ReducerAction) => {
         topSongs: action.payload.topSongs,
         songs: action.payload.popularSongs,
         isLoading: false
+      }
+    case 'FAVORITE':
+      return {
+        ...state,
+        songs: state.songs.map((song) => (song.id === action.payload.id) ? 
+          ({...song, isFavorite: !song.isFavorite }) : song)
       }
     default: return state
   }

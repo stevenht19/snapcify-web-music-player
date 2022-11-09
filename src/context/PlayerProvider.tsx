@@ -1,8 +1,10 @@
 import { createContext, useReducer, useEffect } from 'react'
 import { MusicPlayerState } from '@/types'
 import { Song } from '@/models'
-import { musicPlayerReducer } from '@/reducers'
+import { db } from '@/config'
 import { getSongs } from '@/services'
+import { musicPlayerReducer } from '@/reducers'
+import { useLiveQuery } from 'dexie-react-hooks'
 
 const initialState: MusicPlayerState = {
   play: false,
@@ -19,6 +21,7 @@ interface Context extends MusicPlayerState {
   onPrevious: () => void
   onPlay: (_song: Song, _cat: MusicPlayerState['categorie']) => void
   onNext: () => void
+  handleFavorite: (_song: Song) => void
 }
 
 export const MusicPlayerContext = createContext<Context>({
@@ -32,7 +35,8 @@ export const MusicPlayerContext = createContext<Context>({
   topSongs: [],
   onPrevious: () => {},
   onPlay: (_song, _cat) => {},
-  onNext: () => {}
+  onNext: () => {},
+  handleFavorite: (_song) => {}
 })
 
 export default function PlayerContextProvider({ children }: {
@@ -54,7 +58,7 @@ export default function PlayerContextProvider({ children }: {
 
   const onPlay = (
     song: Song,
-    categorie: MusicPlayerState['categorie']
+    categorie?: MusicPlayerState['categorie']
   ) => {
     dispatch({
       type: 'PLAY',
@@ -69,12 +73,22 @@ export default function PlayerContextProvider({ children }: {
     dispatch({ type: 'NEXT' })
   }
   
+  const handleFavorite = (song: Song) => {
+    dispatch({ 
+      type: 'FAVORITE', 
+      payload: song
+    })
+
+    db.toggleSong(song)
+  }
+
   return (
     <MusicPlayerContext.Provider value={{
       ...playerState,
+      onPrevious,
       onPlay,
       onNext,
-      onPrevious,
+      handleFavorite,
       isDisabled: !playerState.selectedSong,
     }}>
       {children}
