@@ -4,7 +4,7 @@ interface Song {
   image: string
   title: string
   artist: string
-  isPlaying?: boolean
-  isFavorite?: boolean
+  isPlaying: boolean
+  isFavorite: boolean
 }
 export default Song
