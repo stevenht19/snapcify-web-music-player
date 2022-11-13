@@ -15,14 +15,6 @@ export class Database extends Dexie {
     return await this.favorites.toArray()  
   }
 
-  toggleSong(song: Song) {
-    if (!song.isFavorite) {
-      this.addSong(song)
-      return
-    } 
-    this.deleteSong(song)
-  }
-
   async addSong(song: Song) {
     await this.favorites.add({
       ...song,
@@ -35,6 +27,14 @@ export class Database extends Dexie {
     await db.favorites.where('id')
       .equals(song.id)
       .delete()
+  }
+
+  toggleSong(song: Song) {
+    if (!song.isFavorite) {
+      this.addSong(song)
+      return
+    } 
+    this.deleteSong(song)
   }
 
 }

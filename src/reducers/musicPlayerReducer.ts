@@ -2,23 +2,24 @@ import { MusicPlayerState } from '@/types'
 import { Song } from '@/models'
 
 type ReducerAction = {
+  type: 'PREVIOUS' | 'NEXT',
+} | {
   type: 'PLAY',
   payload: {
     song: Song
-    categorie?: MusicPlayerState['categorie']
-  }
-} | {
-  type: 'PREVIOUS' | 'NEXT',
-} | {
-  type: 'SET_SONGS',
-  payload: {
-    topSongs: Song[]
-    popularSongs: Song[]
+    categorie: MusicPlayerState['categorie']
   }
 } | {
   type: 'FAVORITE',
   payload: {
     id: Song['id']
+  }
+} | {
+  type: 'SET_SONGS',
+  payload: {
+    topSongs: Song[]
+    popularSongs: Song[]
+    repeated: MusicPlayerState['repeated']
   }
 }
 
@@ -137,19 +138,22 @@ const musicPlayerReducer = (state: MusicPlayerState, action: ReducerAction) => {
         })
       }
     }
-    case 'SET_SONGS':
+    case 'SET_SONGS': {
       return {
         ...state,
         topSongs: action.payload.topSongs,
         songs: action.payload.popularSongs,
+        repeated: action.payload.repeated,
         isLoading: false
       }
-    case 'FAVORITE':
+    }
+    case 'FAVORITE': {
       return {
         ...state,
         songs: state.songs.map((song) => (song.id === action.payload.id) ? 
           ({...song, isFavorite: !song.isFavorite }) : song)
       }
+    }
     default: return state
   }
 }

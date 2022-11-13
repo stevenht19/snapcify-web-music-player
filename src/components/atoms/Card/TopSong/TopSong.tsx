@@ -5,14 +5,15 @@ import Title from '../components/Title'
 import './style.css'
 
 type Props = {
-  song: Song
+  song: Song,
+  category: 'CAROUSEL'
 }
 
-const TopSong = ({ song }: Props) => {
+const TopSong = ({ song, category = 'CAROUSEL' }: Props) => {
   const { onPlay } = useMusicPlayer()
 
   const onClick = () => {
-    onPlay(song, 'CAROUSEL')
+    onPlay(song, category)
   }
 
   return (

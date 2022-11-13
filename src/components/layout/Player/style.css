@@ -6,6 +6,10 @@
   padding-right: 2rem;
   background-color: var(--gray500);
 }
+.player__track {
+  display: inherit;
+  align-items: inherit;
+}
 .player__controls {
   display: flex;
   flex-direction: column;

@@ -1,6 +1,4 @@
-import './style.css'
-
-const ListOfSongs = ({ children }: {
+const SongList = ({ children }: {
   children: React.ReactNode
 }) => {
   return (
@@ -10,4 +8,4 @@ const ListOfSongs = ({ children }: {
   )
 }
 
-export default ListOfSongs
+export default SongList
