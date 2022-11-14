@@ -17,8 +17,10 @@ export default function ResultsPage() {
 
   return (
     <div>
-      <h2>Results of {query}</h2>
-      <Results items={results} />
+      <Results
+        parsedQuery={query} 
+        items={results} 
+      />
     </div>
   )
 }

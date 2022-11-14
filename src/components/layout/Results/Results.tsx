@@ -1,23 +1,30 @@
+import { useEffect } from 'react'
+import { useMusicPlayer } from '@/hooks'
 import { Song } from '@/models'
-import Result from '@/components/atoms/Card/Result'
-import './style.css'
+import { SongCard } from '@/components/atoms/Card'
+import Section from '@/components/atoms/Section'
 
-type Props = {
+const Results = ({ parsedQuery, items }: {
+  parsedQuery: string
   items: Song[]
-}
+}) => {
+  const { results, onSetResult } = useMusicPlayer()
 
-const Results = ({ items }: Props) => {
+  useEffect(() => {
+    onSetResult(items)
+  }, [])
+
   return (
-    <div className='results'>
+    <Section title={`Results of ${parsedQuery}`}>
       {
-        items?.map((song) => (
-          <Result 
-            key={song.id}
-            {...song}
+        results?.map((song) => (
+          <SongCard 
+            song={song} 
+            category={'RESULT'} 
           />
         )).slice(1)
       }
-    </div>
+    </Section>
   )
 }
 

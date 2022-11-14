@@ -33,7 +33,6 @@ const SongCard = ({
       handleFavorite(song)
       return
     }
-    console.log('se ejectua ñ', category)
     onDeleteFavorite(song)
   }
 
@@ -68,7 +67,7 @@ const SongCard = ({
         </button>
         <SongTrack {...song} />
       </div>
-      <button className='favorite-button' onClick={onToggle}>
+      <button onClick={onToggle}>
         <Heart isFilled={song.isFavorite} />
       </button>
     </div>

@@ -5,20 +5,20 @@ type Hash = {
 }
 
 const getUniqueObjectArray = (array: Song[]) => {
-  let hash: Hash = {};
   let repeated = false
+  let hash: Hash = {};
 
   for (let i in array) {
-    if (typeof hash[array[i]?.id] === 'number') {
-      array[i] = array[hash[array[i]?.id]]
-      array = array.filter((_, index) => index !== hash[array[i].id])
+    if (typeof hash[array[i].id] === 'number') {
+      array[i] = array[hash[array[i].id]]
+      array[hash[array[i].id]] = {...array[hash[array[i].id]], id: ""}
       repeated = true
+    } else {
+      hash[array[i].id] = Number(i)
     }
-    hash[array[i]?.id] = Number(i)
   }
-
   return {
-    array,
+    array: array.filter(song => song.id.length > 0),
     repeated
   }
 }

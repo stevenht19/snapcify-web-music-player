@@ -14,6 +14,7 @@ const initialState: MusicPlayerState = {
   selectedSong: null,
   selectedIndex: null,
   songs: [],
+  results: [],
   topSongs: [],
 }
 
@@ -22,6 +23,7 @@ interface PlayerContext extends MusicPlayerState {
   onPlay: (_song: Song, _cat: MusicPlayerState['categorie']) => void
   onNext: () => void
   handleFavorite: (_song: Song) => void
+  onSetResult: (_songs: Song[]) => void
 }
 
 export const MusicPlayerContext = createContext<PlayerContext>({
@@ -29,7 +31,8 @@ export const MusicPlayerContext = createContext<PlayerContext>({
   onPrevious: () => {},
   onPlay: (_song, _cat) => {},
   onNext: () => {},
-  handleFavorite: (_song) => {}
+  handleFavorite: (_song) => {},
+  onSetResult: (_songs) => {}
 })
 
 export default function PlayerContextProvider({ children }: {
@@ -76,6 +79,13 @@ export default function PlayerContextProvider({ children }: {
     db.toggleSong(song)
   }
 
+  const onSetResult = (songs: Song[]) => {
+    dispatch({
+      type: 'SET_RESULTS',
+      payload: songs
+    })
+  }
+
   return (
     <MusicPlayerContext.Provider value={{
       ...playerState,
@@ -84,6 +94,7 @@ export default function PlayerContextProvider({ children }: {
       onPlay,
       onNext,
       handleFavorite,
+      onSetResult
     }}>
       {children}
     </MusicPlayerContext.Provider>

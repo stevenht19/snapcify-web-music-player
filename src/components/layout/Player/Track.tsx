@@ -3,7 +3,7 @@ import { Track } from '@/components/atoms/Card'
 import Heart from '@/components/atoms/Icon/Heart'
 
 const SongTrack = () => {
-  const { play, selectedSong } = useMusicPlayer()
+  const { play, selectedSong, handleFavorite } = useMusicPlayer()
 
   if (!selectedSong) return null
 
@@ -13,7 +13,9 @@ const SongTrack = () => {
         rotate={play}
         {...selectedSong}
       />
-      <Heart isFilled={selectedSong.isFavorite} />
+      <button onClick={() => handleFavorite(selectedSong)}>
+        <Heart isFilled={selectedSong.isFavorite} />
+      </button>
     </div>
   )
 }
