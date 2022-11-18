@@ -4,10 +4,10 @@ import { Song } from '@/models'
 type Props = {
   play: MusicPlayerState['play']
   selectedSong: MusicPlayerState['selectedSong']
-  categorie: MusicPlayerState['categorie']
+  category: MusicPlayerState['category']
   isDisabled: MusicPlayerState['isDisabled']
   onPrevious: () => void
-  onPlay: (_song: Song, _cat: MusicPlayerState['categorie']) => void
+  onPlay: (_song: Song, _cat: MusicPlayerState['category'], _songs?: Song[]) => void
   onNext: () => void
 }
 
@@ -16,13 +16,13 @@ const Buttons = ({
   onPrevious,
   onPlay,
   onNext,
-  categorie,
+  category,
   isDisabled,
   selectedSong
 }: Props) => {
 
   const onPlaySong = () => {
-    !!selectedSong && onPlay(selectedSong, categorie)
+    !!selectedSong && onPlay(selectedSong, category)
   }
 
   return (

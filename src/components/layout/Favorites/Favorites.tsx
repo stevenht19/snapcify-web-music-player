@@ -1,31 +1,25 @@
-import { useFavorites } from './hooks/useFavorites'
+import { Section } from '@/components/atoms/Section'
 import { SongCard } from '@/components/atoms/Card'
-import Section from '@/components/atoms/Section'
+import { useMusicPlayer } from '@/hooks'
+import { Song } from '@/models'
 
 const Favorites = () => {
-  const { 
-    favorites,
-    isLoading,
-    handleFavoritePlay, 
-    onDeleteFavorite 
-  } = useFavorites()
+  const { favorites, category, onPlay } = useMusicPlayer()
+
+  const handlePlay = (song: Song) => {
+    onPlay(song, 'FAVORITE', category !== 'FAVORITE' ? favorites : undefined)
+  }
 
   return (
     <Section title='Favorites'>
       {
-        isLoading ?
-        '...Loading'
-        :
-        favorites?.length ?
-        favorites?.map((song) => (
+        favorites.map((song) => (
           <SongCard
             key={song.id}
             song={song}
-            category='POPULAR'
-            handleFavoritePlay={handleFavoritePlay}
-            onDeleteFavorite={onDeleteFavorite}
+            handlePlay={handlePlay}
           />
-        )) : <p>You don't like any song yet.</p>
+        ))
       }
     </Section>
   )

@@ -1,4 +1,3 @@
-import { useMusicPlayer } from '@/hooks'
 import { Song } from '@/models'
 import Artist from '../components/Artist'
 import Title from '../components/Title'
@@ -6,14 +5,20 @@ import './style.css'
 
 type Props = {
   song: Song,
+  handlePlay: (song: Song) => void
   category: 'CAROUSEL'
 }
 
-const TopSong = ({ song, category = 'CAROUSEL' }: Props) => {
-  const { onPlay } = useMusicPlayer()
+const TopSong = ({ 
+  song, 
+  handlePlay, 
+  category = 'CAROUSEL' 
+}: Props) => {
+  //const { onPlay } = useMusicPlayer()
 
   const onClick = () => {
-    onPlay(song, category)
+    handlePlay(song)
+    //onPlay(song, category)
   }
 
   return (

@@ -1,29 +1,36 @@
-import { useMusicPlayer } from '@/hooks'
+import { useSongs } from '@/hooks'
+import { Section } from '@/components/atoms/Section'
 import { SongSkeleton } from '@/components/atoms/Skeleton'
 import { SongCard } from '@/components/atoms/Card'
-import Section from '@/components/atoms/Section'
+import { getNumericArray } from '@/utils'
 
-const Popular = () => {
-  const { songs, isLoading } = useMusicPlayer()
+const API = import.meta.env.VITE_API + '/top'
+
+export default function Popular() {
+  const { 
+    songs, 
+    isLoading,
+    handlePlay,
+    onFavorite
+  } =  useSongs('POPULAR', API)
 
   return (
     <Section title='Popular'>
       {
         isLoading ?
-          [1, 2, 3, 4, 5, 6].map((n) => (
+          getNumericArray().map((n) => (
             <SongSkeleton key={n} />
           ))
           :
-          songs.map((song) => (
+          songs?.map((song) => (
             <SongCard
               key={song.id}
-              category={'POPULAR'}
               song={song}
+              handleFavorite={onFavorite}
+              handlePlay={handlePlay}
             />
           ))
       }
     </Section>
   )
 }
-
-export default Popular

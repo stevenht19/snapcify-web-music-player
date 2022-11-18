@@ -6,10 +6,9 @@ import { useMusicPlayer } from '@/hooks'
 export const useFavorites = () => {
   const { 
     play, 
-    selectedSong, 
+    selectedSong,
+    category, 
     onPlay,
-    repeated,
-    categorie,
     handleFavorite
   } = useMusicPlayer()
   const [favorites, setFavorites] = useState<Song[]>([])
@@ -35,13 +34,13 @@ export const useFavorites = () => {
         isPlaying: !song.isPlaying 
       } : song)
     setFavorites(actualSongs)
-    onPlay(_song, categorie || 'POPULAR')
+    onPlay(_song, category)
   }
 
   const onDeleteFavorite = (song: Song) => {
     setFavorites(songs => songs.filter(s => s.id !== song.id))
-    if (!repeated) return
-    handleFavorite(song)
+    /*if (!repeated) return
+    handleFavorite(song)*/
   }
 
   return {

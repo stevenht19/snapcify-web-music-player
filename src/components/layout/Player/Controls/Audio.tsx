@@ -4,19 +4,19 @@ import { Song } from '@/models'
 
 type Props = {
   play: MusicPlayerState['play']
-  categorie: MusicPlayerState['categorie']
+  category: MusicPlayerState['category']
   selectedSong: Song
   isSliding: boolean
   volume: number
   barTime: number
-  onEnded: (_song: Song, _cat: MusicPlayerState['categorie']) => void
+  onEnded: (_song: Song, _cat: MusicPlayerState['category'], _songs?: Song[]) => void
   onChangeTime: (_: { x: number, xmax: number }) => void
 }
 
 const Audio = ({ 
   play,
   volume,
-  categorie,
+  category,
   isSliding,
   selectedSong, 
   barTime,
@@ -58,7 +58,7 @@ const Audio = ({
   }
 
   const onPause = () => {
-    onEnded(selectedSong, categorie)
+    onEnded(selectedSong, category)
   }
 
   return (

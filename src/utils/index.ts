@@ -1,2 +1,1 @@
-export { default as getUniqueObjectArray } from './getUniqueObjectArray'
-export { default as changeSongPlayingState } from './changeSongPlayingState'
+export { default as getNumericArray } from './getNumericArray'

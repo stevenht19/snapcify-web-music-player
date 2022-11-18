@@ -8,7 +8,7 @@ type Props = {
   rotate?: boolean
 }
 
-const SongTrack = ({ 
+export const SongTrack = ({ 
   title, 
   image, 
   artist, 
@@ -30,5 +30,3 @@ const SongTrack = ({
     </div>
   )
 }
-
-export default SongTrack

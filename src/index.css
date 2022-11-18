@@ -19,7 +19,9 @@ html {
   --gray400: #292929;
   --gray500: #211F27;
   --gray600: #1D1D1D;
-  --gray700: #18181C;
+  --gray700: #18181d;
+  --black: #020105;
+  --test: #090513;
 }
 body {
   margin: 0;
@@ -27,7 +29,7 @@ body {
   color: var(--white);
   height: 100vh;
   font-family: 'Inter', sans-serif;
-  background-image: linear-gradient(to bottom, #050505, #18181C);
+  background-image: linear-gradient(to bottom, var(--black), var(--gray700));
 }
 input {
   outline-width: 0;

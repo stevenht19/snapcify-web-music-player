@@ -5,10 +5,9 @@ export interface MusicPlayerState {
   isLoading: boolean
   isDisabled: boolean
   repeated: boolean
-  categorie: 'CAROUSEL' | 'POPULAR' | 'RESULT' | null
-  selectedSong: Song | null
-  selectedIndex: number | null
+  category: 'TOP' | 'POPULAR' | 'FAVORITE' | null
   songs: Song[]
-  topSongs: Song[]
-  results: Song[]
+  favorites: Song[]
+  selectedSong?: Song
+  selectedIndex?: number
 }

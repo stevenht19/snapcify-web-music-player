@@ -8,13 +8,8 @@
   cursor: pointer;
   padding-inline: 1rem;
   margin-block: .5rem;
+  padding-block: 1.1rem;
   transition: background-color .12s ease-in-out;
-}
-.song-card div:first-child {
-  display: inherit;
-  justify-content: flex-start;
-  flex: 1;
-  padding-block: .5rem;
 }
 @media screen and (min-width: 62em) {
   .song-card:hover {

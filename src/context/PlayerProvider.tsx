@@ -1,38 +1,32 @@
-import { createContext, useReducer, useEffect } from 'react'
+import { createContext, useEffect, useReducer } from 'react'
 import { MusicPlayerState } from '@/types'
 import { Song } from '@/models'
-import { db } from '@/config'
-import { getSongs } from '@/services'
 import { musicPlayerReducer } from '@/reducers'
+import { db } from '@/config'
 
 const initialState: MusicPlayerState = {
   play: false,
   isLoading: true,
   repeated: false,
   isDisabled: true,
-  categorie: null,
-  selectedSong: null,
-  selectedIndex: null,
+  category: null,
   songs: [],
-  results: [],
-  topSongs: [],
+  favorites: []
 }
 
 interface PlayerContext extends MusicPlayerState { 
   onPrevious: () => void
-  onPlay: (_song: Song, _cat: MusicPlayerState['categorie']) => void
+  onPlay: (_song: Song, category: MusicPlayerState['category'], songs?: Song[]) => void
   onNext: () => void
   handleFavorite: (_song: Song) => void
-  onSetResult: (_songs: Song[]) => void
 }
 
 export const MusicPlayerContext = createContext<PlayerContext>({
   ...initialState,
   onPrevious: () => {},
-  onPlay: (_song, _cat) => {},
+  onPlay: (_song, _cat, _songs) => {},
   onNext: () => {},
-  handleFavorite: (_song) => {},
-  onSetResult: (_songs) => {}
+  handleFavorite: (_) => {}
 })
 
 export default function PlayerContextProvider({ children }: {
@@ -42,48 +36,41 @@ export default function PlayerContextProvider({ children }: {
   const isDisabled = !playerState.selectedSong
 
   useEffect(() => {
-    getSongs()
-      .then((res) => dispatch({
-        type: 'SET_SONGS',
-        payload: res
-      }))
+    const getFavorites = async () => {
+      const results = await db.favorites.toArray()
+      dispatch({
+        type: 'SET_FAVORITES',
+        payload: results
+      })
+    }
+    getFavorites()
   }, [])
 
-  const onPrevious = () => {
-    dispatch({ type: 'PREVIOUS' })
-  }
+  const onPrevious = () => dispatch({ type: 'PREVIOUS' })
 
   const onPlay = (
     song: Song,
-    categorie: MusicPlayerState['categorie']
+    category: MusicPlayerState['category'],
+    songs?: Song[]
   ) => {
     dispatch({
       type: 'PLAY',
       payload: {
-        song, 
-        categorie
+        song,
+        category,
+        songs,
       }
     })
   }
 
-  const onNext = () => {
-    dispatch({ type: 'NEXT' })
-  }
-  
+  const onNext = () => dispatch({ type: 'NEXT' })
+
   const handleFavorite = (song: Song) => {
-    dispatch({ 
-      type: 'FAVORITE', 
+    dispatch({
+      type: 'HANDLE_FAVORITE',
       payload: song
     })
-
     db.toggleSong(song)
-  }
-
-  const onSetResult = (songs: Song[]) => {
-    dispatch({
-      type: 'SET_RESULTS',
-      payload: songs
-    })
   }
 
   return (
@@ -93,8 +80,7 @@ export default function PlayerContextProvider({ children }: {
       onPrevious,
       onPlay,
       onNext,
-      handleFavorite,
-      onSetResult
+      handleFavorite
     }}>
       {children}
     </MusicPlayerContext.Provider>

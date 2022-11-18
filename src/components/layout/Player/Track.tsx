@@ -1,6 +1,6 @@
 import { useMusicPlayer } from '@/hooks'
-import { Track } from '@/components/atoms/Card'
-import Heart from '@/components/atoms/Icon/Heart'
+import { SongTrack as Track } from '@/components/atoms/Card/Song'
+import { Heart } from '@/components/atoms/Icon'
 
 const SongTrack = () => {
   const { play, selectedSong, handleFavorite } = useMusicPlayer()
