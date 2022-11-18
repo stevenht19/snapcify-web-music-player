@@ -11,7 +11,8 @@ import {
   getSongs,
   increase,
   map,
-  mapByIndex
+  mapByIndex,
+  parseFavorite
 } from './utils'
 
 type ReducerAction = {
@@ -38,8 +39,8 @@ const musicPlayerReducer = (state: MusicPlayerState, action: ReducerAction) => {
         ...state,
         category: action.payload.category,
         play: evalPlayer(state, action.payload.song, action.payload.category),
-        selectedSong: getFavorite(state.favorites, getId(action.payload.song)!) || action.payload.song,
-        selectedIndex: findIndex(getSongs(state, action.payload.songs), getId(action.payload.song)!),
+        selectedSong: getFavorite(state.favorites, action.payload.song),
+        selectedIndex: findIndex(getSongs(state, action.payload.songs), action.payload.song.id),
         songs: map(
           getSongs(
             state,
@@ -53,18 +54,26 @@ const musicPlayerReducer = (state: MusicPlayerState, action: ReducerAction) => {
       return {
         ...state,
         play: true,
-        selectedSong: state.songs[prevIndex],
         selectedIndex: prevIndex,
-        songs: mapByIndex(state.songs, prevIndex)
+        selectedSong: getFavorite(state.favorites, state.songs[prevIndex]),
+        ...(
+          state.songs.length > 1 && {
+            songs: mapByIndex(state.songs, prevIndex)
+          }
+        )
       }
     case 'NEXT':
       const nextIndex = increase(state.selectedIndex!, getLength(state.songs));
       return {
         ...state,
         play: true,
-        selectedSong: state.songs[nextIndex],
+        selectedSong: getFavorite(state.favorites, state.songs[nextIndex]),
         selectedIndex: nextIndex,
-        songs: mapByIndex(state.songs, nextIndex)
+        ...(
+          state.songs.length > 1 && {
+            songs: mapByIndex(state.songs, nextIndex)
+          }
+        )
       }
     case 'SET_FAVORITES':
       return {
@@ -75,15 +84,17 @@ const musicPlayerReducer = (state: MusicPlayerState, action: ReducerAction) => {
     case 'ADD_FAVORITE':
       return {
         ...state,
-        selectedSong: { ...state.selectedSong!, isFavorite: true },
+        selectedSong: parseFavorite(state.selectedSong!),
         favorites: state.favorites.concat(action.payload)
       }
     case 'DELETE_FAVORITE':
       return {
         ...state,
         favorites: filter(state.favorites, action.payload.id),
-        selectedSong: { ...state.selectedSong!, isFavorite: false },
-        ...(state.category === 'FAVORITE' && { songs: filter(state.songs, action.payload.id) })
+        selectedSong: parseFavorite(state.selectedSong!, false),
+        ...(state.category === 'FAVORITE' && { 
+          songs: filter(state.songs, action.payload.id) 
+        })
       }
     default: return state
   }

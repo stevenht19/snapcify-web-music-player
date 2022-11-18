@@ -1,8 +1,8 @@
 import { createContext, useEffect, useReducer } from 'react'
 import { MusicPlayerState } from '@/types'
 import { Song } from '@/models'
-import { musicPlayerReducer } from '@/reducers'
 import { db } from '@/config'
+import { musicPlayerReducer } from '@/reducers/musicPlayer'
 
 const initialState: MusicPlayerState = {
   play: false,

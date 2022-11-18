@@ -1,9 +1,17 @@
+import { Song } from '@/models'
+import { useMusicPlayer } from '@/hooks'
 import { Section } from '@/components/atoms/Section'
 import { SongCard } from '@/components/atoms/Card'
-import { useMusicPlayer } from '@/hooks'
-import { Song } from '@/models'
 
 const CATEGORY = 'FAVORITE'
+
+const resolveFavorites = (
+  isInActualCategory: boolean, 
+  favorites: Song[], 
+  songs: Song[]
+) => {
+  return isInActualCategory ? favorites : songs
+}
 
 const Favorites = () => {
   const { songs, favorites, category: categoryState, onPlay } = useMusicPlayer()
@@ -21,23 +29,16 @@ const Favorites = () => {
   return (
     <Section title='Favorites'>
       {
-        isInActualCategory ? (
-          favorites.map((song) => (
+        favorites.length ?
+        resolveFavorites(isInActualCategory, favorites, songs)
+          .map((song) => (
             <SongCard
               key={song.id}
               song={song}
               handlePlay={handlePlay}
             />
           ))
-        ) : (
-          songs.map((song) => (
-            <SongCard
-              key={song.id}
-              song={song}
-              handlePlay={handlePlay}
-            />
-          ))
-        )
+        : 'You dont have any favorite song yet.'
       }
     </Section>
   )

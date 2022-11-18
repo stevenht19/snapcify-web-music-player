@@ -8,9 +8,16 @@ export const getSongs = (
   return payload || state.songs
 }
 
-export const getFavorite = (songs: Song[], id: Song['id']) => {
-  const song = songs.find((song) => song.id === id)
-  return song ? {...song, isFavorite: true} : null
+export const parseFavorite = (song: Song, to?: boolean) => {
+  return {
+    ...song,
+    isFavorite: to !== undefined ? to : true
+  }
+}
+
+export const getFavorite = (songs: Song[], selectedSong: Song) => {
+  const song = songs.find((song) => song.id === selectedSong.id)
+  return song ? parseFavorite(song) : selectedSong
 }
 
 export const evalPlayer = (state: MusicPlayerState, song: Song, category: MusicPlayerState['category']) => {
