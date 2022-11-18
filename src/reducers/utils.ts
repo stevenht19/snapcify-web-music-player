@@ -3,12 +3,8 @@ import { Song } from '@/models'
 
 export const getSongs = (
   state: MusicPlayerState, 
-  payload?: Song[],
-  category?: MusicPlayerState['category']
+  payload?: Song[]
 ) => {
-  if (category === 'FAVORITE') {
-    return state.favorites
-  }
   return payload || state.songs
 }
 
@@ -53,3 +49,7 @@ export const decrease = (index: number, maxLength: number) => {
 export const increase = (index: number, maxLength: number) => {
   return index === maxLength - 1 ? 0 : index + 1
 }
+
+export const filter = (songs: Song[], id: Song['id']) => {
+  return songs.filter(song => song.id !== id)
+} 

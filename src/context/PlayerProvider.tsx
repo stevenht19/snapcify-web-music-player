@@ -67,7 +67,7 @@ export default function PlayerContextProvider({ children }: {
 
   const handleFavorite = (song: Song) => {
     dispatch({
-      type: 'HANDLE_FAVORITE',
+      type: !song.isFavorite ? 'ADD_FAVORITE' : 'DELETE_FAVORITE',
       payload: song
     })
     db.toggleSong(song)

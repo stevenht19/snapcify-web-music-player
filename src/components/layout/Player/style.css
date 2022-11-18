@@ -43,10 +43,10 @@
   background-color: #fff;
   transition: transform .75s cubic-bezier(0.19, 1, 0.22, 1);
 }
-.player__play:hover {
+.player__play--active:hover {
   transform: scale(1.03);
 }
-.player__arrow:hover svg {
+.player__arrow--active:hover svg {
   fill: #fff;
 }
 .bar {

@@ -3,6 +3,7 @@ import { Song } from '@/models'
 import {
   decrease,
   evalPlayer,
+  filter,
   findIndex,
   getFavorite,
   getId,
@@ -26,7 +27,7 @@ type ReducerAction = {
   type: 'SET_FAVORITES'
   payload: Song[]
 } | {
-  type: 'HANDLE_FAVORITE'
+  type: 'ADD_FAVORITE' | 'DELETE_FAVORITE'
   payload: Song
 }
 
@@ -43,7 +44,6 @@ const musicPlayerReducer = (state: MusicPlayerState, action: ReducerAction) => {
           getSongs(
             state,
             action.payload.songs,
-            action.payload.category
           ),
           getId(action.payload.song)!,
         )
@@ -69,19 +69,21 @@ const musicPlayerReducer = (state: MusicPlayerState, action: ReducerAction) => {
     case 'SET_FAVORITES':
       return {
         ...state,
-        favorites: action.payload
+        favorites: action.payload,
+        songs: action.payload
       }
-    case 'HANDLE_FAVORITE':
+    case 'ADD_FAVORITE':
       return {
         ...state,
-        selectedSong: { ...state.selectedSong!, isFavorite: !state.selectedSong?.isFavorite },
-        favorites:
-          !action.payload.isFavorite ? state
-            .favorites
-            .concat(action.payload) :
-            state
-              .favorites
-              .filter(song => song.id !== action.payload.id)
+        selectedSong: { ...state.selectedSong!, isFavorite: true },
+        favorites: state.favorites.concat(action.payload)
+      }
+    case 'DELETE_FAVORITE':
+      return {
+        ...state,
+        favorites: filter(state.favorites, action.payload.id),
+        selectedSong: { ...state.selectedSong!, isFavorite: false },
+        ...(state.category === 'FAVORITE' && { songs: filter(state.songs, action.payload.id) })
       }
     default: return state
   }

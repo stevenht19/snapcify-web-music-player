@@ -45,7 +45,7 @@ const Buttons = ({
       <button
         disabled={isDisabled}
         onClick={onPlaySong}
-        className='player__play'
+        className={`player__play ${isDisabled ? 'player__play--inactive' : 'player__play--active'}`}
       >
         {
           play ?
