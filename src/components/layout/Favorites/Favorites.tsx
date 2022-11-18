@@ -4,7 +4,7 @@ import { useMusicPlayer } from '@/hooks'
 import { Song } from '@/models'
 
 const Favorites = () => {
-  const { favorites, category, onPlay } = useMusicPlayer()
+  const { songs, favorites, category, onPlay } = useMusicPlayer()
 
   const handlePlay = (song: Song) => {
     onPlay(song, 'FAVORITE', category !== 'FAVORITE' ? favorites : undefined)
@@ -13,13 +13,31 @@ const Favorites = () => {
   return (
     <Section title='Favorites'>
       {
-        favorites.map((song) => (
-          <SongCard
-            key={song.id}
-            song={song}
-            handlePlay={handlePlay}
-          />
-        ))
+        !songs.length ?
+          favorites.map((song) => (
+            <SongCard
+              key={song.id}
+              song={song}
+              handlePlay={handlePlay}
+            />
+          )) :
+          category === 'FAVORITE' ? (
+            songs.map((song) => (
+              <SongCard
+                key={song.id}
+                song={song}
+                handlePlay={handlePlay}
+              />
+            ))
+          ) : (
+            favorites.map((song) => (
+              <SongCard
+                key={song.id}
+                song={song}
+                handlePlay={handlePlay}
+              />
+            ))
+          )
       }
     </Section>
   )

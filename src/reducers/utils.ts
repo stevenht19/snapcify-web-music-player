@@ -42,12 +42,8 @@ export const mapByIndex = (songs: Song[], index: number) => {
   return songs.map((song, i) => parseSong(song, index === i))
 }
 
-export const map = (songs: Song[], id: Song['id'], local = false) => {
-  return !local ? {
-    songs: songs.map(song => parseSong(song, song.id === id))
-  } : {
-    favorites: songs.map(song => parseSong(song, song.id === id))
-  }
+export const map = (songs: Song[], id: Song['id']) => {
+  return songs.map(song => parseSong(song, song.id === id))
 }
 
 export const decrease = (index: number, maxLength: number) => {

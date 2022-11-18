@@ -39,16 +39,13 @@ const musicPlayerReducer = (state: MusicPlayerState, action: ReducerAction) => {
         play: evalPlayer(state, action.payload.song, action.payload.category),
         selectedSong: getFavorite(state.favorites, getId(action.payload.song)!) || action.payload.song,
         selectedIndex: findIndex(getSongs(state, action.payload.songs), getId(action.payload.song)!),
-        ...(
-          map(
-            getSongs(
-              state,
-              action.payload.songs,
-              action.payload.category
-            ),
-            getId(action.payload.song)!,
-            action.payload.category === 'FAVORITE'
-          )
+        songs: map(
+          getSongs(
+            state,
+            action.payload.songs,
+            action.payload.category
+          ),
+          getId(action.payload.song)!,
         )
       }
     case 'PREVIOUS':
