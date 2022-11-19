@@ -1,14 +1,17 @@
+import { Artist } from '@/models/Artist'
+import Title from '../components/Title'
 import './style.css'
 
-const Artist = () => {
+const ArtistCard = ({ name, avatar }: Artist) => {
   return (
     <div className='artist'>
-      <img 
-        src='ñ'
+      <img
+        className='artist__image'
+        src={avatar}
       />
-      <h2>Taylor</h2>
+      <Title title={name} />
     </div>
   )
 }
 
-export default Artist
+export default ArtistCard

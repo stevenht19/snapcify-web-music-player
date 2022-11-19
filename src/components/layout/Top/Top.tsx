@@ -5,8 +5,6 @@ import { TopSongSkeleton } from '@/components/atoms/Skeleton'
 import { TopSong } from '@/components/atoms/Card'
 import { getNumericArray } from '@/utils'
 
-const API = import.meta.env.VITE_API + '/songs'
-
 const Top = () => {
   return (
     <div>
@@ -21,8 +19,7 @@ const TopCarousel = () => {
     songs, 
     isLoading, 
     handlePlay,
-    handleFavorite
-  } = useSongs('TOP', API)
+  } = useSongs('TOP', '/songs')
 
   return (
     <Carousel>

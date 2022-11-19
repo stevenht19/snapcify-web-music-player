@@ -1,18 +1,16 @@
-import { useMusicPlayer } from '@/hooks'
+import { useFetch, useMusicPlayer } from '@/hooks'
 import { Song } from '@/models/Song'
 import { MusicPlayerState } from '@/types'
 import { getSongs } from '@/services'
-import useFetch from './useFetch'
 
-const fetcher = (args?: string): Promise<Song[]> => getSongs(args!)
+const API = import.meta.env.VITE_API
+const fetcher = (args: string): Promise<Song[]> => getSongs(args!)
 
 const useSongs = (
   songCategory: MusicPlayerState['category'], 
-  url: string
+  path: string
 ) => {
-  
-  const { data, isLoading } = useFetch(url, fetcher)
-
+  const { data, isLoading } = useFetch(`${API}${path}`, fetcher)
   const { songs, category, onPlay } = useMusicPlayer()
 
   const isInActualCategory = category !== songCategory 

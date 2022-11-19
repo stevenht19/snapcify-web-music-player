@@ -1,8 +1,9 @@
 import { songAdapter } from '@/adapters/song'
 import { Song } from '@/models/Song'
+import { getFetch } from '@/utils'
 
 const getSongs = async (args: string): Promise<Song[]> => {
-  return fetch(args).then(res => res.json()).then(res => res.map(songAdapter))
+  return getFetch(args).then(res => res.map(songAdapter))
 }
 
 export default getSongs
