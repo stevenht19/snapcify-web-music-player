@@ -1,28 +1,37 @@
 .aside {
-  background-color: var(--gray700);
-  padding-block: 1.6rem;
+  background-color: #0D0E10;
+  padding: 1.6rem 1rem;
 }
 .logo {
-  padding-left: 2rem;
-  font-size: 2.2rem;
+  padding-left: 1.2rem;
+  font-size: 2rem;
+  font-weight: 600;
+  color: #ffffff;
 }
 .navbar__list {
   padding-top: 2rem;
   display: flex;
   flex-direction: column;
-  gap: .5rem;
+  gap: .65rem;
 }
 .navbar__item {
   display: flex;
+  border-radius: .55rem;
   align-items: center;
   gap: 1.8rem;
+  color: #9696A7;
   font-size: 1.4rem;
-  padding-block: 1.3rem;
+  padding-block: 1.2rem;
   font-weight: 700;
-  padding-left: 2rem;
+  padding-left: 1.2rem;
   padding-right: calc(var(--separation) * 2.3);
   position: relative;
 }
 .navbar__item:hover {
-  background-color: rgba(0, 0, 0, 0.113);
+  background-color: #191920;
+  color: #ffffff;
+}
+.navbar__item:hover svg {
+  stroke: #ffffff;
+  fill: #ffffff;
 }

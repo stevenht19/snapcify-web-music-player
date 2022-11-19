@@ -24,14 +24,8 @@
 .top__image {
   border-radius: inherit;
   transition: filter .22s ease;
-  box-shadow: rgba(5, 5, 5, .8) 0px 3px 15px;
-}
-.top__title {
-  margin-top: 1.4rem;
-  font-size: 1.8rem;
-  margin-bottom: .5rem;
 }
 .top__artist {
-  color: var(--gray200);
+  color: #9596A8;
   font-size: 1.4rem;
 }

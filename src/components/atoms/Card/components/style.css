@@ -2,6 +2,7 @@
   margin-top: 1.4rem;
   font-size: 1.8rem;
   margin-bottom: .5rem;
+  color: var(--gray50);
 }
 .card__artist {
   color: var(--gray200);

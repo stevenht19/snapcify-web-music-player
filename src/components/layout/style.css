@@ -9,6 +9,7 @@
   display: flex;
   flex-direction: column;
   gap: 2.5rem;
+  color: var(--white);
   padding-block: 3rem;
   padding-left: var(--separation);
   overflow-x: hidden;

@@ -4,7 +4,7 @@
   align-items: center;
   position: relative;
   padding-right: 2rem;
-  background-color: var(--gray500);
+  background-color: var(--gray700);
 }
 .player__track {
   display: inherit;
@@ -40,14 +40,14 @@
   align-items: center;
   padding: 1.3rem;
   border-radius: 1.7rem;
-  background-color: #fff;
+  background-color: var(--white);
   transition: transform .75s cubic-bezier(0.19, 1, 0.22, 1);
 }
 .player__play--active:hover {
   transform: scale(1.03);
 }
 .player__arrow--active:hover svg {
-  fill: #fff;
+  fill: var(--white);
 }
 .bar {
   display: flex;

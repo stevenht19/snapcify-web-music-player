@@ -11,25 +11,20 @@ html {
   -moz-osx-font-smoothing: grayscale;
   -webkit-text-size-adjust: 100%;
   --separation: 5rem;
-  --white: rgba(255, 255, 255, 0.87);
-  --primary: #7434db;
-  --gray50: #D3D4D5;
+  --white: #ffffff;
+  --primary: #8952E0;
+  --gray50: #D8D9DD;
   --gray100: #7D7F83;
-  --gray200: #6B6B70;
-  --gray400: #292929;
-  --gray500: #211F27;
-  --gray600: #1D1D1D;
-  --gray700: #18181d;
-  --black: #020105;
-  --test: #090513;
+  --gray200: #585865;
+  --gray700: #191920;
 }
 body {
   margin: 0;
   font-size: 1.6rem;
-  color: var(--white);
   height: 100vh;
   font-family: 'Inter', sans-serif;
-  background-image: linear-gradient(to bottom, var(--black), var(--gray700));
+  background-color: #111115;
+  /*background-image: linear-gradient(to bottom, var(--black), var(--gray700));*/
 }
 input {
   outline-width: 0;

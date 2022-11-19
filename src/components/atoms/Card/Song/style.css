@@ -28,6 +28,7 @@
   margin-bottom: .2rem;
   font-weight: 500;
   font-size: 1.4rem;
+  color: var(--gray50);
 }
 .song__artist {
   font-size: 1.3rem;

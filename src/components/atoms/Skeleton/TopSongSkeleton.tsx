@@ -4,7 +4,7 @@ import './style.css'
 
 const TopSongSkeleton = () => {
   return (
-    <div className='album-skeleton'>
+    <div>
       <div>
         <img
           src={skeleton}

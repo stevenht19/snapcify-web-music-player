@@ -14,26 +14,25 @@
 }
 .searcher svg {
   position: absolute;
-  left: 1.1rem;
-  top: 1.1rem;
+  left: 1.2rem;
+  top: 1.3rem;
 }
 .search__input {
   border-radius: .5rem;
-  padding-block: 1rem;
+  padding-block: 1.3rem;
   padding-left: 4.2rem;
-  border: 2px solid var(--gray400);
-  background-color: var(--gray600);
+  background-color: #191920;
   color: inherit;
+  border: none;
   font-family: inherit;
   transition: border-color, background-color .22s ease;
   width: 100%;
 }
 .search__input::placeholder {
-  color: rgb(206, 206, 206);
+  color: var(--gray50);
 }
 .search__input:focus {
-  background-color: #000;
-  border-color: var(--primary);
+  outline: 2px solid var(--primary);
 }
 .header__open {
   color: var(--white);
