@@ -1,9 +1,0 @@
-.artist {
-  text-align: center;
-}
-.artist__image {
-  object-fit: cover;
-  width: 15rem;
-  height: 15rem;
-  border-radius: 50%;
-}

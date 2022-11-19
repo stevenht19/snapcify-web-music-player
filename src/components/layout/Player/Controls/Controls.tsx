@@ -1,16 +1,15 @@
 import { useMusicPlayer } from '@/hooks'
 import { useControls } from '../hooks/useControls'
-import Buttons from './Buttons'
 import Bar from './Bar'
 import Audio from './Audio'
 import Volume from './Volume'
 
-const Controls = () => {
+const Controls = ({ children }: {
+  children: React.ReactNode
+}) => {
   const {
     play,
-    onPrevious,
     onPlay,
-    onNext,
     isDisabled, 
     selectedSong,
     category,
@@ -29,15 +28,7 @@ const Controls = () => {
 
   return <>
     <div className='player__controls'>
-      <Buttons
-        play={play}
-        category={category}
-        isDisabled={isDisabled}
-        onPrevious={onPrevious}
-        onPlay={onPlay}
-        onNext={onNext}
-        selectedSong={selectedSong}
-      />
+      {children}
       <Bar
         isDisabled={isDisabled}
         onChangeSlide={onChangeSlide}

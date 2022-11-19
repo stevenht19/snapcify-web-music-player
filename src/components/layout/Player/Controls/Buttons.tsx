@@ -22,7 +22,7 @@ const Buttons = ({
 }: Props) => {
 
   const onPlaySong = () => {
-    !!selectedSong && onPlay(selectedSong, category)
+    onPlay(selectedSong!, category)
   }
 
   return (
