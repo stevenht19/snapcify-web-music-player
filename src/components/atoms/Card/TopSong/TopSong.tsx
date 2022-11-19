@@ -1,4 +1,4 @@
-import { Song } from '@/models'
+import { Song } from '@/models/Song'
 import Artist from '../components/Artist'
 import Title from '../components/Title'
 import './style.css'

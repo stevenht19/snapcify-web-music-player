@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react'
 import { db } from '@/config'
-import { Song } from '@/models'
+import { Song } from '@/models/Song'
 import { useMusicPlayer } from '@/hooks'
 
 export const useFavorites = () => {

@@ -1,4 +1,4 @@
-import { Song, SongResponse } from '@/models'
+import { Song, SongResponse } from '@/models/Song'
 
 const songAdapter = (entrie: SongResponse): Song => {
   return {

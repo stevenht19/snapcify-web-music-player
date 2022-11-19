@@ -1,20 +1,17 @@
-import useSWR from 'swr'
 import { useMusicPlayer } from '@/hooks'
-import { Song } from '@/models'
+import { Song } from '@/models/Song'
 import { MusicPlayerState } from '@/types'
 import { getSongs } from '@/services'
+import useFetch from './useFetch'
 
-const fetcher = (args: string) => getSongs(args)
+const fetcher = (args?: string): Promise<Song[]> => getSongs(args!)
 
 const useSongs = (
   songCategory: MusicPlayerState['category'], 
   url: string
 ) => {
   
-  const { data, error } = useSWR<Song[]>(url, fetcher, {
-    revalidateIfStale: false,
-    revalidateOnFocus: false
-  })
+  const { data, isLoading } = useFetch(url, fetcher)
 
   const { songs, category, onPlay } = useMusicPlayer()
 
@@ -31,7 +28,7 @@ const useSongs = (
 
   return {
     songs: savedSongs,
-    isLoading: !error && !data,
+    isLoading,
     handlePlay,
   }
 }

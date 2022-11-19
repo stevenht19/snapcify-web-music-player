@@ -3,7 +3,7 @@ import {
   LoaderFunctionArgs,
   redirect,
 } from 'react-router-dom'
-import { Song } from '@/models'
+import { Song } from '@/models/Song'
 import { searchSongsByQuery } from '@/services'
 import Results from '@/components/layout/Results'
 

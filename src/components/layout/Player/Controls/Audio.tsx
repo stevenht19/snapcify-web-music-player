@@ -1,6 +1,6 @@
 import { useEffect, useRef } from 'react'
 import { MusicPlayerState } from '@/types'
-import { Song } from '@/models'
+import { Song } from '@/models/Song'
 
 type Props = {
   play: MusicPlayerState['play']

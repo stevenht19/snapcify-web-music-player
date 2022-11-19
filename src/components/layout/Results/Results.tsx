@@ -1,5 +1,5 @@
 import { useMusicPlayer } from '@/hooks'
-import { Song } from '@/models'
+import { Song } from '@/models/Song'
 import { Section } from '@/components/atoms/Section'
 import { SongCard } from '@/components/atoms/Card'
 

@@ -1,5 +1,5 @@
-import { Song, SongResponse } from '@/models'
-import { songAdapter } from '@/adapters'
+import { Song, SongResponse } from '@/models/Song'
+import { songAdapter } from '@/adapters/song'
 
 const searchSongsByQuery = async (q?: string): Promise<Song[]> => {
   const res: SongResponse[] = await (await fetch(`${import.meta.env.VITE_API}/songs`)).json()

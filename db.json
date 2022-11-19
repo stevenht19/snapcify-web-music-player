@@ -1,7 +1,33 @@
 {
+  "artists": [
+    {
+      "type": "artist",
+      "id": "06HL4z0CvFAxyc27GXpf02",
+      "name": "Taylor Swift",
+      "shareUrl": "https://open.spotify.com/artist/06HL4z0CvFAxyc27GXpf02",
+      "visuals": {
+        "avatar": [
+          {
+            "url": "https://i.scdn.co/image/ab676161000051745a00969a4698c3132a15fbb0",
+            "width": null,
+            "height": null
+          }
+        ]
+      },
+      "chartData": {
+        "currentRank": 1,
+        "previousRank": 2,
+        "peakRank": 1,
+        "peakDate":"2021-11-11",
+        "entryRank": 6,
+        "entryDate": "2021-11-21",
+        "appereancesOnChart": 57,
+        "consecutiveAppearancesOnChart": 57
+      }
+    }
+  ],
   "top": [
     {
-      "id": 1,
       "layout": "5",
       "type": "MUSIC",
       "key": "624180463",
@@ -646,82 +672,6 @@
             "name": "apple",
             "type": "uri",
             "uri": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview112/v4/f2/4c/fc/f24cfc19-2d54-6c62-921d-b4427b561a67/mzaf_14570363555431960510.plus.aac.ep.m4a"
-          }
-        ],
-        "options": {
-          "caption": "OPEN",
-          "actions": [
-            {
-              "name": "hub:applemusic:deeplink",
-              "type": "applemusicopen",
-              "uri": "https://music.apple.com/gb/album/unholy/1649325651?i=1649325659&mttnagencyid=s2n&mttnsiteid=125115&mttn3pid=Apple-Shazam&mttnsub1=Shazam_web&mttnsub2=5348615A-616D-3235-3830-44754D6D5973&itscg=30201&app=music&itsct=Shazam_web"
-            }
-          ],
-          "beacondata": {
-            "type": "open",
-            "providername": "applemusic"
-          },
-          "image": "https://images.shazam.com/static/icons/hub/web/v5/overflow-open-option.png",
-          "type": "open",
-          "listcaption": "Open in Apple Music",
-          "overflowimage": "https://images.shazam.com/static/icons/hub/web/v5/applemusic-overflow.png",
-          "colouroverflowimage": false,
-          "providername": "applemusic"
-        },
-        "explicit": false,
-        "displayname": "APPLE MUSIC"
-      },
-      "artist": [
-        {
-          "alias": "sam-smith",
-          "id": "42",
-          "adamid": "1565488786"
-        },
-        {
-          "alias": "kim petras",
-          "id": "42",
-          "adamid": "2919291227"
-        }
-      ],
-      "url": "https://www.shazam.com/track/632531170/unholy",
-      "higlighturls": {},
-      "properties": {}
-    },
-    {
-      "layout": "5",
-      "type": "MUSIC",
-      "key": "624180470",
-      "title": "Somebody's Watching Me",
-      "subtitle": "Rockwell",
-      "share": {
-        "subject": "Unholy Sam Smith & Kim Petras",
-        "text": "I used Snapcify to discover Unholy",
-        "href": "https://www.shazam.com/track/632531170/unholy",
-        "twitter": "I used @Shazam to discover Unholy by Sam Smith & Kim Petras.",
-        "html": "https://www.shazam.com/snippets/email-share/632531170?lang=en&country=GB",
-        "avatar": "https://is2-ssl.mzstatic.com/image/thumb/Features115/v4/02/ec/b3/02ecb3c1-8c1c-7100-c430-a251066460a2/pr_source.png/800x800cc.jpg.",
-        "image": "https://is4-ssl.mzstatic.com/image/thumb/Music122/v4/69/e0/27/69e02785-714c-d0b9-ba68-04a2361fa7e5/075679730466.jpg/400x400cc.jpg",
-        "snapchat": "https://www.shazam.com/partner/sc/track/632531170"
-      },
-      "images": {
-        "background": "https://is2-ssl.mzstatic.com/image/thumb/Features115/v4/02/ec/b3/02ecb3c1-8c1c-7100-c430-a251066460a2/pr_source.png/800x800cc.jpg",
-        "coverart": "https://is2-ssl.mzstatic.com/image/thumb/Music125/v4/a5/19/0e/a5190eb7-3a36-c413-57e5-96961a99dd7d/21UMGIM51501.rgb.jpg/400x400cc.jpg",
-        "coverarthq": "https://is2-ssl.mzstatic.com/image/thumb/Music122/v4/0d/97/a6/0d97a649-760f-522c-269d-9d710dc372ba/22UM1IM07174.rgb.jpg/400x400cc.jpg",
-        "joecolor": "b:36311dp:e4c29ds:e0a581t:c1a583q:be8e6d"
-      },
-      "hub": {
-        "type": "APPLEMUSIC",
-        "image": "https://images.shazam.com/static/icons/hub/web/v5/applemusic.png",
-        "actions": [
-          {
-            "name": "apple",
-            "type": "applemusicplay",
-            "id": "1649325650"
-          },
-          {
-            "name": "apple",
-            "type": "uri",
-            "uri": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview122/v4/27/e8/16/27e81682-baa1-e5f8-abf4-1f10137a65e0/mzaf_17288786360450527549.plus.aac.ep.m4a"
           }
         ],
         "options": {

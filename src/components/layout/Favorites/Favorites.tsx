@@ -1,4 +1,4 @@
-import { Song } from '@/models'
+import { Song } from '@/models/Song'
 import { useMusicPlayer } from '@/hooks'
 import { Section } from '@/components/atoms/Section'
 import { SongCard } from '@/components/atoms/Card'

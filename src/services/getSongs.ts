@@ -1,6 +1,7 @@
-import { songAdapter } from '@/adapters'
+import { songAdapter } from '@/adapters/song'
+import { Song } from '@/models/Song'
 
-const getSongs = async (args: string) => {
+const getSongs = async (args: string): Promise<Song[]> => {
   return fetch(args).then(res => res.json()).then(res => res.map(songAdapter))
 }
 

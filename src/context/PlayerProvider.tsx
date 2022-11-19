@@ -1,6 +1,6 @@
 import { createContext, useEffect, useReducer } from 'react'
 import { MusicPlayerState } from '@/types'
-import { Song } from '@/models'
+import { Song } from '@/models/Song'
 import { db } from '@/config'
 import { musicPlayerReducer } from '@/reducers/musicPlayer'
 
