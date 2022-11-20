@@ -13,11 +13,20 @@ const Player = () => {
     onPrevious,
     onPlay,
     onNext,
+    handleFavorite
   } = useMusicPlayer()
 
   return (
     <div className='player'>
-      <Track />
+      {
+        selectedSong ?
+          <Track
+            play={play}
+            song={selectedSong}
+            handleFavorite={handleFavorite}
+          />
+        : null
+      }
       <Controls>
         <Buttons
           play={play}

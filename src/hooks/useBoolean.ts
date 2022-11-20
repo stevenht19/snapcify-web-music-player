@@ -1,14 +1,24 @@
 import { useState } from 'react'
 
-const useBoolean = (bool = false) => {
+const useBoolean = (bool: boolean = false) => {
   const [boolean, setBoolean] = useState<boolean>(bool)
 
   const onToggle = () => setBoolean(b => !b)
   
-  return {
-    boolean,
-    onToggle
+  const onOpen = () => setBoolean(true)
+
+  const onAsyncClose = (n: number) => {
+    setTimeout(() => {
+      setBoolean(false)
+    }, 2000 + n)
   }
+
+  return { 
+    boolean, 
+    onToggle, 
+    onOpen, 
+    onAsyncClose
+  } 
 }
 
 export default useBoolean

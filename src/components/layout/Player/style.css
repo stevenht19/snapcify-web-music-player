@@ -7,7 +7,6 @@
   background-color: var(--gray700);
 }
 .player__track {
-  display: inherit;
   align-items: inherit;
 }
 .player__controls {
@@ -65,14 +64,14 @@
 .bar .css-2bvlrv-Slider {
   flex: auto;
 }
-.player__volume, .player .song__content {
+.player__volume, .player .player__track {
   display: none;
 }
 .volume__button {
   display: inherit;
 }
 @media screen and (min-width: 52em) {
-  .player .song__content {
+  .player .player__track {
     display: flex;
   }
   .player__volume {

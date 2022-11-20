@@ -1,34 +1,48 @@
-import { useMusicPlayer, useBoolean } from '@/hooks'
+import { useToast } from './hooks/useToast'
+import { Song } from '@/models/Song'
 import { SongTrack as Track } from '@/components/atoms/Card/Song'
 import { Heart } from '@/components/atoms/Icon'
-import ReactPortal from '@/components/atoms/Portal'
+import { Alert } from '@/components/atoms/Alert'
 
-const SongTrack = () => {
-  const { play, selectedSong, handleFavorite } = useMusicPlayer()
-  const { boolean, onToggle } = useBoolean(selectedSong?.isFavorite || false)
+type Props = {
+  play: boolean,
+  song: Song,
+  handleFavorite: (song: Song) => void
+}
 
-  if (!selectedSong) return null
+const SongTrack = ({
+  play,
+  song,
+  handleFavorite
+}: Props) => {
+
+  const { isClicked, onShow } = useToast()
+
+  const message = song.isFavorite ? (
+    'was added to your favorites'
+  ) : (
+    'was removed from your favorites'
+  )
 
   const onClick = () => {
-    handleFavorite(selectedSong)
-    onToggle()
+    handleFavorite(song)
+    onShow()
   }
 
   return (
     <div className='player__track'>
       <Track
         rotate={play}
-        {...selectedSong}
+        {...song}
       />
-      {
-        boolean ? (
-          <ReactPortal>
-            Hooolaaaaaaaaaaaaaaaaa
-          </ReactPortal>
-        ) : null
-      }
+      <Alert
+        show={isClicked}
+        item={song.title}
+      >
+        {message}
+      </Alert>
       <button onClick={onClick}>
-        <Heart isFilled={selectedSong.isFavorite} />
+        <Heart isFilled={song.isFavorite} />
       </button>
     </div>
   )
