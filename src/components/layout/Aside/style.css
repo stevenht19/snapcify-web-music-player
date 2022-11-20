@@ -6,7 +6,7 @@
   padding-left: 1.2rem;
   font-size: 2rem;
   font-weight: 600;
-  color: #ffffff;
+  color: var(--white);
 }
 .navbar__list {
   padding-top: 2rem;
@@ -19,7 +19,7 @@
   border-radius: .55rem;
   align-items: center;
   gap: 1.8rem;
-  color: #9696A7;
+  color: var(--gray80);
   font-size: 1.4rem;
   padding-block: 1.2rem;
   font-weight: 700;
@@ -28,10 +28,10 @@
   position: relative;
 }
 .navbar__item:hover {
-  background-color: #191920;
-  color: #ffffff;
+  background-color: var(--gray700);
+  color: var(--white);
 }
 .navbar__item:hover svg {
-  stroke: #ffffff;
-  fill: #ffffff;
+  stroke: var(--white);
+  fill: var(--white);
 }

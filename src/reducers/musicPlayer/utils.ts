@@ -8,14 +8,16 @@ export const getSongs = (
   return payload || state.songs
 }
 
-export const parseFavorite = (song: Song, to?: boolean) => {
+export const parseFavorite = (song: Song | undefined, to?: boolean) => {
+  if (typeof song === 'undefined') return undefined
   return {
     ...song,
     isFavorite: to !== undefined ? to : true
   }
 }
 
-export const parseSongTo = (song: Song, bool: boolean) => {
+export const parseSongTo = (song: Song | undefined, bool: boolean) => {
+  if (typeof song === 'undefined') return undefined
   return {
     ...song,
     isPlaying: bool
@@ -24,7 +26,7 @@ export const parseSongTo = (song: Song, bool: boolean) => {
 
 export const getFavorite = (songs: Song[], selectedSong: Song) => {
   const song = songs.find((song) => song.id === selectedSong.id)
-  return song ? parseFavorite(song) : selectedSong
+  return song ? song : selectedSong
 }
 
 export const getLength = (songs: Song[]) => {
@@ -41,11 +43,11 @@ export const findIndex = (songs: Song[], id: Song['id']) => {
 }
 
 export const mapByIndex = (songs: Song[], index: number) => {
-  return songs.map((song, i) => parseSongTo(song, index === i))
+  return songs.map((song, i) => parseSongTo(song, index === i)!)
 }
 
 export const map = (songs: Song[], id: Song['id']) => {
-  return songs.map(song => parseSongTo(song, song.id === id))
+  return songs.map(song => parseSongTo(song, song.id === id)!)
 }
 
 export const decrease = (index: number, maxLength: number) => {

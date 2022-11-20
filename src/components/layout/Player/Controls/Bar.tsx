@@ -1,3 +1,4 @@
+import { useEffect } from 'react'
 import Slider from '@/components/atoms/Slider'
 
 type SliderEvent = {
@@ -28,8 +29,9 @@ const Bar = ({
   onDragEnd,
   onChangeSlide
 }: Props) => {
-  const currentTime = getCurrentTime(x)
-  const end = getDuration(xmax)
+
+  const current = x
+  const total = xmax
 
   const onChange = (e: SliderEvent) => {
     onChangeSlide(e.x)
@@ -37,10 +39,10 @@ const Bar = ({
 
   return (
     <div className='bar'>
-      <span className='bar__time'>{currentTime}</span>
+      <span className='bar__time'>{getCurrentTime(current)}</span>
       <Slider 
-        x={x}
-        xmax={Math.floor(xmax)}
+        x={current}
+        xmax={Math.floor(total)}
         onChange={onChange}
         disabled={isDisabled}
         onDragEnd={onDragEnd}
@@ -48,7 +50,7 @@ const Bar = ({
         activeColor={'var(--primary)'}
         thumbColor={isDisabled ? 'transparent' : 'var(--primary)'}
       />
-      <span className='bar__time'>{end}</span>
+      <span className='bar__time'>{getDuration(total)}</span>
     </div>
   )
 }

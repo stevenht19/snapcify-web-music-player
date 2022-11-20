@@ -2,6 +2,7 @@ import { Song } from '@/models/Song'
 import { useMusicPlayer } from '@/hooks'
 import { Section } from '@/components/atoms/Section'
 import { SongCard } from '@/components/atoms/Card'
+import './style.css'
 
 const CATEGORY = 'FAVORITE'
 
@@ -30,15 +31,16 @@ const Favorites = () => {
     <Section title='Favorites'>
       {
         favorites.length ?
-        resolveFavorites(isInActualCategory, favorites, songs)
-          .map((song) => (
-            <SongCard
-              key={song.id}
-              song={song}
-              handlePlay={handlePlay}
-            />
+          resolveFavorites(isInActualCategory, favorites, songs)
+            .map((song) => (
+              <SongCard
+                key={song.id}
+                song={song}
+                handlePlay={handlePlay}
+              />
           ))
-        : 'You dont have any favorite song yet.'
+        : 
+        <p className='message'>You dont have any favorite song yet.</p>
       }
     </Section>
   )
