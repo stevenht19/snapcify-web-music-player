@@ -8,6 +8,7 @@ import { Layout } from '@/components/layout'
 import HomePage from '@/pages/Home'
 import ResultsPage, { loader } from '@/pages/Results'
 import Favorites from '@/pages/Favorites'
+import Playlists from '@/pages/Playlists'
 
 const router = createBrowserRouter(
   createRoutesFromElements(
@@ -24,6 +25,10 @@ const router = createBrowserRouter(
       <Route
         path='/favorites'
         element={<Favorites />}
+      />
+      <Route 
+        path='/playlist'
+        element={<Playlists />}
       />
     </Route>
 ))

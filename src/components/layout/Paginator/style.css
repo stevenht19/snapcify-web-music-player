@@ -1,0 +1,20 @@
+.paginator {
+  display: flex;
+  align-items: center;
+  font-size: 1.8rem;
+  gap: 1.2rem;
+  font-weight: 700;
+}
+.paginator__icon {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: var(--gray700);
+  height: 3.5rem;
+  width: 3.5rem;
+  border-radius: .4rem;
+  margin-right: .75rem;
+}
+.paginator__user {
+  color: var(--gray400);
+}

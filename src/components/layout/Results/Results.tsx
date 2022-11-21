@@ -2,6 +2,7 @@ import { usePlay } from '@/hooks'
 import { Song } from '@/models/Song'
 import { Section } from '@/components/atoms/Section'
 import { SongCard } from '@/components/atoms/Card'
+import Header from '@/components/layout/Header'
 
 const Results = ({ parsedQuery, items }: {
   parsedQuery: string
@@ -9,19 +10,20 @@ const Results = ({ parsedQuery, items }: {
 }) => {
   const { songs, handlePlay } = usePlay(items, 'RESULTS')
 
-  return (
+  return <>
+    <Header />
     <Section title={`Results of ${parsedQuery}`}>
       {
         songs.map((song) => (
           <SongCard
             key={song.id}
             song={song}
-            handlePlay={handlePlay} 
+            handlePlay={handlePlay}
           />
         ))
       }
     </Section>
-  )
+  </>
 }
 
 export default Results

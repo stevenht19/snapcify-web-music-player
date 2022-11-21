@@ -16,12 +16,10 @@ export default function ResultsPage() {
   const { results, query } = useLoaderData() as Response
 
   return (
-    <div>
-      <Results
-        parsedQuery={query} 
-        items={results} 
-      />
-    </div>
+    <Results
+      parsedQuery={query}
+      items={results}
+    />
   )
 }
 export async function loader({ request }: LoaderFunctionArgs) {
@@ -29,8 +27,8 @@ export async function loader({ request }: LoaderFunctionArgs) {
   const query = url.searchParams.get('q')
   if (!query?.trim().length) return redirect('/')
 
-  return { 
-    results: await searchSongsByQuery(), 
-    query 
+  return {
+    results: await searchSongsByQuery(),
+    query
   }
 }

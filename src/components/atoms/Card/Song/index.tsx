@@ -20,6 +20,7 @@ export const SongTrack = ({
       <Avatar
         src={image}
         alt={title}
+        type='song'
         {...(rotate && { className: 'song__image--active' })}
       />
       <div>

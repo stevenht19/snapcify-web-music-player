@@ -1,10 +1,12 @@
-import './style.css'
+import style from './style.module.css'
 
-const User = ({
+const Avatar = ({
   src,
   alt,
+  type,
   className
 }: {
+  type: string,
   src: string,
   alt: string,
   className?: string
@@ -14,10 +16,10 @@ const User = ({
       <img
         src={src}
         alt={alt}
-        className={`avatar song-avatar${className ? ' ' + className : ''}`}
+        className={`${style.avatar} ${style[type]}${className ? ' ' + className : ''}`}
       />
     </div>
   )
 }
 
-export default User
+export default Avatar
