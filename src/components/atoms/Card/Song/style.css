@@ -34,11 +34,6 @@
   font-size: 1.3rem;
   color: var(--gray200);
 }
-.song__image {
-  width: 4.8rem;
-  height: 4.8rem;
-  border-radius: 50%;
-}
 .song__image--active {
   animation: onRotate 40s linear infinite;
 }

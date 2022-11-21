@@ -17,7 +17,9 @@ html {
   --gray80: #9696A7;
   --gray100: #7D7F83;
   --gray200: #585865;
+  --gray400: #494A55;
   --gray700: #191920;
+  --gray900: #0D0E10;
 }
 body {
   margin: 0;

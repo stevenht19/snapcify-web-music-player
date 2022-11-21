@@ -1,4 +1,4 @@
-import { useFetch, useMusicPlayer } from '@/hooks'
+import { useFetch, usePlay } from '@/hooks'
 import { Song } from '@/models/Song'
 import { MusicPlayerState } from '@/types'
 import { getSongs } from '@/services'
@@ -11,21 +11,10 @@ const useSongs = (
   path: string
 ) => {
   const { data, isLoading } = useFetch(`${API}${path}`, fetcher)
-  const { songs, category, onPlay } = useMusicPlayer()
-
-  const isInActualCategory = category !== songCategory 
-  const savedSongs = isInActualCategory ? data : songs
-  
-  const handlePlay = (song: Song) => {
-    onPlay(
-      song, 
-      songCategory, 
-      isInActualCategory ? savedSongs! : undefined
-    )
-  }
+  const { songs, handlePlay } = usePlay(data || [], songCategory)
 
   return {
-    songs: savedSongs,
+    songs,
     isLoading,
     handlePlay,
   }

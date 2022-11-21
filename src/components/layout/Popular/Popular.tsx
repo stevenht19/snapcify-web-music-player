@@ -14,18 +14,19 @@ export default function Popular() {
   return (
     <Section title='Popular'>
       {
-        isLoading ?
+        isLoading ? (
           getNumericArray().map((n) => (
             <SongSkeleton key={n} />
           ))
-          :
-          songs?.map((song) => (
+        ) : (
+          songs.map((song, i) => (
             <SongCard
               key={song.id}
               song={song}
               handlePlay={handlePlay}
             />
           ))
+        )
       }
     </Section>
   )

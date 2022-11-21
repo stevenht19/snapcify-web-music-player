@@ -1,18 +1,17 @@
 .aside {
-  background-color: #0D0E10;
+  background-color: var(--gray900);
   padding: 1.6rem 1rem;
 }
 .logo {
-  padding-left: 1.2rem;
   font-size: 2rem;
-  font-weight: 600;
+  font-weight: 700;
   color: var(--white);
 }
 .navbar__list {
   padding-top: 2rem;
   display: flex;
   flex-direction: column;
-  gap: .65rem;
+  gap: .5rem;
 }
 .navbar__item {
   display: flex;
