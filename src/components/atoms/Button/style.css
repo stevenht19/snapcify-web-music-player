@@ -1,0 +1,36 @@
+.options {
+  position: relative;
+}
+.options__menu {
+  display: flex;
+  place-items: center;
+  place-content: center;
+  width: 3.5rem;
+  height: 3.5rem;
+}
+.menu {
+  font-size: 1.4rem;
+  position: absolute;
+  top: 110%;
+  border-radius: .35rem;
+  margin: 0;
+  z-index: 9;
+  padding: .5rem;
+  width: 16rem;
+  color: var(--gray80);
+  background-color: #22232B;
+  box-shadow: rgba(0, 0, 0, 0.1) 0px 10px 15px -3px, rgba(0, 0, 0, 0.05) 0px 4px 6px -2px;
+}
+.menu__item {
+  cursor: pointer;
+  border-radius: inherit;
+}
+.menu__item:hover {
+  color: var(--gray50);
+}
+.menu button {
+  font-size: inherit;
+  color: inherit;
+  font-weight: 500;
+  padding: 1rem;
+}

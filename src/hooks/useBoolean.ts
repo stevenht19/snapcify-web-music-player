@@ -7,6 +7,8 @@ const useBoolean = (bool: boolean = false) => {
   
   const onOpen = () => setBoolean(true)
 
+  const onClose = () => setBoolean(false)
+
   const onAsyncClose = (n: number) => {
     setTimeout(() => {
       setBoolean(false)
@@ -16,7 +18,8 @@ const useBoolean = (bool: boolean = false) => {
   return { 
     boolean, 
     onToggle, 
-    onOpen, 
+    onOpen,
+    onClose,
     onAsyncClose
   } 
 }

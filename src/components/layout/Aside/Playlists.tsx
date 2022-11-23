@@ -1,14 +1,24 @@
+import { Form } from '@/components/layout/PlaylistForm'
 import { PlaylistIcon } from '@/components/atoms/Icon'
-import { usePlaylists } from '@/hooks'
+import { useBoolean, usePlaylists } from '@/hooks'
 
 const Playlists = () => {
   const { playlists, addPlaylist } = usePlaylists()
+  const { boolean, onOpen, onClose } = useBoolean() 
   
   return <>
+    {
+      boolean ? (
+        <Form
+          onClose={onClose}
+          onSubmitAction={addPlaylist} 
+        />
+      ) : null
+    }
     <li className='navbar__item'>
       <PlaylistIcon color={'var(--gray500)'} />
       Create Playlist
-      <button className='item__add'>
+      <button className='item__add' onClick={onOpen}>
         <svg
           xmlns="http://www.w3.org/2000/svg"
           width="20"
@@ -23,7 +33,7 @@ const Playlists = () => {
     {
       playlists.map((playlist) => (
         <li>
-
+          {playlist.name}
         </li>
       ))
     }

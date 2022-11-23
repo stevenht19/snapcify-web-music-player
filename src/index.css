@@ -22,13 +22,13 @@ html {
   --gray700: #191920;
   --gray900: #0D0E10;
 }
+
 body {
   margin: 0;
   font-size: 1.6rem;
   height: 100vh;
   font-family: 'Inter', sans-serif;
   background-color: #111115;
-  /*background-image: linear-gradient(to bottom, var(--black), var(--gray700));*/
 }
 input {
   outline-width: 0;
@@ -46,6 +46,13 @@ button {
   background-color: transparent;
   outline-width: 0;
   font-family: inherit;
+}
+input, textarea {
+  border: none;
+}
+textarea {
+  resize: none;
+  outline-width: 0px;
 }
 a {
   color: unset;
