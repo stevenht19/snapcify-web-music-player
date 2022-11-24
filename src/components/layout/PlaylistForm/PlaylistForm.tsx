@@ -4,22 +4,30 @@ import { Modal, ModalHeader } from '@/components/atoms/Modal'
 import { ErrorMessage } from './ErrorMessage'
 import { Inputs } from './types'
 import './style.css'
+import { useNavigate } from 'react-router-dom'
 
 type Props = {
-  onSubmitAction: (_p: Playlist) => void
+  show: boolean
   onClose: () => void
+  onSubmitAction: (_p: Playlist) => void
 }
 
-const PlaylistForm = ({ onSubmitAction, onClose }: Props) => {
+const PlaylistForm = ({ show, onSubmitAction, onClose }: Props) => {
+  const navigateTo = useNavigate()
+
   const { register, handleSubmit, formState: { errors } } = useForm<Inputs>()
+
+  if (!show) return null
 
   const error = errors.name?.type.length
 
   const onSubmit: SubmitHandler<Inputs> = (data) => {
-    onSubmitAction(data as Playlist)
+    let id = Date.now()
+    onSubmitAction({...data, id})
     onClose()
+    navigateTo(`playlist/${id}`)
   }
-
+  
   return (
     <Modal>
       <form 

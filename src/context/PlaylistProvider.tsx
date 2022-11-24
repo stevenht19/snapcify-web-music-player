@@ -5,18 +5,9 @@ interface PlaylistState {
   playlists: Playlist[]
 }
 
-interface Context extends PlaylistState {
+interface PlaylistContext extends PlaylistState {
   addPlaylist: (_p: Playlist) => void
 }
-
-const initialState: PlaylistState = {
-  playlists: []
-}
-
-export const PlaylistContext = createContext<Context>({
-  ...initialState,
-  addPlaylist: () => {}
-})
 
 export default function PlaylistProvider({ children }: {
   children: React.ReactNode
@@ -24,15 +15,19 @@ export default function PlaylistProvider({ children }: {
   const [playlists, setPlaylists] = useState<Playlist[]>([])
 
   const addPlaylist = (playlist: Playlist) => {
-    setPlaylists(p => p.concat(playlist))
+    setPlaylists(p => p.concat({...playlist, id: Date.now() }))
   }
 
   return (
     <PlaylistContext.Provider value={{
-      ...initialState,
+      playlists,
       addPlaylist,
     }}>
       {children}
     </PlaylistContext.Provider>
   )
 }
+export const PlaylistContext = createContext<PlaylistContext>({
+  playlists: [],
+  addPlaylist: () => {}
+})

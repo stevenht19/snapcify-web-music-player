@@ -7,15 +7,15 @@ import './style.css'
 export default function Layout() {
   return (
     <div className='app'>
-      <Aside />
       <PlaylistProvider>
+        <Aside />
         <MusicPlayerProvider>
           <main className='app__main'>
             <Outlet />
           </main>
           <Player />
         </MusicPlayerProvider>
-      </PlaylistProvider>
-    </div>
+      </PlaylistProvider >
+    </div >
   )
 }
