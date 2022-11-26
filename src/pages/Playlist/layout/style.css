@@ -1,0 +1,16 @@
+.icon-button {
+  display: flex;
+  align-items: center;
+  gap: .75rem;
+  margin-right: auto;
+  font-size: 1.5rem;
+  color: var(--gray50);
+  fill: var(--gray50);
+}
+.icon-button:hover {
+  color: var(--white);
+  fill: var(--white);
+}
+.playlist__search {
+  width: 100%;
+}

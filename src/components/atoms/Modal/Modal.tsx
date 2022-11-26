@@ -7,7 +7,9 @@ const Modal = ({ children }: {
   return (
     <ReactPortal>
       <div className='modal'>
-        {children}
+        <div className='modal__box'>
+          {children}
+        </div>
       </div>
     </ReactPortal>
   )

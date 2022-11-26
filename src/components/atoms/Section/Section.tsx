@@ -2,14 +2,17 @@ import SongList from './SongList'
 import './style.css'
 
 type Props = {
-  title: string
+  title?: string
   children: React.ReactNode
 }
 
-const Section = ({ title, children }: Props) => {
+const Section = ({ 
+  title, 
+  children 
+}: Props) => {
   return (
     <section>
-      <h2>{title}</h2>
+      {title ? <h2>{title}</h2> : null}
       <SongList>
         {children}
       </SongList>

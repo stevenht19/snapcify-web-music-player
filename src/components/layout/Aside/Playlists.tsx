@@ -1,6 +1,6 @@
 import { useBoolean, usePlaylists } from '@/hooks'
-import { Form } from '@/components/layout/PlaylistForm'
 import { PlaylistIcon } from '@/components/atoms/Icon'
+import { Form } from './PlaylistForm'
 import { NavItem } from './NavItem'
 
 export const Playlists = () => {
@@ -14,18 +14,19 @@ export const Playlists = () => {
       onSubmitAction={addPlaylist}
     />
     <NavItem isNotLink onClick={onOpen}>
-      <PlaylistIcon 
-        color={'var(--gray500)'} 
-      />
+      <PlaylistIcon color={'var(--gray500)'} />
       Playlist
       <PlusIcon />
     </NavItem>
     <li className='nav__section'>PLAYLISTS</li>
     {
-      playlists.map((playlist) => (
-        <NavItem path={`playlist/${playlist.id}`}>
+      playlists.map(({ id, name }) => (
+        <NavItem
+          key={id} 
+          path={`playlist/${id}`}
+        >
           <PlaylistIcon color={'var(--gray500)'} />
-          {playlist.name}
+          {name}
         </NavItem>
       ))
     }

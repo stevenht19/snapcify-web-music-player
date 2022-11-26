@@ -1,7 +1,7 @@
-import { Outlet } from 'react-router-dom'
 import { MusicPlayerProvider, PlaylistProvider } from '@/context'
-import Aside from './Aside'
-import Player from './Player'
+import { Outlet } from 'react-router-dom'
+import { Aside } from './Aside'
+import { Player } from './Player'
 import './style.css'
 
 export default function Layout() {

@@ -1,14 +1,16 @@
-import Favorites from '@/components/layout/Favorites'
+import { useMusicPlayer } from '@/hooks'
 import { Paginator } from '@/components/layout/Paginator'
 import { FavoriteIcon } from '@/components/atoms/Icon'
-import { useMusicPlayer } from '@/hooks'
+import { SongList } from '@/components/layout/SongList'
+
+const title = 'Favorites'
 
 export default function FavoritesPage() {
   const { favorites } = useMusicPlayer()
   
   return <>
     <Paginator
-      title='Favorites'
+      title={title}
       icon={
         <FavoriteIcon 
           color='var(--white)' 
@@ -17,6 +19,11 @@ export default function FavoritesPage() {
         />
       }
     />
-    <Favorites favorites={favorites} />
+    <SongList 
+      items={favorites}
+      title={title}
+      category='FAVORITE'
+      message={`You dont't have favorites yet`}
+    />
   </>
 }

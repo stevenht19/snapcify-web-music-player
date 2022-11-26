@@ -4,7 +4,7 @@ import './style.css'
 
 type Props = {
   song: Song
-  handlePlay: (_song: Song) => void
+  handlePlay?: (_song: Song) => void
 }
 
 const SongCard = ({
@@ -13,12 +13,16 @@ const SongCard = ({
 }: Props) => {
 
   const onClick = () => {
-    handlePlay(song)
+    if (handlePlay) {
+      handlePlay(song)
+    }
   }
 
   return (
     <div onClick={onClick} className='song-card'>
-      <button>
+      {
+        handlePlay && (
+        <button>
         {
           song?.isPlaying ? (
             <svg
@@ -43,7 +47,9 @@ const SongCard = ({
               </svg>
             )
         }
-      </button>
+        </button>
+        )
+      }
       <SongTrack {...song} />
     </div>
   )

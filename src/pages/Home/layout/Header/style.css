@@ -1,0 +1,14 @@
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 2rem;
+  padding-right: var(--separation);
+}
+.header form {
+  width: 100%;
+  max-width: 38rem;
+}
+.header__open {
+  color: var(--white);
+}

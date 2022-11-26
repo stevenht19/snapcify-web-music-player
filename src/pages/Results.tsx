@@ -5,7 +5,7 @@ import {
 } from 'react-router-dom'
 import { Song } from '@/models/Song'
 import { searchSongsByQuery } from '@/services'
-import Results from '@/components/layout/Results'
+import { SongList } from '@/components/layout/SongList'
 
 type Response = {
   results: Song[],
@@ -16,9 +16,10 @@ export default function ResultsPage() {
   const { results, query } = useLoaderData() as Response
 
   return (
-    <Results
-      parsedQuery={query}
+    <SongList 
       items={results}
+      category='RESULTS'
+      title={`Results of ${query}`}
     />
   )
 }

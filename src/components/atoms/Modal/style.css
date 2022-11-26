@@ -10,6 +10,16 @@
   z-index: 9;
   background-color: rgba(0, 0, 0, 0.520);
 }
+.modal__box {
+  width: 100%;
+  max-width: 45rem;
+  border-radius: .75rem;
+  padding-bottom: 2rem;
+  padding-top: 1rem;
+  padding-inline: 2.8rem;
+  font-size: 1.6rem;
+  background-color: var(--gray700);
+}
 .modal__heading {
   display: flex;
   justify-content: space-between;
@@ -17,7 +27,8 @@
 }
 .modal__heading h2 {
   margin-top: 1.8rem;
-  font-size: 2.6rem;
+  font-size: 1.9rem;
+  font-weight: 600;
   color: var(--gray50);
 }
 .heading__close {

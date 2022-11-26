@@ -1,33 +1,35 @@
 import { usePlay } from '@/hooks'
+import { Song } from '@/models/Song'
+import { MusicPlayerState } from '@/types'
 import { Section } from '@/components/atoms/Section'
 import { SongCard } from '@/components/atoms/Card'
 import { Message } from '@/components/atoms/Message'
-import { Song } from '@/models/Song'
 
-const Favorites = ({ favorites }: {
-  favorites: Song[]
-}) => {
-  const { songs, handlePlay } = usePlay(favorites, 'FAVORITE')
+type Props = {
+  items: Song[]
+  category: MusicPlayerState['category']
+  title: string
+  message?: string
+}
+
+export const SongList = ({ items, category, title, message }: Props) => {
+  const { songs, handlePlay } = usePlay(items, category)
 
   return (
-    <Section title='Favorites'>
+    <Section title={title}>
       {
-        favorites.length ?
+        items.length ?
           songs.map((song) => (
             <SongCard
               key={song.id}
               song={song}
               handlePlay={handlePlay}
             />
-          )) 
-        : 
+          )) :
         <Message>
-          You do not have any favorite song yet.
+          {message || `There's no results.`}
         </Message>
       }
     </Section>
   )
 }
-
-
-export default Favorites

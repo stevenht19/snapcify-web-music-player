@@ -1,0 +1,33 @@
+.cover {
+  display: flex;
+  gap: 3rem;
+  padding-top: 2.5rem;
+}
+.cover__content {
+  display: inherit;
+  flex-direction: column;
+  justify-content: center;
+  gap: 1rem;
+}
+.cover__span {
+  font-weight: 700;
+  text-transform: uppercase;
+  font-size: 1.2rem;
+  color: var(--gray50);
+}
+.cover__title {
+  font-size: 6.2rem;
+  margin: 0;
+}
+.cover__description {
+  margin: 0;
+  color: var(--gray200);
+}
+.cover__label {
+  width: 18rem;
+  height: 18rem;
+  background-color: var(--gray700);
+}
+.cover__image {
+  display: none;
+}

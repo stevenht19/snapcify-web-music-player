@@ -7,7 +7,7 @@ type Props = {
 
 const ModalHeader = ({ children, onClose }: Props) => {
   return (
-    <div className='modal__heading'>
+    <header className='modal__heading'>
       <h2>{children}</h2>
       <button 
         type='button' 
@@ -16,7 +16,7 @@ const ModalHeader = ({ children, onClose }: Props) => {
       >
         <Close />
       </button>
-    </div>
+    </header>
   )
 }
 

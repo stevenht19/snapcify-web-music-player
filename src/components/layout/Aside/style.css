@@ -45,7 +45,7 @@
 .nav__section {
   color: var(--gray400);
   font-size: 1.2rem;
-  padding-block: .75rem;
+  padding-block: 1rem;
   padding-left: 1.2rem;
   font-weight: 700;
 }

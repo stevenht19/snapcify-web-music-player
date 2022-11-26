@@ -1,0 +1,31 @@
+.search-input {
+  position: relative;
+  font-size: 1.4rem;
+  width: 100%;
+}
+.search-input svg {
+  position: absolute;
+  top: 1.1rem;
+  left: 1.2rem;
+  fill: var(--gray200);
+}
+.input {
+  padding: 1rem;
+  color: var(--gray50);
+  border-radius: .35rem;
+  font-size: inherit;
+  width: inherit;
+  font-family: inherit;
+  font-weight: 500;
+  outline: 1px solid hsl(246, 11%, 22%);
+  background-color: var(--gray700);
+}
+.input::placeholder {
+  color: var(--gray200);
+}
+.input--error {
+  outline: 1px solid #F56565;
+}
+.pl-4 {
+  padding-left: 4rem;
+}
