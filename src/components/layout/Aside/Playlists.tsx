@@ -2,33 +2,44 @@ import { useBoolean, usePlaylists } from '@/hooks'
 import { PlaylistIcon } from '@/components/atoms/Icon'
 import { Form } from './PlaylistForm'
 import { NavItem } from './NavItem'
+import ModalForm from './PlaylistForm/ModalForm'
 
 export const Playlists = () => {
   const { playlists, addPlaylist } = usePlaylists()
   const { boolean, onOpen, onClose } = useBoolean()
 
   return <>
-    <Form
+    <ModalForm
       show={boolean}
       onClose={onClose}
-      onSubmitAction={addPlaylist}
-    />
+    >
+      <Form
+        onClose={onClose}
+        onSubmitAction={addPlaylist}
+      />
+    </ModalForm>
     <NavItem isNotLink onClick={onOpen}>
       <PlaylistIcon color={'var(--gray500)'} />
       Playlist
       <PlusIcon />
     </NavItem>
-    <li className='nav__section'>PLAYLISTS</li>
     {
-      playlists.map(({ id, name }) => (
-        <NavItem
-          key={id} 
-          path={`playlist/${id}`}
-        >
-          <PlaylistIcon color={'var(--gray500)'} />
-          {name}
-        </NavItem>
-      ))
+      playlists.length ?
+        <>
+          <li className='nav__section'>PLAYLISTS</li>
+          {
+            playlists?.map(({ id, name }) => (
+              <NavItem
+                key={id}
+                path={`playlist/${id}`}
+              >
+                <PlaylistIcon color={'var(--gray500)'} />
+                {name}
+              </NavItem>
+            ))
+          }
+        </>
+      : null
     }
   </>
 }

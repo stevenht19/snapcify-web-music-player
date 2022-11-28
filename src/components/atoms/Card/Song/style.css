@@ -16,6 +16,12 @@
     background-color: #00000021;
   } 
 }
+.song-card--selected, .song-card--selected:hover {
+  background-color: var(--primary);
+}
+.song-card--selected .song__content * {
+  color: var(--white);
+}
 .song__content {
   display: flex;
   align-items: center;

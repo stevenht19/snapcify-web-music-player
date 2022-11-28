@@ -26,7 +26,7 @@ export const MusicPlayerContext = createContext<PlayerContext>({
   onPrevious: () => {},
   onPlay: (_song, _cat, _songs) => {},
   onNext: () => {},
-  handleFavorite: (_) => {}
+  handleFavorite: (_) => {},
 })
 
 export default function PlayerContextProvider({ children }: {
@@ -36,14 +36,13 @@ export default function PlayerContextProvider({ children }: {
   const isDisabled = !playerState.selectedSong
 
   useEffect(() => {
-    const getFavorites = async () => {
-      const results = await db.favorites.toArray()
-      dispatch({
-        type: 'SET_FAVORITES',
-        payload: results
+    db.getSongs()
+      .then((res) => {
+        dispatch({
+          type: 'SET_FAVORITES',
+          payload: res
+        })
       })
-    }
-    getFavorites()
   }, [])
 
   const onPrevious = () => dispatch({ type: 'PREVIOUS' })

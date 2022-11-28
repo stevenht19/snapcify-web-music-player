@@ -1,7 +1,9 @@
 import { Navigate, useParams } from 'react-router-dom'
 import { usePlaylists } from '@/hooks'
+import { SinglePlaylistProvider } from './layout/context/SinglePlaylistProvider'
 import { Cover } from './layout/PlaylistCover'
-import { AddSong } from './layout/AddSong'
+import { AddSong } from './layout/Search/AddSong'
+import { Songs } from './layout/Songs'
 
 export default function Playlist() {
   const { id } = useParams()
@@ -11,8 +13,11 @@ export default function Playlist() {
 
   if (!playlist) return <Navigate to='/' />
 
-  return <>
-    <Cover {...playlist} />
-    <AddSong />
-  </>
+  return (
+    <SinglePlaylistProvider>
+      <Cover {...playlist} />
+      <AddSong />
+      <Songs />
+    </SinglePlaylistProvider>
+  )
 }

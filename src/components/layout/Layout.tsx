@@ -1,6 +1,6 @@
 import { MusicPlayerProvider, PlaylistProvider } from '@/context'
-import { Outlet } from 'react-router-dom'
 import { Aside } from './Aside'
+import { Main } from './Main'
 import { Player } from './Player'
 import './style.css'
 
@@ -8,11 +8,9 @@ export default function Layout() {
   return (
     <div className='app'>
       <PlaylistProvider>
-        <Aside />
         <MusicPlayerProvider>
-          <main className='app__main'>
-            <Outlet />
-          </main>
+          <Aside />
+          <Main />
           <Player />
         </MusicPlayerProvider>
       </PlaylistProvider >

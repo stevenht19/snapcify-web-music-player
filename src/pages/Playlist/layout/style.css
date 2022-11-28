@@ -13,4 +13,20 @@
 }
 .playlist__search {
   width: 100%;
+  z-index: 139;
+  position: relative;
+}
+.search__title {
+  color: var(--gray50);
+  font-size: 1.9rem;
+  margin-top: 3rem;
+}
+.search__results {
+  display: inherit;
+  flex-direction: column;
+  height: 24rem;
+  background: #191920;
+  width: inherit;
+  overflow-y: scroll;
+  max-height: 24rem;
 }

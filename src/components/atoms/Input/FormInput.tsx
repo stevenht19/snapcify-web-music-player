@@ -1,29 +1,19 @@
-import { UseFormRegister } from 'react-hook-form'
-
-type Inputs = {
+type Props = {
+  placeholder: string
   name: string
 }
 
-type Props = {
-  register: UseFormRegister<Inputs>
-  registerName: 'name'
-  placeholder: string
-  error: boolean
-}
-
 const FormInput = ({
-  registerName,
   placeholder,
-  error,
-  register,
+  name,
 }: Props) => {
   return (
     <input
       type='text'
       autoComplete='off'
-      className={'input' + (error ? ' input--error' : '')}
+      name={name}
+      className={'input'}
       placeholder={placeholder}
-      {...register(registerName, { required: true })}
     />
   )
 }

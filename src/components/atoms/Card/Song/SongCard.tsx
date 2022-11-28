@@ -5,21 +5,25 @@ import './style.css'
 type Props = {
   song: Song
   handlePlay?: (_song: Song) => void
+  onSelect?: (_song: Song) => void
 }
 
 const SongCard = ({
   song,
   handlePlay,
+  onSelect
 }: Props) => {
 
   const onClick = () => {
     if (handlePlay) {
       handlePlay(song)
+      return
     }
+    onSelect!(song)
   }
 
   return (
-    <div onClick={onClick} className='song-card'>
+    <div onClick={onClick} className={`song-card` + (song.isSelected ? ' song-card--selected' : '')}>
       {
         handlePlay && (
         <button>

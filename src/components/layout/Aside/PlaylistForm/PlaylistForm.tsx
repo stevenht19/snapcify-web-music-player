@@ -1,66 +1,65 @@
-import { useForm, SubmitHandler } from 'react-hook-form'
 import { useNavigate } from 'react-router-dom'
 import { Playlist } from '@/models/Playlist'
-import { Modal, ModalHeader } from '@/components/atoms/Modal'
+import { Button } from '@/components/atoms/Button'
 import { FormInput } from '@/components/atoms/Input'
-import { ErrorMessage } from './ErrorMessage'
-import { Inputs } from './types'
 import './style.css'
 
 type Props = {
-  show: boolean
   onClose: () => void
   onSubmitAction: (_p: Playlist) => void
 }
 
-const PlaylistForm = ({ show, onSubmitAction, onClose }: Props) => {
-  const navigateTo = useNavigate()
+type Inputs = {
+  name: string
+  description: string
+}
 
-  const { register, handleSubmit, formState: { errors } } = useForm<Inputs>()
-  const error = !Boolean(errors.name?.type.length)
+const PlaylistForm = ({
+  onClose,
+  onSubmitAction
+}: Props) => {
+  const navigate = useNavigate()
 
-  if (!show) return null
+  const onSubmit = (e: React.FormEvent<HTMLFormElement> ) => {
+    e.preventDefault()
+    const entries = new FormData(e.target as HTMLFormElement)
+    const { name, description } = Object.fromEntries(entries) as Inputs
+    
+    if (!name.trim().length) return
 
-  const onSubmit: SubmitHandler<Inputs> = (data) => {
     let id = Date.now()
-    onSubmitAction({ ...data, id })
+    onSubmitAction({
+      id,
+      name,
+      ...(description && { description })
+    })
     onClose()
-    navigateTo(`playlist/${id}`)
+    navigate(`/playlist/${id}`)
   }
 
   return (
-    <Modal>
-      <ModalHeader onClose={onClose}>
-        Create a new playlist
-      </ModalHeader>
-      <form 
-        className='form__content' 
-        onSubmit={handleSubmit(onSubmit)}
-      >
-        <div>
-          <FormInput
-            register={register}
-            error={!error}
-            registerName='name'
-            placeholder='Type a name'
-          />
-          <ErrorMessage error={error}>
-            Playlist name is required
-          </ErrorMessage>
-        </div>
-        <div>
-          <textarea
-            className='input form__description'
-            placeholder='Type an optional description'
-            spellCheck={false}
-            {...register('description')}
-          />
-        </div>
-        <button className='form__button'>
-          Add
-        </button>
-      </form>
-    </Modal>
+    <form
+      className='form__content'
+      onSubmit={onSubmit}
+    >
+      <div>
+        <FormInput
+          placeholder={'Type a name (required)'}
+          name={'name'}
+        />
+      </div>
+      <div>
+        <textarea
+          className={'input form__description'}
+          placeholder={'Type an optional description'}
+          name={'description'}
+          spellCheck={false}
+        />
+      </div>
+      <Button isDisabled={false}>
+        Add
+      </Button>
+    </form>
   )
 }
 

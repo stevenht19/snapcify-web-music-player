@@ -6,6 +6,7 @@ import {
 import { Song } from '@/models/Song'
 import { searchSongsByQuery } from '@/services'
 import { SongList } from '@/components/layout/SongList'
+import { Search } from '@/components/layout/Search'
 
 type Response = {
   results: Song[],
@@ -15,13 +16,14 @@ type Response = {
 export default function ResultsPage() {
   const { results, query } = useLoaderData() as Response
 
-  return (
+  return <>
+    <Search />
     <SongList 
       items={results}
       category='RESULTS'
       title={`Results of ${query}`}
     />
-  )
+  </>
 }
 export async function loader({ request }: LoaderFunctionArgs) {
   const url = new URL(request.url)

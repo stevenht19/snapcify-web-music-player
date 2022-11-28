@@ -1,7 +1,7 @@
-import { Modal, ModalHeader } from '@/components/atoms/Modal'
 import { useBoolean } from '@/hooks'
+import { Modal } from '@/components/atoms/Modal'
 import { SearchSong } from './SearchSong'
-import './style.css'
+import '../style.css'
 
 export const AddSong = () => {
   const { boolean, onOpen, onClose } = useBoolean()
@@ -22,10 +22,7 @@ export const AddSong = () => {
     {
       boolean ?
       <Modal>
-        <ModalHeader onClose={onClose}>
-          Search Songs
-        </ModalHeader>
-        <SearchSong />
+        <SearchSong onClose={onClose} />
       </Modal>
       : null
     }

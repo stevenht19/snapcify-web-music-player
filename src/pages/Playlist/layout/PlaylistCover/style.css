@@ -24,9 +24,13 @@
   color: var(--gray200);
 }
 .cover__label {
+  display: flex;
+  justify-content: center;
+  align-items: center;
   width: 18rem;
   height: 18rem;
   background-color: var(--gray700);
+  cursor: pointer;
 }
 .cover__image {
   display: none;

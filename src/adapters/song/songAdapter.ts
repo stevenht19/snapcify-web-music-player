@@ -8,7 +8,8 @@ const songAdapter = (entrie: SongResponse): Song => {
     image: entrie.images.coverart,
     url: entrie.hub.actions[1].uri!,
     isPlaying: false,
-    isFavorite: false
+    isFavorite: false,
+    isSelected: false
   }
 }
 

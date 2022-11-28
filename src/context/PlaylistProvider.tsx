@@ -1,5 +1,6 @@
-import { useState, createContext } from 'react'
+import { useState, createContext, useEffect } from 'react'
 import { Playlist } from '@/models/Playlist'
+import { db } from '@/config'
 
 interface PlaylistState {
   playlists: Playlist[]
@@ -14,8 +15,14 @@ export default function PlaylistProvider({ children }: {
 }) {
   const [playlists, setPlaylists] = useState<Playlist[]>([])
 
+  useEffect(() => {
+    db.getPlaylists()
+      .then(setPlaylists)
+  }, [])
+
   const addPlaylist = (playlist: Playlist) => {
-    setPlaylists(p => p.concat({...playlist, id: Date.now() }))
+    setPlaylists(p => p.concat(playlist))
+    db.addPlaylist(playlist)
   }
 
   return (

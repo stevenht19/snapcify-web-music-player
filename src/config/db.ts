@@ -1,18 +1,21 @@
+import { Playlist } from '@/models/Playlist'
 import { Song } from '@/models/Song'
 import Dexie, { Table } from 'dexie'
 
 export class Database extends Dexie {
   public favorites!: Table<Song>
-
+  public playlists!: Table<Playlist>
+  
   constructor() {
     super('SnapcifySongs')
     this.version(1).stores({
-      favorites: 'id, title, artist, image, url, isPlaying'
+      favorites: 'id, title, artist, image, url, isPlaying',
+      playlists: 'id, name, description'
     })
   }
 
-  async getSongs(): Promise<Song[]> {
-    return await this.favorites.toArray()  
+  getSongs() {
+    return this.favorites.toArray()  
   }
 
   async addSong(song: Song) {
@@ -24,7 +27,7 @@ export class Database extends Dexie {
   }
 
   async deleteSong(song: Song) {
-    await db.favorites.where('id')
+    db.favorites.where('id')
       .equals(song.id)
       .delete()
   }
@@ -35,6 +38,14 @@ export class Database extends Dexie {
       return
     } 
     this.deleteSong(song)
+  }
+
+  getPlaylists() {
+    return db.playlists.toArray()
+  }
+
+  addPlaylist(playlist: Playlist) {
+    return db.playlists.add(playlist)
   }
 
 }

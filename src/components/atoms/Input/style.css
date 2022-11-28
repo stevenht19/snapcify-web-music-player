@@ -23,8 +23,8 @@
 .input::placeholder {
   color: var(--gray200);
 }
-.input--error {
-  outline: 1px solid #F56565;
+.search-input .input:focus {
+  outline: 2px solid var(--primary);
 }
 .pl-4 {
   padding-left: 4rem;

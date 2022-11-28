@@ -11,11 +11,14 @@
   background-color: rgba(0, 0, 0, 0.520);
 }
 .modal__box {
+  display: inherit;
+  flex-direction: column;
   width: 100%;
   max-width: 45rem;
   border-radius: .75rem;
+  gap: 1.5rem;
+  padding-top: 1.5rem;
   padding-bottom: 2rem;
-  padding-top: 1rem;
   padding-inline: 2.8rem;
   font-size: 1.6rem;
   background-color: var(--gray700);
@@ -23,12 +26,12 @@
 .modal__heading {
   display: flex;
   justify-content: space-between;
-  padding-bottom: 2rem;
 }
-.modal__heading h2 {
-  margin-top: 1.8rem;
+.modal__title {
+  margin: 0;
   font-size: 1.9rem;
   font-weight: 600;
+  padding-block: 1rem;
   color: var(--gray50);
 }
 .heading__close {
@@ -36,4 +39,8 @@
 }
 .heading__close:hover {
   fill: var(--gray80);
+}
+.modal__footer {
+  display: flex;
+  justify-content: space-between;
 }
