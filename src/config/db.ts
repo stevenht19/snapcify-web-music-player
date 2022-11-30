@@ -47,7 +47,18 @@ export class Database extends Dexie {
   addPlaylist(playlist: Playlist) {
     return db.playlists.add(playlist)
   }
+  
+  editPlaylist(playlist: Playlist) {
+    return db.playlists.where('id').equals(playlist.id).modify(playlist)
+  }
 
+  deletePlaylist(id: Playlist['id']) {
+    return db
+      .playlists
+      .where('id')
+      .equals(id)
+      .delete()
+  }
 }
 
 const db = new Database()

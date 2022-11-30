@@ -1,11 +1,13 @@
 import { Modal, ModalHeader } from '@/components/atoms/Modal'
 
-const ModalForm = ({
+export const ModalForm = ({
   show,
+  title,
   children,
   onClose
 }: {
   show: boolean
+  title: string
   children: React.ReactNode
   onClose: () => void
 }) => {
@@ -14,11 +16,9 @@ const ModalForm = ({
   return (
     <Modal>
       <ModalHeader onClose={onClose}>
-        Create a new playlist
+        {title}
       </ModalHeader>
       {children}
     </Modal>
   )
 }
-
-export default ModalForm

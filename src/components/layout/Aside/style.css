@@ -16,7 +16,7 @@
 }
 .nav__list {
   padding-top: 1rem;
-  width: calc(var(--separation) * 4.2);
+  width: calc(var(--separation) * 4.6);
   display: flex;
   flex-direction: column;
   gap: .5rem;
@@ -32,7 +32,6 @@
   font-weight: 700;
   padding-block: 1.2rem;
   padding-left: 1.2rem;
-  position: relative;
 }
 .nav__item:hover {
   background-color: var(--gray700);
@@ -42,6 +41,14 @@
   cursor: pointer;
   margin-top: 1rem;
 }
+.nav__item--active {
+  background-color: var(--gray700);
+  color: var(--gray50);
+}
+.nav__item--active svg {
+  fill: var(--white);
+  stroke: var(--white);
+}
 .nav__section {
   color: var(--gray400);
   font-size: 1.2rem;
@@ -49,12 +56,22 @@
   padding-left: 1.2rem;
   font-weight: 700;
 }
-.item__add {
+.icons {
   display: inherit;
   margin-left: auto;
-  padding-right: 1rem;
+  margin-right: .5rem;
+  opacity: 0;
   fill: var(--gray500);
 }
-.nav__item:hover .item__add {
+.icon:hover {
   fill: var(--white);
+}
+.item__icon--add {
+  opacity: 1;
+}
+.nav__item:hover .item__icon--add {
+  fill: var(--white);
+}
+.nav__item:hover .icons {
+  opacity: 1;
 }

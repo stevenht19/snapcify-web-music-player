@@ -23,8 +23,8 @@ export const NavItem = ({
         children
         :
         <NavLink 
-          to={path!} 
-          className='nav__item'
+          to={path!}
+          className={({ isActive }) => isActive ? 'nav__item nav__item--active' : 'nav__item'}
         >
           {children}
         </NavLink>

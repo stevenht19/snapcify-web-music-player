@@ -1,40 +1,36 @@
-import { useNavigate } from 'react-router-dom'
-import { Playlist } from '@/models/Playlist'
+import { useForm } from '@/hooks'
 import { Button } from '@/components/atoms/Button'
 import { FormInput } from '@/components/atoms/Input'
+import { Playlist } from '@/models/Playlist'
 import './style.css'
 
-type Props = {
-  onClose: () => void
-  onSubmitAction: (_p: Playlist) => void
+type Inputs = {
+  name?: string
+  description?: string
 }
 
-type Inputs = {
-  name: string
-  description: string
+type Props = Inputs & {
+  id?: number
+  onClose: () => void
+  handleSubmit: (_p: Playlist, onClose: Props['onClose']) => void
 }
 
 const PlaylistForm = ({
+  id,
+  name,
+  description, 
   onClose,
-  onSubmitAction
+  handleSubmit
 }: Props) => {
-  const navigate = useNavigate()
 
-  const onSubmit = (e: React.FormEvent<HTMLFormElement> ) => {
+  const { formValues, onChange } = useForm<Inputs>({
+    name: name || '',
+    description: description || '',
+  })
+
+  const onSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault()
-    const entries = new FormData(e.target as HTMLFormElement)
-    const { name, description } = Object.fromEntries(entries) as Inputs
-    
-    if (!name.trim().length) return
-
-    let id = Date.now()
-    onSubmitAction({
-      id,
-      name,
-      ...(description && { description })
-    })
-    onClose()
-    navigate(`/playlist/${id}`)
+    handleSubmit({ id: id || Date.now(), ...formValues } as Playlist, onClose)
   }
 
   return (
@@ -46,6 +42,8 @@ const PlaylistForm = ({
         <FormInput
           placeholder={'Type a name (required)'}
           name={'name'}
+          onChange={onChange}
+          value={formValues.name!}
         />
       </div>
       <div>
@@ -54,6 +52,8 @@ const PlaylistForm = ({
           placeholder={'Type an optional description'}
           name={'description'}
           spellCheck={false}
+          onChange={onChange}
+          value={formValues.description}
         />
       </div>
       <Button isDisabled={false}>
