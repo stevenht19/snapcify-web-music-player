@@ -1,6 +1,5 @@
 .button {
-  margin-left: auto;
-  padding: 1rem 2.2rem;
+  padding: 1rem 1.8rem;
   color: var(--white);
   font-weight: 500;
   margin-top: 1rem;
@@ -9,15 +8,15 @@
   background-color: var(--primary);
   cursor: pointer;
 }
-.button--red {
-  margin-left: 0;
-  background-color: #DC4A41;
+.button--gray {
+  color: var(--gray700);
+  background-color: var(--gray50); 
 }
 .button:hover {
   background-color: #A379E7;
 }
-.button--red:hover {
-  background-color: #F56565;
+.button--gray:hover {
+  background-color: var(--gray80);
 }
 .button--disabled {
   cursor: not-allowed;

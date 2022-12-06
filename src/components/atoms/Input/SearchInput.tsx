@@ -21,7 +21,7 @@ const SearchInput = ({
         autoComplete='off'
         placeholder={placeholder || 'Search a song here'}
         name={name}
-        {...value && { value }}
+        value={value}
         {...onChange && { onChange }}
       />
     </div>

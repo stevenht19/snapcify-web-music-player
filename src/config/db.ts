@@ -5,12 +5,14 @@ import Dexie, { Table } from 'dexie'
 export class Database extends Dexie {
   public favorites!: Table<Song>
   public playlists!: Table<Playlist>
+  public songs!: Table<Song>
   
   constructor() {
     super('SnapcifySongs')
     this.version(1).stores({
       favorites: 'id, title, artist, image, url, isPlaying',
-      playlists: 'id, name, description'
+      playlists: 'id, name, description',
+      songs: '++songId, id, title, artist, image, url, playlist_id',
     })
   }
 
@@ -18,16 +20,16 @@ export class Database extends Dexie {
     return this.favorites.toArray()  
   }
 
-  async addSong(song: Song) {
-    await this.favorites.add({
+  addSong(song: Song) {
+    return this.favorites.add({
       ...song,
       isPlaying: false,
       isFavorite: true
     })
   }
 
-  async deleteSong(song: Song) {
-    db.favorites.where('id')
+  deleteSong(song: Song) {
+    return db.favorites.where('id')
       .equals(song.id)
       .delete()
   }
@@ -58,6 +60,10 @@ export class Database extends Dexie {
       .where('id')
       .equals(id)
       .delete()
+  }
+
+  addSongsToPlaylist(songs: Song[]) {
+    return db.songs.bulkAdd(songs)
   }
 }
 

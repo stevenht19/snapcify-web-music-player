@@ -1,28 +1,46 @@
 import { useSearch } from '@/hooks'
 import { Song } from '@/models/Song'
+import { ModalHeader, ModalFooter } from '@/components/atoms/Modal'
 import { SearchInput } from '@/components/atoms/Input'
 import { Button } from '@/components/atoms/Button'
 import { SongCard } from '@/components/atoms/Card'
-import { ModalHeader, ModalFooter } from '@/components/atoms/Modal'
-import { usePlaylist } from '../context/SinglePlaylistProvider'
+import { usePlaylist } from '../hooks'
 
-export const SearchSong = ({
-  onClose
-}: {
+export const SearchSong = ({ onClose }: {
   onClose: () => void
 }) => {
-  const { isTyping, searchTerm, results, onChange, onSelect } = useSearch()
+  const { 
+    isTyping, 
+    searchTerm, 
+    results,
+    onChange, 
+    onSelect 
+  } = useSearch()
+  
+  const {
+    songsSize,
+    handleAddSong,
+    onSaveSongs,
+    clearSongs
+  } = usePlaylist()
 
-  const { songs, onAdd } = usePlaylist()
-
-  const onClick = (song: Song) => {
+  const onClickItem = (song: Song) => {
     onSelect(song)
-    onAdd(song)
+    handleAddSong(song)
+  }
+
+  const onCloseSearch = () => {
+    clearSongs()
+    onClose()
+  }
+
+  const onSave = () => {
+    onSaveSongs(onClose)
   }
 
   return <>
     <ModalHeader>
-      Search Songs {isTyping && '...Loading'}
+      Search Songs {isTyping ? '...Loading' : ''}
     </ModalHeader>
     <div className='playlist__search'>
       <SearchInput
@@ -40,7 +58,7 @@ export const SearchSong = ({
               <SongCard
                 key={song.id}
                 song={song}
-                onSelect={onClick}
+                onSelect={onClickItem}
               />
             ))
           } 
@@ -49,13 +67,15 @@ export const SearchSong = ({
     }
     <ModalFooter>
       <Button
-        isDisabled={false}
-        onClick={onClose}
-        isRed
+        isGray
+        onClick={onCloseSearch}
       >
         Cancel
       </Button>
-      <Button isDisabled={songs.length === 0}>
+      <Button
+        isDisabled={songsSize === 0}
+        onClick={onSave}
+      >
         Save
       </Button>
     </ModalFooter>

@@ -1,13 +1,23 @@
 import { useBoolean, usePlaylists } from '@/hooks'
+import { Playlist } from '@/models/Playlist'
 import { PlaylistIcon } from '@/components/atoms/Icon'
-import { Form } from './PlaylistForm'
-import { NavItem } from './NavItem'
-import { ModalForm } from './PlaylistForm/ModalForm'
+import { Form } from '../PlaylistForm'
+import { NavItem } from '../NavItem'
+import { ModalForm } from '../PlaylistForm/ModalForm'
 import { ListOfPlaylists } from './ListOfPlaylists'
 
 export const Playlists = () => {
-  const { boolean, onOpen, onClose } = useBoolean()
+  const { 
+    boolean, 
+    onOpen, 
+    onClose 
+  } = useBoolean()
+  
   const { addPlaylist } = usePlaylists()
+
+  const handleSubmit = (playlist: Playlist) => {
+    addPlaylist(playlist, onClose)
+  }
 
   return <>
     <ModalForm
@@ -15,7 +25,7 @@ export const Playlists = () => {
       show={boolean}
       onClose={onClose}
     >
-      <Form onClose={onClose} handleSubmit={addPlaylist} />
+      <Form handleSubmit={handleSubmit} />
     </ModalForm>
     <NavItem 
       isNotLink 

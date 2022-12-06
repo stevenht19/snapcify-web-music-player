@@ -2,6 +2,7 @@ import { useForm } from '@/hooks'
 import { Button } from '@/components/atoms/Button'
 import { FormInput } from '@/components/atoms/Input'
 import { Playlist } from '@/models/Playlist'
+import { ModalFooter } from '@/components/atoms/Modal'
 import './style.css'
 
 type Inputs = {
@@ -11,15 +12,15 @@ type Inputs = {
 
 type Props = Inputs & {
   id?: number
-  onClose: () => void
-  handleSubmit: (_p: Playlist, onClose: Props['onClose']) => void
+  textButton?: string
+  handleSubmit: (_: Playlist) => void
 }
 
 const PlaylistForm = ({
   id,
   name,
-  description, 
-  onClose,
+  description,
+  textButton,
   handleSubmit
 }: Props) => {
 
@@ -30,7 +31,7 @@ const PlaylistForm = ({
 
   const onSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault()
-    handleSubmit({ id: id || Date.now(), ...formValues } as Playlist, onClose)
+    handleSubmit({ id: id || Date.now(), ...formValues } as Playlist)
   }
 
   return (
@@ -56,9 +57,11 @@ const PlaylistForm = ({
           value={formValues.description}
         />
       </div>
-      <Button isDisabled={false}>
-        Add
-      </Button>
+      <ModalFooter>
+        <Button isDisabled={false}>
+          {textButton || 'Add'}
+        </Button>
+      </ModalFooter>
     </form>
   )
 }

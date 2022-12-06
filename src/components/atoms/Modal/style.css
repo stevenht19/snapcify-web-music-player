@@ -40,7 +40,13 @@
 .heading__close:hover {
   fill: var(--gray80);
 }
+.modal__body {
+  margin-top: 0;
+  font-size: 1.5rem;
+  color: var(--gray80);
+}
 .modal__footer {
   display: flex;
-  justify-content: space-between;
+  justify-content: flex-end;
+  gap: 1.8rem;
 }

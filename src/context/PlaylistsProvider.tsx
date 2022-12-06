@@ -5,28 +5,35 @@ import { db } from '@/config'
 
 interface PlaylistState {
   playlists: Playlist[]
+  isLoading: boolean
+  selectedPlaylist: Playlist | null
 }
 
-interface PlaylistContext extends PlaylistState {
+interface PlaylistsContext extends PlaylistState {
   addPlaylist: (_p: Playlist, _a: Function) => void
   onEdit: (_p: Playlist, _a: Function) => void
-  onDelete: (_id: Playlist['id']) => void
+  onDelete: (_id: Playlist['id'], _a: Function) => void
+  onSelect: (_p: Playlist) => void
 }
 
 export default function PlaylistProvider({ children }: {
   children: React.ReactNode
 }) {
+  const [playlists, setPlaylists] = useState<PlaylistState['playlists']>([])
+  const [selectedPlaylist, setPlaylist] = useState<PlaylistState['selectedPlaylist']>(null)
+  const [isLoading, setLoading] = useState<boolean>(true)
   const navigateTo = useNavigate()
-  const [playlists, setPlaylists] = useState<Playlist[]>([])
 
   useEffect(() => {
     db.getPlaylists()
-      .then(setPlaylists)
+      .then(function(res) {
+        setPlaylists(res)
+        setLoading(false)
+      })
   }, [])
 
   const addPlaylist = (playlist: Playlist, action: Function) => {
     action()
-
     if (!playlist.description?.length) {
       delete playlist.description
     }
@@ -42,25 +49,37 @@ export default function PlaylistProvider({ children }: {
     db.editPlaylist(playlist)
   }
 
-  const onDelete = (id: Playlist['id']) => {
+  const onDelete = (id: Playlist['id'], action: Function) => {
+    action()
     setPlaylists(playlists => playlists.filter(playlist => playlist.id !== id))
     db.deletePlaylist(id)
+  }
+
+  const onSelect = (playlist: Playlist) => {
+    console.log(playlist)
+    setPlaylist(playlist)
   }
 
   return (
     <PlaylistContext.Provider value={{
       playlists,
+      isLoading,
+      selectedPlaylist,
       addPlaylist,
       onEdit,
-      onDelete
+      onDelete,
+      onSelect
     }}>
       {children}
     </PlaylistContext.Provider>
   )
 }
-export const PlaylistContext = createContext<PlaylistContext>({
+export const PlaylistContext = createContext<PlaylistsContext>({
   playlists: [],
+  isLoading: true,
+  selectedPlaylist: null,
   addPlaylist: () => {},
   onEdit: () => {},
-  onDelete: () => {}
+  onDelete: () => {},
+  onSelect: () => {}
 })

@@ -1,11 +1,12 @@
+import { Song } from '@/models/Song'
 import { useState, useEffect } from 'react'
 import { useBoolean } from '@/hooks'
-import { Song } from '@/models/Song'
 import { searchSongsByQuery } from '@/services'
 
 const useSearch = () => {
   const [searchTerm, setSearchTerm] = useState('')
   const [results, setResults] = useState<Song[]>([])
+
   const { 
     boolean: isTyping, 
     onOpen: setIsTyping, 
@@ -17,12 +18,11 @@ const useSearch = () => {
       setIsNotTyping()
       return
     }
-
     let id = setTimeout(() => {
       setIsNotTyping()
       searchSongsByQuery(searchTerm)
         .then(setResults)
-    }, 1200)
+    }, 1000)
     
     return () => clearInterval(id)
 

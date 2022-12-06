@@ -1,7 +1,7 @@
 import { createContext, useEffect, useReducer } from 'react'
 import { MusicPlayerState } from '@/types'
-import { Song } from '@/models/Song'
 import { db } from '@/config'
+import { Song } from '@/models/Song'
 import { musicPlayerReducer } from '@/reducers/musicPlayer'
 
 const initialState: MusicPlayerState = {
@@ -16,7 +16,7 @@ const initialState: MusicPlayerState = {
 
 interface PlayerContext extends MusicPlayerState { 
   onPrevious: () => void
-  onPlay: (_song: Song, category: MusicPlayerState['category'], songs?: Song[]) => void
+  onPlay: (_song: Song, category: string, songs?: Song[]) => void
   onNext: () => void
   handleFavorite: (_song: Song) => void
 }
@@ -24,9 +24,9 @@ interface PlayerContext extends MusicPlayerState {
 export const MusicPlayerContext = createContext<PlayerContext>({
   ...initialState,
   onPrevious: () => {},
-  onPlay: (_song, _cat, _songs) => {},
+  onPlay: () => {},
   onNext: () => {},
-  handleFavorite: (_) => {},
+  handleFavorite: () => {},
 })
 
 export default function PlayerContextProvider({ children }: {

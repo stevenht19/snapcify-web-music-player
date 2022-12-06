@@ -8,9 +8,9 @@ type Props = {
 }
 
 export const NavItem = ({ 
-  children, 
-  path, 
+  path,
   isNotLink,
+  children,
   onClick
 }: Props) => {
   return (

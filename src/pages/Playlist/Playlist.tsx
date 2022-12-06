@@ -1,23 +1,34 @@
-import { Navigate, useParams } from 'react-router-dom'
 import { usePlaylists } from '@/hooks'
-import { SinglePlaylistProvider } from './layout/context/SinglePlaylistProvider'
+import { Navigate, useParams } from 'react-router-dom'
+import { PlaylistProvider } from './layout/context'
 import { Cover } from './layout/PlaylistCover'
 import { AddSong } from './layout/Search/AddSong'
 import { Songs } from './layout/Songs'
 
 export default function Playlist() {
   const { id } = useParams()
-  const { playlists } = usePlaylists()
+  const { playlists, isLoading } = usePlaylists()
 
-  const playlist = playlists.find(playlist => playlist.id === Number(id))
+  const selectedId = Number(id)
+
+  if (isLoading) return null
+
+  const playlist = playlists.find(p => p.id === selectedId)
+
+  if (!playlists.length && !isLoading) {
+    return <Navigate to='/' />
+  }
 
   if (!playlist) return <Navigate to='/' />
 
   return (
-    <SinglePlaylistProvider>
-      <Cover {...playlist} />
+    <PlaylistProvider 
+      playlistId={selectedId} 
+      playlistName={playlist!.name}
+    >
+      <Cover {...playlist!} />
       <AddSong />
       <Songs />
-    </SinglePlaylistProvider>
+    </PlaylistProvider>
   )
 }

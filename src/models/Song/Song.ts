@@ -7,5 +7,6 @@ interface Song {
   isPlaying: boolean
   isFavorite: boolean
   isSelected?: boolean
+  playlist_id?: number
 }
 export default Song

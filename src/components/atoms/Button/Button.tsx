@@ -3,18 +3,18 @@ import './style.css'
 const Button = ({
   children,
   isDisabled,
-  isRed,
+  isGray,
   onClick
 }: {
   children: React.ReactNode
-  isDisabled: boolean
-  isRed?: boolean
+  isDisabled?: boolean
+  isGray?: boolean
   onClick?: () => void
 }) => {
   return (
     <button 
       disabled={isDisabled} 
-      className={'button' + (isRed ? ' button--red' : '') + (isDisabled ? ` button--disabled` : '')}
+      className={'button' + (isGray ? ' button--gray' : '') + (isDisabled ? ` button--disabled` : '')}
       {...(onClick && { onClick })}
     >
       {children}
