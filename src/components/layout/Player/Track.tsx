@@ -1,4 +1,4 @@
-import { useToast } from './hooks/useToast'
+import { useToast } from './hooks'
 import { Song } from '@/models/Song'
 import { SongTrack as Track } from '@/components/atoms/Card/Song'
 import { Heart } from '@/components/atoms/Icon'
