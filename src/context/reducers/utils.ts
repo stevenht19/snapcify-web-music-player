@@ -1,4 +1,4 @@
-import { MusicPlayerState } from '@/types'
+import { MusicPlayerState } from '../types'
 import { Song } from '@/models/Song'
 
 export const getSongs = (

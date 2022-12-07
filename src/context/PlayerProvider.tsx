@@ -1,8 +1,9 @@
 import { createContext, useEffect, useReducer } from 'react'
-import { MusicPlayerState } from '@/types'
+import { MusicPlayerState } from './types'
 import { db } from '@/config'
 import { Song } from '@/models/Song'
-import { musicPlayerReducer } from '@/reducers/musicPlayer'
+import { musicPlayerReducer } from '@/context/reducers'
+import { Types } from './reducers/types'
 
 const initialState: MusicPlayerState = {
   play: false,
@@ -39,13 +40,13 @@ export default function PlayerContextProvider({ children }: {
     db.getSongs()
       .then((res) => {
         dispatch({
-          type: 'SET_FAVORITES',
+          type: Types.SET_FAVORITES,
           payload: res
         })
       })
   }, [])
 
-  const onPrevious = () => dispatch({ type: 'PREVIOUS' })
+  const onPrevious = () => dispatch({ type: Types.PREVIOUS })
 
   const onPlay = (
     song: Song,
@@ -54,13 +55,13 @@ export default function PlayerContextProvider({ children }: {
   ) => {
     if (song.isPlaying) {
       dispatch({
-        type: 'PAUSE',
+        type: Types.PAUSE,
         payload: song
       })
       return
     }
     dispatch({
-      type: 'PLAY',
+      type: Types.PLAY,
       payload: {
         song,
         category,
@@ -69,11 +70,11 @@ export default function PlayerContextProvider({ children }: {
     })
   }
 
-  const onNext = () => dispatch({ type: 'NEXT' })
+  const onNext = () => dispatch({ type: Types.NEXT })
 
   const handleFavorite = (song: Song) => {
     dispatch({
-      type: !song.isFavorite ? 'ADD_FAVORITE' : 'DELETE_FAVORITE',
+      type: !song.isFavorite ? Types.ADD_FAVORITE : Types.DELETE_FAVORITE,
       payload: song
     })
     db.toggleSong(song)

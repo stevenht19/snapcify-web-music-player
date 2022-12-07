@@ -16,7 +16,7 @@
   background-color: #A379E7;
 }
 .button--gray:hover {
-  background-color: var(--gray80);
+  background-color: var(--white);
 }
 .button--disabled {
   cursor: not-allowed;

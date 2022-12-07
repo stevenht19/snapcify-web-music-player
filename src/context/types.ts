@@ -1,6 +1,6 @@
 import { Song } from '@/models/Song'
 
-export interface MusicPlayerState {
+export type MusicPlayerState = {
   play: boolean
   isLoading: boolean
   isDisabled: boolean
