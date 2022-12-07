@@ -10,30 +10,31 @@ import ResultsPage, { loader } from '@/pages/Results'
 import Favorites from '@/pages/Favorites'
 import Playlist from '@/pages/Playlist'
 import Readme from './pages/Readme'
+import { Routes } from './utils/routes'
 
 const router = createBrowserRouter(
   createRoutesFromElements(
-    <Route path='/' element={<Layout />}>
+    <Route path={Routes.HOME} element={<Layout />}>
       <Route 
         index
         element={<HomePage />}
       />
       <Route 
-        path='/search' 
+        path={Routes.SEARCH}
         element={<ResultsPage />} 
         loader={loader}
       />
       <Route
-        path='/favorites'
+        path={Routes.FAVORITE}
         element={<Favorites />}
       />
       <Route 
-        path='/playlist/:id'
-        element={<Playlist />}
+        path={Routes.README}
+        element={<Readme />}
       />
       <Route 
-        path='/readme'
-        element={<Readme />}
+        path={`${Routes.PLAYLIST}/:id`}
+        element={<Playlist />}
       />
     </Route>
 ))

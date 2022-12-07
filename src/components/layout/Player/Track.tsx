@@ -1,13 +1,13 @@
 import { useToast } from './hooks'
 import { Song } from '@/models/Song'
 import { SongTrack as Track } from '@/components/atoms/Card/Song'
-import { Heart } from '@/components/atoms/Icon'
 import { Alert } from '@/components/atoms/Alert'
+import { Heart } from '@/components/atoms/Icon'
 
 type Props = {
   play: boolean,
   song: Song,
-  handleFavorite: (song: Song) => void
+  handleFavorite(song: Song): void
 }
 
 const SongTrack = ({

@@ -1,6 +1,7 @@
 import { useBoolean, usePlaylists } from '@/hooks'
 import { AlertDialog } from '@/components/atoms/AlertDialog'
 import { Playlist } from '@/models/Playlist'
+import { Routes } from '@/utils/routes'
 import { NavItem } from '../NavItem'
 
 type VoidFunction = () => void
@@ -15,7 +16,6 @@ export const PlaylistItem = ({
   onEdit 
 }: Props) => {
   const { id, name } = playlist
-
   const { onDelete } = usePlaylists()
 
   const { boolean, onOpen, onClose } = useBoolean()
@@ -30,7 +30,7 @@ export const PlaylistItem = ({
       onConfirm={onConfirm} 
       onClose={onClose} 
     />
-    <NavItem path={`playlist/${id}`}>
+    <NavItem path={`${Routes.PLAYLIST}/${id}`}>
       {name}
       <div className='icons'>
         <EditIcon onEdit={onEdit} />
@@ -54,14 +54,19 @@ const EditIcon = (props: { onEdit: VoidFunction }) => (
 )
 
 const DeleteIcon = (props: { onDelete: VoidFunction }) => (
-  <button className='icon' onClick={props.onDelete}>
+  <button 
+    className='icon' 
+    onClick={props.onDelete}
+  >
     <svg
       xmlns="http://www.w3.org/2000/svg"
       width={16}
       height={16}
       viewBox="0 0 24 24"
     >
-      <path d="M6 7H5v13a2 2 0 002 2h10a2 2 0 002-2V7H6zm10.618-3L15 2H9L7.382 4H3v2h18V4z"></path>
+      <path 
+        d="M6 7H5v13a2 2 0 002 2h10a2 2 0 002-2V7H6zm10.618-3L15 2H9L7.382 4H3v2h18V4z">
+      </path>
     </svg>
   </button>
 )

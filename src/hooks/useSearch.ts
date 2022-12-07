@@ -1,5 +1,5 @@
-import { Song } from '@/models/Song'
 import { useState, useEffect } from 'react'
+import { Song } from '@/models/Song'
 import { useBoolean } from '@/hooks'
 import { searchSongsByQuery } from '@/services'
 
@@ -14,14 +14,14 @@ const useSearch = () => {
   } = useBoolean()
 
   useEffect(() => {
-    if (!searchTerm.trim().length) {
+    if (searchTerm.trim().length < 3) {
       setIsNotTyping()
       return
     }
     let id = setTimeout(() => {
-      setIsNotTyping()
       searchSongsByQuery(searchTerm)
         .then(setResults)
+        .finally(setIsNotTyping)
     }, 1000)
     
     return () => clearInterval(id)
@@ -30,7 +30,7 @@ const useSearch = () => {
 
   const onChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setSearchTerm(e.target.value)
-    if (searchTerm.trim().length < 2) return
+    if (searchTerm.trim().length < 3) return
     setIsTyping()
   }
 

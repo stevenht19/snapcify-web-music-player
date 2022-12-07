@@ -1,9 +1,9 @@
 import { useParams } from 'react-router-dom'
+import { Playlist } from '@/models/Playlist'
 import { useBoolean, usePlaylists } from '@/hooks'
-import { ModalForm } from '../PlaylistForm/ModalForm'
+import { ModalForm } from '../ModalForm'
 import { Form } from '../PlaylistForm'
 import { PlaylistItem } from './PlaylistItem'
-import { Playlist } from '@/models/Playlist'
 
 export const ListOfPlaylists = () => {
   const { id } = useParams()

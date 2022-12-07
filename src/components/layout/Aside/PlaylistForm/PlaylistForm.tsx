@@ -13,7 +13,7 @@ type Inputs = {
 type Props = Inputs & {
   id?: number
   textButton?: string
-  handleSubmit: (_: Playlist) => void
+  handleSubmit(_: Playlist): void
 }
 
 const PlaylistForm = ({

@@ -9,6 +9,7 @@ const progress = new ProgressBar({
 
 export default function Search() {
   const { state } = useNavigation()
+  
   if (state === 'loading') {
     progress.start();
   } else {

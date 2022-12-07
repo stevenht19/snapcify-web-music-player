@@ -1,20 +1,21 @@
 import { FavoriteIcon } from '@/components/atoms/Icon'
 import { NavItem } from './NavItem'
 import { Playlists } from './Playlists'
+import { Routes } from '@/utils/routes'
 
 const Navbar = () => {
   return (
     <nav>
       <ul className='nav__list'>
-        <NavItem path='/'>
+        <NavItem path={Routes.HOME}>
           <CloudIcon />
           Explore
         </NavItem>
-        <NavItem path='/favorites'>
+        <NavItem path={Routes.FAVORITE}>
           <FavoriteIcon />
           Favorites
         </NavItem>
-        <NavItem path='/readme'>
+        <NavItem path={Routes.README}>
           <InfoIcon />
           Readme
         </NavItem>

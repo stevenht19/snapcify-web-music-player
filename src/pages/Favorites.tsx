@@ -22,7 +22,7 @@ export default function FavoritesPage() {
     <SongList 
       items={favorites}
       title={title}
-      category='FAVORITE'
+      category={title}
       message={`You dont't have favorites yet`}
     />
   </>

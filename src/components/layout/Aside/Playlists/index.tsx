@@ -3,7 +3,7 @@ import { Playlist } from '@/models/Playlist'
 import { PlaylistIcon } from '@/components/atoms/Icon'
 import { Form } from '../PlaylistForm'
 import { NavItem } from '../NavItem'
-import { ModalForm } from '../PlaylistForm/ModalForm'
+import { ModalForm } from '../ModalForm'
 import { ListOfPlaylists } from './ListOfPlaylists'
 
 export const Playlists = () => {

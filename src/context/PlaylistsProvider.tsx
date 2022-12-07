@@ -2,6 +2,7 @@ import { useState, createContext, useEffect } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { Playlist } from '@/models/Playlist'
 import { db } from '@/config'
+import { Routes } from '@/utils/routes'
 
 interface PlaylistState {
   playlists: Playlist[]
@@ -10,10 +11,10 @@ interface PlaylistState {
 }
 
 interface PlaylistsContext extends PlaylistState {
-  addPlaylist: (_p: Playlist, _a: Function) => void
-  onEdit: (_p: Playlist, _a: Function) => void
-  onDelete: (_id: Playlist['id'], _a: Function) => void
-  onSelect: (_p: Playlist) => void
+  addPlaylist(_p: Playlist, _a: Function): void
+  onEdit(_p: Playlist, _a: Function): void
+  onDelete(_id: Playlist['id'], _a: Function): void
+  onSelect(_p: Playlist): void
 }
 
 export default function PlaylistProvider({ children }: {
@@ -26,10 +27,8 @@ export default function PlaylistProvider({ children }: {
 
   useEffect(() => {
     db.getPlaylists()
-      .then(function(res) {
-        setPlaylists(res)
-        setLoading(false)
-      })
+      .then(setPlaylists)
+      .finally(() => setLoading(false))
   }, [])
 
   const addPlaylist = (playlist: Playlist, action: Function) => {
@@ -40,7 +39,7 @@ export default function PlaylistProvider({ children }: {
 
     setPlaylists(p => p.concat(playlist))
     db.addPlaylist(playlist)
-    navigateTo(`/playlist/${playlist.id}`)
+    navigateTo(`${Routes.PLAYLIST}/${playlist.id}`)
   }
 
   const onEdit = (playlist: Playlist, action: Function) => {
@@ -56,7 +55,6 @@ export default function PlaylistProvider({ children }: {
   }
 
   const onSelect = (playlist: Playlist) => {
-    console.log(playlist)
     setPlaylist(playlist)
   }
 
