@@ -7,7 +7,10 @@ export const AddSong = () => {
   const { boolean, onOpen, onClose } = useBoolean()
 
   return <>
-    <button onClick={onOpen} className='icon-button'>
+    <button 
+      onClick={onOpen} 
+      className='icon-button'
+    >
       Add songs
       <svg
         xmlns="http://www.w3.org/2000/svg"
@@ -21,7 +24,7 @@ export const AddSong = () => {
     </button>
     {
       boolean ?
-      <Modal>
+      <Modal onClose={onClose}>
         <SearchSong onClose={onClose} />
       </Modal>
       : null

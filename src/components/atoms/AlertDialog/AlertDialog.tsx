@@ -1,16 +1,26 @@
-import { Modal, ModalHeader, ModalBody, ModalFooter } from '../Modal'
+import { 
+  Modal, 
+  ModalHeader, 
+  ModalBody, 
+  ModalFooter 
+} from '../Modal'
 import { Button } from '../Button'
 
-const AlertDialog = ({ isOpen, onClose, onConfirm }: {
+type Props = {
   isOpen: boolean
-  onClose: () => void
-  onConfirm: () => void
-}) => {
+  onClose(): void
+  onConfirm(): void
+}
 
+const AlertDialog: React.FC<Props> = ({ 
+  isOpen, 
+  onClose, 
+  onConfirm 
+}) => {
   if (!isOpen) return null
 
   return (
-    <Modal>
+    <Modal onClose={onClose}>
       <ModalHeader>
         Delete Playlist
       </ModalHeader>

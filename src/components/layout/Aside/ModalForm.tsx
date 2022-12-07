@@ -14,7 +14,7 @@ export const ModalForm = ({
   if (!show) return null
 
   return (
-    <Modal>
+    <Modal onClose={onClose}>
       <ModalHeader onClose={onClose}>
         {title}
       </ModalHeader>

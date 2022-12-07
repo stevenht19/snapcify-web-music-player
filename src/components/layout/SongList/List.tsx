@@ -31,7 +31,7 @@ const SongList = ({
             />
           )) :
         <Message>
-          {message || `There's no results.`}
+          {message || `No results found.`}
         </Message>
       }
     </Section>
