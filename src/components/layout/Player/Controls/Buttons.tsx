@@ -1,14 +1,17 @@
 import { MusicPlayerState } from '@/types'
 import { Song } from '@/models/Song'
 
-type Props = {
+type Props = Functions & {
   play: MusicPlayerState['play']
   selectedSong: MusicPlayerState['selectedSong']
   category: MusicPlayerState['category']
   isDisabled: MusicPlayerState['isDisabled']
-  onPrevious: () => void
-  onPlay: (_song: Song, _cat: MusicPlayerState['category'], _songs?: Song[]) => void
-  onNext: () => void
+}
+
+type Functions = {
+  onPlay(_song: Song, _cat: Props['category'], _songs?: Song[]): void
+  onPrevious(): void
+  onNext(): void
 }
 
 const Buttons = ({
@@ -22,7 +25,9 @@ const Buttons = ({
 }: Props) => {
 
   const onPlaySong = () => {
-    onPlay(selectedSong!, category)
+    if (selectedSong) {
+      onPlay(selectedSong, category)
+    }
   }
 
   return (

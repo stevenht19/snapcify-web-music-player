@@ -1,19 +1,15 @@
 import { useState } from 'react'
-import Slider from '@/components/atoms/Slider'
-
-type SliderEvent = {
-  x: number
-  y: number
-}
+import { SliderEvent, SliderValues } from './utils/types'
+import Slider from '@/components/layout/Player/Slider'
 
 type Props = {
   volume: number
-  onChangeVolume: (_n: SliderEvent['x']) => void
+  onChangeVolume(_n: SliderValues['x']): void
 }
 
 const totalVolume = 100
 
-const Volume = ({ volume, onChangeVolume }: Props) => {
+export const Volume = ({ volume, onChangeVolume }: Props) => {
   const actualVolume = volume * totalVolume
   const [isMuted, setMuted] = useState<boolean>(false)
   const [playerVolume, setPlayerVolume] = useState<number>(actualVolume)
@@ -70,5 +66,3 @@ const Volume = ({ volume, onChangeVolume }: Props) => {
     </div>
   )
 }
-
-export default Volume

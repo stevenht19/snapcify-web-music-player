@@ -1,28 +1,21 @@
-import { useEffect } from 'react'
-import Slider from '@/components/atoms/Slider'
+import { SliderEvent, SliderValues } from './utils/types'
+import Slider from '@/components/layout/Player/Slider'
 
-type SliderEvent = {
-  x: number
-  y: number
-}
-
-type Props = {
-  x: SliderEvent['x']
-  xmax: number
+type Props = SliderValues & {
   isDisabled: boolean
   onDragEnd: () => void
   onChangeSlide: (x: number) => void
 }
 
-const getCurrentTime = (x: Props['x']): string => {
+const getCurrentTime = (x: SliderValues['x']) => {
   return Math.floor(x / 60) + ':' + ('0' + Math.floor(x % 60)).slice(-2)
 }
 
-const getDuration = (xmax: Props['xmax']): string => {
+const getDuration = (xmax: SliderValues['xmax']) => {
   return xmax ? ((xmax / 60) - 0.21).toFixed(2).replace('.', ':') : '0:00'
 }
 
-const Bar = ({ 
+export const Bar = ({ 
   x, 
   xmax,
   isDisabled,
@@ -54,5 +47,3 @@ const Bar = ({
     </div>
   )
 }
-
-export default Bar

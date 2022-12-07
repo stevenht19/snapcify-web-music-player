@@ -1,6 +1,6 @@
 import { useBoolean } from '@/hooks'
 
-export const useToast = () => {
+const useToast = () => {
   const { boolean: isClicked, onAsyncClose, onOpen } = useBoolean()
 
   const onShow = () => {
@@ -14,3 +14,4 @@ export const useToast = () => {
     onShow,
   }
 }
+export default useToast

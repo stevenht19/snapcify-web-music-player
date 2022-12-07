@@ -24,9 +24,9 @@ export default function Playlist() {
   return (
     <PlaylistProvider 
       playlistId={selectedId} 
-      playlistName={playlist!.name}
+      playlistName={playlist.name}
     >
-      <Cover {...playlist!} />
+      <Cover {...playlist} />
       <AddSong />
       <Songs />
     </PlaylistProvider>

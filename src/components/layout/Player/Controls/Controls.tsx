@@ -1,8 +1,8 @@
 import { useMusicPlayer } from '@/hooks'
-import { useControls } from '../hooks/useControls'
-import Bar from './Bar'
-import Audio from './Audio'
-import Volume from './Volume'
+import { useControls } from '../hooks'
+import { Bar } from './Bar'
+import { Audio } from './Audio'
+import { Volume } from './Volume'
 
 const Controls = ({ children }: {
   children: React.ReactNode
@@ -36,7 +36,7 @@ const Controls = ({ children }: {
         {...currentTime}
       />
       {
-        (!!selectedSong && !isDisabled) ?
+        (!!selectedSong && !isDisabled && category) ?
           <Audio
             play={play}
             category={category}

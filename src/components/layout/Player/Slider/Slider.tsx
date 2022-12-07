@@ -1,8 +1,7 @@
+import { SliderValues } from '../Controls/utils/types'
 import Slider from 'react-input-slider'
 
-type Props = {
-  x: number
-  xmax: number
+type Props = SliderValues & {
   disabled?: boolean
   trackColor?: string
   activeColor?: string

@@ -9,6 +9,7 @@ import HomePage from '@/pages/Home'
 import ResultsPage, { loader } from '@/pages/Results'
 import Favorites from '@/pages/Favorites'
 import Playlist from '@/pages/Playlist'
+import Readme from './pages/Readme'
 
 const router = createBrowserRouter(
   createRoutesFromElements(
@@ -29,6 +30,10 @@ const router = createBrowserRouter(
       <Route 
         path='/playlist/:id'
         element={<Playlist />}
+      />
+      <Route 
+        path='/readme'
+        element={<Readme />}
       />
     </Route>
 ))
