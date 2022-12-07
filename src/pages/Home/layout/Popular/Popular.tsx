@@ -4,22 +4,24 @@ import { SongSkeleton } from '@/components/atoms/Skeleton'
 import { SongCard } from '@/components/atoms/Card'
 import { getNumericArray } from '@/utils'
 
+const title = 'Popular'
+
 export default function Popular() {
   const { 
     songs, 
     isLoading,
     handlePlay
-  } =  useSongs('POPULAR', '/top')
+  } =  useSongs(title, '/top')
 
   return (
-    <Section title='Popular'>
+    <Section title={title}>
       {
         isLoading ? (
           getNumericArray().map((n) => (
             <SongSkeleton key={n} />
           ))
         ) : (
-          songs.map((song, i) => (
+          songs.map((song) => (
             <SongCard
               key={song.id}
               song={song}

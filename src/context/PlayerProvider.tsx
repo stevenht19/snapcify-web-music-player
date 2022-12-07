@@ -15,10 +15,10 @@ const initialState: MusicPlayerState = {
 }
 
 interface PlayerContext extends MusicPlayerState { 
-  onPrevious: () => void
-  onPlay: (_song: Song, category: string, songs?: Song[]) => void
-  onNext: () => void
-  handleFavorite: (_song: Song) => void
+  onPlay(_song: Song, category: string, songs?: Song[]): void
+  onPrevious(): void
+  onNext(): void
+  handleFavorite(_song: Song): void
 }
 
 export const MusicPlayerContext = createContext<PlayerContext>({

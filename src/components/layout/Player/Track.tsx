@@ -15,18 +15,20 @@ const SongTrack = ({
   song,
   handleFavorite
 }: Props) => {
-
-  const { isClicked, onShow } = useToast()
-
-  const message = song.isFavorite ? (
-    'was added to your favorites'
-  ) : (
-    'was removed from your favorites'
-  )
+  const { 
+    contentState, 
+    setToast, 
+    isClicked 
+  } = useToast()
 
   const onClick = () => {
     handleFavorite(song)
-    onShow()
+    setToast({
+      title: song.title,
+      message: song.isFavorite 
+        ? 'was removed from your favorites' 
+        : 'was added to your favorites'
+    })
   }
 
   return (
@@ -35,12 +37,11 @@ const SongTrack = ({
         rotate={play}
         {...song}
       />
-      <Alert
-        show={isClicked}
-        item={song.title}
-      >
-        {message}
-      </Alert>
+      {
+        (isClicked && contentState?.title) ? 
+          <Alert {...contentState} /> 
+        : null
+      }
       <button onClick={onClick}>
         <Heart isFilled={song.isFavorite} />
       </button>

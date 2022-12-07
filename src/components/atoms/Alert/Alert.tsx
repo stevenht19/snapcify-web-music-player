@@ -1,17 +1,12 @@
-import ReactPortal from '../Portal'
+import { ReactPortal } from '../Portal'
+import { AlertProps } from './types'
 import './style.css'
 
-const Alert = ({ show, item, children }: {
-  show: boolean
-  item: string
-  children: React.ReactNode
-}) => {
-  if (!show) return null
-
+const Alert = ({ title, message }: AlertProps)=> {
   return (
     <ReactPortal>
       <div className='alert'>
-        <p>{item} {children}</p>
+        <p>{title} {message}</p>
       </div>
     </ReactPortal>
   )

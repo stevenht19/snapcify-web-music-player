@@ -1,4 +1,4 @@
-import ReactPortal from '../Portal'
+import { ReactPortal } from '../Portal'
 import './style.css'
 
 const Modal = ({ children }: {

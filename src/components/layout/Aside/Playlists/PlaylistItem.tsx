@@ -4,11 +4,14 @@ import { Playlist } from '@/models/Playlist'
 import { Routes } from '@/utils/routes'
 import { NavItem } from '../NavItem'
 
-type VoidFunction = () => void
+type Functions = Partial<{
+  onDelete(): void
+  onEdit(): void
+}>
 
 type Props = {
   playlist: Playlist
-  onEdit: VoidFunction
+  onEdit: Functions['onEdit']
 }
 
 export const PlaylistItem = ({ 
@@ -21,14 +24,14 @@ export const PlaylistItem = ({
   const { boolean, onOpen, onClose } = useBoolean()
 
   const onConfirm = () => {
-    onDelete(playlist.id, onClose)
+    onDelete(id, onClose)
   }
 
   return <>
     <AlertDialog
-      isOpen={boolean} 
-      onConfirm={onConfirm} 
-      onClose={onClose} 
+      isOpen={boolean}
+      onClose={onClose}
+      onConfirm={onConfirm}  
     />
     <NavItem path={`${Routes.PLAYLIST}/${id}`}>
       {name}
@@ -40,8 +43,8 @@ export const PlaylistItem = ({
   </>
 }
 
-const EditIcon = (props: { onEdit: VoidFunction }) => (
-  <button className='icon' onClick={props.onEdit}>
+const EditIcon = ({ onEdit }: Functions) => (
+  <button className='icon' onClick={onEdit}>
     <svg
       xmlns="http://www.w3.org/2000/svg"
       width={16}
@@ -53,10 +56,10 @@ const EditIcon = (props: { onEdit: VoidFunction }) => (
   </button>
 )
 
-const DeleteIcon = (props: { onDelete: VoidFunction }) => (
+const DeleteIcon = ({ onDelete }: Functions) => (
   <button 
     className='icon' 
-    onClick={props.onDelete}
+    onClick={onDelete}
   >
     <svg
       xmlns="http://www.w3.org/2000/svg"

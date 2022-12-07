@@ -1,10 +1,9 @@
-import { MusicPlayerState } from '@/types'
 import { useMusicPlayer } from '@/hooks'
 import { Song } from '@/models/Song'
 
 const usePlay = (
   prevSongs: Song[], 
-  section: MusicPlayerState['category']
+  section: string
 ) => {
   const { songs: actualSongs, category, onPlay } = useMusicPlayer()
   const isInActualCategory = category !== section

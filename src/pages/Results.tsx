@@ -5,7 +5,7 @@ import {
 } from 'react-router-dom'
 import { Song } from '@/models/Song'
 import { searchSongsByQuery } from '@/services'
-import { SongList } from '@/components/layout/SongList'
+import { List } from '@/components/layout/SongList'
 import { Search } from '@/components/layout/Search'
 import { Routes } from '@/utils/routes'
 
@@ -19,7 +19,7 @@ export default function ResultsPage() {
 
   return <>
     <Search />
-    <SongList 
+    <List 
       items={results}
       category='RESULTS'
       title={`Results of ${query}`}

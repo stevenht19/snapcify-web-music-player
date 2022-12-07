@@ -24,11 +24,11 @@ type ReducerAction = {
     songs?: Song[]
   }
 } | {
+  type: 'PAUSE' | 'ADD_FAVORITE' | 'DELETE_FAVORITE',
+  payload: Song
+} | {
   type: 'SET_FAVORITES'
   payload: Song[]
-} | {
-  type: 'PAUSE' |'ADD_FAVORITE' | 'DELETE_FAVORITE'
-  payload: Song
 }
 
 const musicPlayerReducer = (
@@ -89,14 +89,17 @@ const musicPlayerReducer = (
       return {
         ...state,
         selectedSong: {...action.payload, isFavorite: true },
-        favorites: state.favorites.concat(parseSongTo(parseFavorite(action.payload), false)!)
+        favorites: state.favorites.concat(parseSongTo(parseFavorite(action.payload), false)!),
+        ...(state.category === 'Favorites' && {
+          songs: state.songs.concat(parseFavorite(action.payload)!)
+        })
       }
     case 'DELETE_FAVORITE':
       return {
         ...state,
         favorites: filter(state.favorites, action.payload.id),
         selectedSong: parseFavorite(state.selectedSong, false),
-        ...(state.category === 'FAVORITE' && { 
+        ...(state.category === 'Favorites' && { 
           songs: filter(state.songs, action.payload.id) 
         })
       }

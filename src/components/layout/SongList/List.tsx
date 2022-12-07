@@ -1,19 +1,23 @@
 import { usePlay } from '@/hooks'
 import { Song } from '@/models/Song'
-import { MusicPlayerState } from '@/types'
 import { Section } from '@/components/atoms/Section'
 import { SongCard } from '@/components/atoms/Card'
 import { Message } from '@/components/atoms/Message'
 
 type Props = {
   items: Song[]
-  category: MusicPlayerState['category']
   title: string
   message?: string
+  category?: string
 }
 
-export const SongList = ({ items, category, title, message }: Props) => {
-  const { songs, handlePlay } = usePlay(items, category)
+const SongList = ({ 
+  items, 
+  title, 
+  message, 
+  category 
+}: Props) => {
+  const { songs, handlePlay } = usePlay(items, category ?? title)
 
   return (
     <Section title={title}>
@@ -33,3 +37,4 @@ export const SongList = ({ items, category, title, message }: Props) => {
     </Section>
   )
 }
+export default SongList

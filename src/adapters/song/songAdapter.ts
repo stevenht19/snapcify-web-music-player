@@ -12,5 +12,4 @@ const songAdapter = (entrie: SongResponse): Song => {
     isSelected: false
   }
 }
-
 export default songAdapter

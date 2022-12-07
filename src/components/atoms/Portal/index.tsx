@@ -1,6 +1,6 @@
 import ReactDOM from 'react-dom'
 
-const ReactPortal = ({ children }: {
+export const ReactPortal = ({ children }: {
   children: React.ReactNode
 }) => {
   return ReactDOM.createPortal(
@@ -8,5 +8,3 @@ const ReactPortal = ({ children }: {
     document.getElementById('portal')!
   )
 }
-
-export default ReactPortal

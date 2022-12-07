@@ -1,6 +1,6 @@
 export const enum Routes {
   HOME = '/',
-  SEARCH = '/',
+  SEARCH = '/search',
   FAVORITE = '/favorites',
   PLAYLIST = '/playlist',
   README = '/readme'

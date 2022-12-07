@@ -11,10 +11,10 @@ interface PlaylistState {
 }
 
 interface PlaylistsContext extends PlaylistState {
+  onSelect(_p: Playlist): void
   addPlaylist(_p: Playlist, _a: Function): void
   onEdit(_p: Playlist, _a: Function): void
   onDelete(_id: Playlist['id'], _a: Function): void
-  onSelect(_p: Playlist): void
 }
 
 export default function PlaylistProvider({ children }: {

@@ -9,12 +9,15 @@ import HomePage from '@/pages/Home'
 import ResultsPage, { loader } from '@/pages/Results'
 import Favorites from '@/pages/Favorites'
 import Playlist from '@/pages/Playlist'
-import Readme from './pages/Readme'
-import { Routes } from './utils/routes'
+import Readme from '@/pages/Readme'
+import { Routes } from '@/utils/routes'
 
 const router = createBrowserRouter(
   createRoutesFromElements(
-    <Route path={Routes.HOME} element={<Layout />}>
+    <Route 
+      path={Routes.HOME} 
+      element={<Layout />}
+    >
       <Route 
         index
         element={<HomePage />}
@@ -40,7 +43,5 @@ const router = createBrowserRouter(
 ))
 
 export default function App() {
-  return (
-    <RouterProvider router={router} />
-  )
+  return <RouterProvider router={router} />
 }
