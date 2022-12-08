@@ -13,7 +13,7 @@ const Player = () => {
     onPrevious,
     onPlay,
     onNext,
-    handleFavorite
+    handleFavorite,
   } = useMusicPlayer()
 
   return (

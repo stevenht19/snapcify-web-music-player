@@ -1,6 +1,6 @@
-import { useEffect, useRef } from 'react'
 import { Song } from '@/models/Song'
 import { SliderValues } from './utils/types'
+import { useAudio } from '../hooks'
 
 type Props = {
   play: boolean
@@ -25,42 +25,26 @@ export const Audio = ({
 }: Props) => {
   const { url } = selectedSong
 
-  const ref = useRef<HTMLAudioElement>(null)
-  
-  if (ref.current) {
-    play ? ref.current.play() : ref.current.pause()
-  }
+  const ref = useAudio(play, isSliding, barTime, volume)
 
-  useEffect(() => {
-    if (!isSliding && ref.current) {
-      ref.current.currentTime = barTime
-    }
-  }, [barTime, isSliding])
-
-  useEffect(() => {
-    ref.current && (
-      ref.current.volume = volume
-    )
-  }, [volume])
+  const xmax = ref.current?.duration
 
   const onLoaded = () => {
     if (!ref.current) return
-    onChangeTime({ 
-      x: ref.current.currentTime, 
-      xmax: ref.current.duration
-    })
+    const x = ref.current.currentTime
+    onChangeTime({ x: x, xmax: xmax! })
   }
 
   const onTimeUpdate = () => {
     if ((!ref.current) || (isSliding && barTime >= 0)) return
-
-    onChangeTime({
-      x: ref.current.currentTime,
-      xmax: ref.current.duration
-    })
+    const x = ref.current.currentTime
+  
+    onChangeTime({ x: x, xmax: xmax! })
   }
 
-  const onPause = () => onEnded(selectedSong, category)
+  const onPause = () => {
+    onEnded(selectedSong, category)
+  }
 
   return (
     <audio

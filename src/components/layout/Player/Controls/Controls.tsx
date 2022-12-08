@@ -13,6 +13,7 @@ const Controls = ({ children }: {
     isDisabled, 
     selectedSong,
     category,
+    onSaveNext
   } = useMusicPlayer()
 
   const {
@@ -45,7 +46,7 @@ const Controls = ({ children }: {
             volume={volume}
             selectedSong={selectedSong}
             onChangeTime={onChangeTime}
-            onEnded={onPlay}
+            onEnded={onSaveNext}
           /> : null
       }
     </div>

@@ -7,6 +7,9 @@ export default function Readme() {
       <Message>
         This is a personal project with noncommercial purposes.
       </Message>
+      <Message>
+        Songs are demos and the data come from a public API, so it could't be used as a music player service.
+      </Message>
     </section>
   )
 }

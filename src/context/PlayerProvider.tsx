@@ -19,6 +19,7 @@ interface PlayerContext extends MusicPlayerState {
   onPlay(_song: Song, category: string, songs?: Song[]): void
   onPrevious(): void
   onNext(): void
+  onSaveNext(): void
   handleFavorite(_song: Song): void
 }
 
@@ -27,6 +28,7 @@ export const MusicPlayerContext = createContext<PlayerContext>({
   onPrevious: () => {},
   onPlay: () => {},
   onNext: () => {},
+  onSaveNext: () => {},
   handleFavorite: () => {},
 })
 
@@ -72,6 +74,17 @@ export default function PlayerContextProvider({ children }: {
 
   const onNext = () => dispatch({ type: Types.NEXT })
 
+  const onSaveNext = () => {
+    if (playerState.songs.length > 1) {
+      dispatch({ type: Types.NEXT })
+      return
+    }
+    dispatch({
+      type: Types.PAUSE,
+      payload: playerState.selectedSong!
+    })
+  }
+
   const handleFavorite = (song: Song) => {
     dispatch({
       type: !song.isFavorite ? Types.ADD_FAVORITE : Types.DELETE_FAVORITE,
@@ -87,6 +100,7 @@ export default function PlayerContextProvider({ children }: {
       onPrevious,
       onPlay,
       onNext,
+      onSaveNext,
       handleFavorite
     }}>
       {children}
