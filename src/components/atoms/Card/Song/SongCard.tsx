@@ -1,11 +1,11 @@
 import { Song } from '@/models/Song'
-import { SongTrack } from './index'
+import SongTrack from './SongTrack'
 import './style.css'
 
 type Props = {
   song: Song
-  handlePlay?: (_song: Song) => void
-  onSelect?: (_song: Song) => void
+  handlePlay?(_song: Song): void
+  onSelect?(_song: Song): void
 }
 
 const SongCard = ({
@@ -13,6 +13,8 @@ const SongCard = ({
   handlePlay,
   onSelect
 }: Props) => {
+
+  const isSelected = song.isSelected
 
   const onClick = () => {
     if (handlePlay) {
@@ -23,7 +25,10 @@ const SongCard = ({
   }
 
   return (
-    <div onClick={onClick} className={`song-card` + (song.isSelected ? ' song-card--selected' : '')}>
+    <div 
+      onClick={onClick} 
+      className={'song-card' + (isSelected ? ' song-card--selected' : '')}
+    >
       {
         handlePlay && (
         <button>

@@ -11,7 +11,7 @@ export default function Popular() {
     songs, 
     isLoading,
     handlePlay
-  } =  useSongs(title, '/top')
+  } =  useSongs(title, '/charts/world')
 
   return (
     <Section title={title}>

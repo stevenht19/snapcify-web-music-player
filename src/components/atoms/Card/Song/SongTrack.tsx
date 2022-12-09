@@ -2,14 +2,11 @@ import { Avatar } from '@/components/atoms/Avatar'
 import { Song } from '@/models/Song'
 import './style.css'
 
-type Props = {
-  image: Song['image'],
-  title: Song['title'],
-  artist: Song['artist'],
+type Props = Song & {
   rotate?: boolean
 }
 
-export const SongTrack = ({
+const SongTrack = ({
   title,
   image,
   artist,
@@ -30,3 +27,4 @@ export const SongTrack = ({
     </div>
   )
 }
+export default SongTrack

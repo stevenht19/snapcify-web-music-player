@@ -41,17 +41,18 @@
   cursor: pointer;
   margin-top: 1rem;
 }
+.item__icon {
+  fill: var(--gray500);
+  width: 2rem;
+  font-size: 2rem;
+}
 .nav__item--active {
   background-color: var(--gray700);
   color: var(--gray50);
 }
-.nav__item--active svg {
+.nav__item--active .item__icon {
   fill: var(--white);
   stroke: var(--white);
-}
-.icon svg{
-  fill: var(--gray500);
-  stroke: none;
 }
 .nav__section {
   color: var(--gray400);
@@ -65,17 +66,26 @@
   margin-left: auto;
   margin-right: .75rem;
   opacity: 0;
-  fill: var(--gray500);
-}
-.icon:hover svg {
-  fill: var(--white);
-}
-.item__icon--add {
-  opacity: 1;
-}
-.nav__item:hover .item__icon--add {
-  fill: var(--white);
 }
 .nav__item:hover .icons {
+  opacity: 1;
+}
+.action {
+  font-size: 1.6rem;
+  fill: var(--gray500);
+}
+.action:hover {
+  fill: var(--white);
+}
+.action--right {
+  opacity: 0;
+  fill: var(--gray500);
+  margin-left: auto;
+  margin-right: 1.2rem;
+}
+.action--right:hover {
+  fill: var(--white);
+}
+.nav__item:hover .action--right {
   opacity: 1;
 }

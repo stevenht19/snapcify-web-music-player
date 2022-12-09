@@ -1,6 +1,6 @@
 import { useMusicPlayer } from '@/hooks'
 import { Paginator } from '@/components/layout/Paginator'
-import { FavoriteIcon } from '@/components/atoms/Icon'
+import { FaRegHeart } from 'react-icons/fa'
 import { List } from '@/components/layout/SongList'
 
 const title = 'Favorites'
@@ -12,10 +12,9 @@ export default function FavoritesPage() {
     <Paginator
       title={title}
       icon={
-        <FavoriteIcon 
+        <FaRegHeart
           color='var(--white)' 
-          width={18} 
-          height={18} 
+          size='1.5rem' 
         />
       }
     />

@@ -5,6 +5,7 @@ import { SearchInput } from '@/components/atoms/Input'
 import { Button } from '@/components/atoms/Button'
 import { SongCard } from '@/components/atoms/Card'
 import { usePlaylist } from '../hooks'
+import { TailSpin } from '@/components/atoms/Spinner'
 
 export const SearchSong = ({ onClose }: {
   onClose: () => void
@@ -39,8 +40,13 @@ export const SearchSong = ({ onClose }: {
   }
 
   return <>
-    <ModalHeader>
-      Search Songs {isTyping ? '...Loading' : ''}
+    <ModalHeader text='Search songs'>
+      {
+        isTyping ? (
+          <TailSpin />
+        )
+        : null
+      }
     </ModalHeader>
     <div className='playlist__search'>
       <SearchInput

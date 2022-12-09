@@ -18,12 +18,10 @@ const AlertDialog: React.FC<Props> = ({
   onConfirm 
 }) => {
   if (!isOpen) return null
-
+ 
   return (
-    <Modal onClose={onClose}>
-      <ModalHeader>
-        Delete Playlist
-      </ModalHeader>
+    <Modal show={isOpen}>
+      <ModalHeader text={'Delete Playlist'} />
       <ModalBody>
         Are you sure? You can't undo this action afterwards.
       </ModalBody>

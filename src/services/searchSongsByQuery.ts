@@ -1,15 +1,33 @@
-import { Song, SongResponse } from '@/models/Song'
-import { songAdapter } from '@/adapters/song'
+import { Song, DirtyData } from '@/models/Song'
+import { clearAdapter, songAdapter } from '@/adapters/song'
+import { getFetch } from '@/utils'
 
-const searchSongsByQuery = async (q?: string): Promise<Song[]> => {
+type Response = {
+  tracks: {
+    hits: DirtyData[]
+  }
+}
+
+const PATH = '/search/multi?search_type=SONGS_ARTISTS'
+
+const clearResult = (song: DirtyData) => {
+  return songAdapter(clearAdapter(song))
+}
+
+const searchSongsByQuery = async (q: string): Promise<Song[]> => {
   try {
-    const res: SongResponse[] = await (await fetch(`${import.meta.env.VITE_API}/songs`)).json()
-    const results = res.map(song => songAdapter(song))
-    return results
+    /*
+    const res: Response = await getFetch(`${PATH}&query=${encodeURI(q)}`)
+    return res
+      .tracks
+      .hits
+      .map(clearResult)
+      */
+    return []
+  
   } catch (_) {
     return []
   }
-
 }
 
 export default searchSongsByQuery

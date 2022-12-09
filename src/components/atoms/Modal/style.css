@@ -19,12 +19,13 @@
   gap: 1.5rem;
   padding-top: 1.5rem;
   padding-bottom: 2rem;
-  padding-inline: 2.8rem;
+  padding-inline: 3rem;
   font-size: 1.6rem;
   background-color: var(--gray700);
 }
 .modal__heading {
   display: flex;
+  align-items: center;
   justify-content: space-between;
 }
 .modal__title {

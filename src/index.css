@@ -58,3 +58,6 @@ a {
   color: unset;
   text-decoration: none;
 }
+.flex {
+  display: flex;
+}

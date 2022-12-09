@@ -4,9 +4,9 @@ import {
   redirect,
 } from 'react-router-dom'
 import { Song } from '@/models/Song'
-import { searchSongsByQuery } from '@/services'
 import { List } from '@/components/layout/SongList'
 import { Search } from '@/components/layout/Search'
+import { searchSongsByQuery } from '@/services'
 import { Routes } from '@/utils/routes'
 
 type Response = {
@@ -29,10 +29,11 @@ export default function ResultsPage() {
 export async function loader({ request }: LoaderFunctionArgs) {
   const url = new URL(request.url)
   const query = url.searchParams.get('q')
+
   if (!query?.trim().length) return redirect(Routes.HOME)
 
   return {
-    results: await searchSongsByQuery(),
+    results: await searchSongsByQuery(query),
     query
   }
 }

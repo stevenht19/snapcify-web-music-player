@@ -31,6 +31,7 @@ const PlaylistForm = ({
 
   const onSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault()
+    if (!formValues.name?.trim().length) return
     handleSubmit({ id: id || Date.now(), ...formValues } as Playlist)
   }
 

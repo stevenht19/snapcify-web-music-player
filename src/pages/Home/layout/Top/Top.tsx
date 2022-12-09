@@ -5,12 +5,14 @@ import { TopSongSkeleton } from '@/components/atoms/Skeleton'
 import { TopSong } from '@/components/atoms/Card'
 import { getNumericArray } from '@/utils'
 
+const PATH = '/charts/country' 
+
 const Top = () => {
   return (
-    <div>
-      <h2>Top Hits</h2>
+    <section>
+      <h2>Top in Peru</h2>
       <TopCarousel />
-    </div>
+    </section>
   )
 }
 
@@ -19,7 +21,7 @@ const TopCarousel = () => {
     songs, 
     isLoading, 
     handlePlay,
-  } = useSongs('TOP', '/songs')
+  } = useSongs('TOP', PATH)
 
   return (
     <Carousel>

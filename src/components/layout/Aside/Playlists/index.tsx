@@ -1,9 +1,10 @@
+import { MdOutlineFolderOpen } from 'react-icons/md'
+import { HiPlus } from 'react-icons/hi'
 import { useBoolean, usePlaylists } from '@/hooks'
 import { Playlist } from '@/models/Playlist'
-import { PlaylistIcon } from '@/components/atoms/Icon'
-import { Form } from '../PlaylistForm'
+import { Modal, ModalHeader } from '@/components/atoms/Modal'
+import { Form } from './Form'
 import { NavItem } from '../NavItem'
-import { ModalForm } from '../ModalForm'
 import { ListOfPlaylists } from './ListOfPlaylists'
 
 export const Playlists = () => {
@@ -20,33 +21,21 @@ export const Playlists = () => {
   }
 
   return <>
-    <ModalForm
-      title='Create a new Playlist'
-      show={boolean}
-      onClose={onClose}
-    >
+    <Modal show={boolean}>
+      <ModalHeader 
+        text='Create a new Playlist' 
+        onClose={onClose} 
+      />
       <Form handleSubmit={handleSubmit} />
-    </ModalForm>
+    </Modal>
     <NavItem 
       isNotLink 
       onClick={onOpen}
     >
-      <PlaylistIcon color={'var(--gray500)'} />
+      <MdOutlineFolderOpen className='item__icon' />
       Playlist
-      <PlusIcon />
+      <HiPlus className='action--right' size={'1.8rem'}/>
     </NavItem>
     <ListOfPlaylists />
   </>
 }
-const PlusIcon = () => (
-  <div className='icons item__icon--add'>
-    <svg
-      xmlns="http://www.w3.org/2000/svg"
-      width={20}
-      height={20}
-      viewBox="0 0 24 24"
-    >
-      <path d="M19 11h-6V5h-2v6H5v2h6v6h2v-6h6z"></path>
-    </svg>
-  </div>
-)

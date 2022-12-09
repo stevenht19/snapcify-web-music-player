@@ -2,16 +2,19 @@ import { Close } from '../Icon'
 import ModalTitle from './ModalTitle'
 
 type Props = {
-  children: React.ReactNode
+  text?: string
+  children?: React.ReactNode
+  flex?: boolean
   onClose?: () => void
 }
 
-const ModalHeader = ({ children, onClose }: Props) => {
+const ModalHeader = ({ children, text, onClose }: Props) => {
   return (
     <header className='modal__heading'>
       <ModalTitle>
-        {children}
+        {text}
       </ModalTitle>
+      {children ? children : null}
       {
         onClose ? (
           <button
