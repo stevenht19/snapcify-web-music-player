@@ -6,10 +6,16 @@
 .song-card {
   display: flex;
   cursor: pointer;
+  align-items: center;
   padding-inline: 1rem;
   margin-block: .5rem;
-  padding-block: 1.1rem;
   transition: background-color .12s ease-in-out;
+}
+.song__info {
+  display: inherit;
+  align-items: inherit;
+  flex: 1;
+  padding-block: 1.1rem;
 }
 @media screen and (min-width: 62em) {
   .song-card:hover {
@@ -42,4 +48,13 @@
 }
 .song__image--active {
   animation: onRotate 40s linear infinite;
+}
+.right-icon {
+  display: inherit;
+  margin-left: auto;
+  font-size: 2rem;
+}
+.right-icon svg {
+  fill: var(--primary);
+  stroke: var(--primary);
 }

@@ -20,7 +20,8 @@ interface PlayerContext extends MusicPlayerState {
   onPrevious(): void
   onNext(): void
   onSaveNext(): void
-  handleFavorite(_song: Song): void
+  onDeleteSongFromQueue(song: Song): void
+  handleFavorite(song: Song): void
 }
 
 export const MusicPlayerContext = createContext<PlayerContext>({
@@ -30,6 +31,7 @@ export const MusicPlayerContext = createContext<PlayerContext>({
   onNext: () => {},
   onSaveNext: () => {},
   handleFavorite: () => {},
+  onDeleteSongFromQueue: () => {}
 })
 
 export default function PlayerContextProvider({ children }: {
@@ -48,7 +50,11 @@ export default function PlayerContextProvider({ children }: {
       })
   }, [])
 
-  const onPrevious = () => dispatch({ type: Types.PREVIOUS })
+  const onPrevious = () => {
+    if (playerState.songs.length > 1) {
+      dispatch({ type: Types.PREVIOUS })
+    }
+  }
 
   const onPlay = (
     song: Song,
@@ -72,7 +78,11 @@ export default function PlayerContextProvider({ children }: {
     })
   }
 
-  const onNext = () => dispatch({ type: Types.NEXT })
+  const onNext = () => {
+    if (playerState.songs.length > 1) {
+      dispatch({ type: Types.NEXT }) 
+    } 
+  }
 
   const onSaveNext = () => {
     if (playerState.songs.length > 1) {
@@ -93,6 +103,13 @@ export default function PlayerContextProvider({ children }: {
     db.toggleSong(song)
   }
 
+  const onDeleteSongFromQueue = (song: Song) => {
+    dispatch({
+      type: Types.DELETE_SONG,
+      payload: song
+    })
+  }
+
   return (
     <MusicPlayerContext.Provider value={{
       ...playerState,
@@ -101,7 +118,8 @@ export default function PlayerContextProvider({ children }: {
       onPlay,
       onNext,
       onSaveNext,
-      handleFavorite
+      handleFavorite,
+      onDeleteSongFromQueue
     }}>
       {children}
     </MusicPlayerContext.Provider>

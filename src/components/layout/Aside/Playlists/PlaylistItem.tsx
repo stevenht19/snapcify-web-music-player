@@ -27,7 +27,8 @@ export const PlaylistItem = ({
     <AlertDialog
       isOpen={boolean}
       onClose={onClose}
-      onConfirm={onConfirm}  
+      onConfirm={onConfirm}
+      title='Delete Playlist?'
     />
     <NavItem path={`${Routes.PLAYLIST}/${id}`}>
       {name}

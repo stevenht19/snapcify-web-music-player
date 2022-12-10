@@ -65,6 +65,15 @@ export class Database extends Dexie {
   addSongsToPlaylist(songs: Song[]) {
     return db.songs.bulkAdd(songs)
   }
+
+  deleteSongFromPlaylist(playlistId: Playlist['id'], songId: Song['id']) {
+    return db
+      .songs
+      .where('playlist_id')
+      .equals(playlistId)
+      .and((song) => song.id === songId)
+      .delete()
+  }
 }
 
 const db = new Database()

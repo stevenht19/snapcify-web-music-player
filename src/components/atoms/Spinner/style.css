@@ -9,8 +9,8 @@
 }
 .tail::after {
   content: '';
-  width: 2.5rem;
-  height: 2.5rem;
+  width: 2.2rem;
+  height: 2.2rem;
   border: 3px solid var(--gray700);
   border-radius: 50%;
   border-top-color: var(--primary);

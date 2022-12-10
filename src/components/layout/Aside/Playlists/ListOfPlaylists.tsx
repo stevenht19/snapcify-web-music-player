@@ -4,7 +4,7 @@ import { useBoolean, usePlaylists } from '@/hooks'
 import { Modal, ModalHeader } from '@/components/atoms/Modal'
 import { Form } from './Form'
 import { PlaylistItem } from './PlaylistItem'
-import Divider from './Divider'
+import { Divider } from './Divider'
 
 export const ListOfPlaylists = () => {
   const { id } = useParams()

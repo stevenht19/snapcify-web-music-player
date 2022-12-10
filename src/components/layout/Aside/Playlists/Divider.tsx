@@ -1,4 +1,4 @@
-const Divider = ({ text }: {
+export const Divider = ({ text }: {
   text: string
 }) => {
   return (
@@ -7,5 +7,3 @@ const Divider = ({ text }: {
     </li>
   )
 }
-
-export default Divider

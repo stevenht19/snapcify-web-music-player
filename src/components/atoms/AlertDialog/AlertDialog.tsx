@@ -8,6 +8,7 @@ import { Button } from '../Button'
 
 type Props = {
   isOpen: boolean
+  title: string
   onClose(): void
   onConfirm(): void
 }
@@ -15,13 +16,14 @@ type Props = {
 const AlertDialog: React.FC<Props> = ({ 
   isOpen, 
   onClose, 
-  onConfirm 
+  onConfirm,
+  title
 }) => {
   if (!isOpen) return null
  
   return (
     <Modal show={isOpen}>
-      <ModalHeader text={'Delete Playlist'} />
+      <ModalHeader text={title} />
       <ModalBody>
         Are you sure? You can't undo this action afterwards.
       </ModalBody>

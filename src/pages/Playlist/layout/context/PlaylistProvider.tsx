@@ -8,9 +8,10 @@ interface PlaylistContext {
   savedSongs: Song[]
   songsSize: number
   playlistName: string
-  handleAddSong: (_s: Song) => void
-  clearSongs: () => void
-  onSaveSongs: (fn: Function) => void
+  clearSongs(): void
+  handleAddSong(_s: Song): void
+  onSaveSongs(fn: Function):void
+  deleteSong(_id: Song['id']): void
 }
 
 export const PlaylistContext = createContext<PlaylistContext>({
@@ -20,7 +21,8 @@ export const PlaylistContext = createContext<PlaylistContext>({
   playlistName: '',
   handleAddSong: () => {},
   clearSongs: () => {},
-  onSaveSongs: () => {}
+  onSaveSongs: () => {},
+  deleteSong: () => {}
 })
 
 type Props = {
@@ -39,7 +41,7 @@ const PlaylistProvider = ({
   const songsSize = songs.length
 
   useEffect(() => {
-    const get = async () => {
+    const getData = async () => {
       const songs = await db.songs
         .where('playlist_id')
         .equals(playlistId)
@@ -47,15 +49,17 @@ const PlaylistProvider = ({
 
       setSavedSongs(songs)
     }
-    get()
+    getData()
   }, [playlistId])
 
   const handleAddSong = (song: Song) => {
-    const alreadyExists = songs.some(s => s.id === song.id)
+    const alreadyExists = songs.some(({ id }) => id === song.id)
+
     if (alreadyExists) {
-      setSongs(songs => songs.filter(s => s.id !== song.id))
+      setSongs(songs => songs.filter(({ id }) => id !== song.id))
       return
     }
+
     setSongs(songs => songs.concat({
       ...song, 
       playlist_id: playlistId 
@@ -74,6 +78,11 @@ const PlaylistProvider = ({
     fn()
   }
 
+  const deleteSong = (songId: Song['id']) => {
+    setSavedSongs((songs) => songs.filter(song => song.id !== songId))
+    db.deleteSongFromPlaylist(playlistId, songId)
+  }
+
   return (
     <PlaylistContext.Provider value={{
       songs,
@@ -82,7 +91,8 @@ const PlaylistProvider = ({
       savedSongs,
       clearSongs,
       handleAddSong,
-      onSaveSongs
+      onSaveSongs,
+      deleteSong
     }}>
       {children}
     </PlaylistContext.Provider>

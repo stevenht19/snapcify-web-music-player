@@ -30,6 +30,9 @@ type ReducerAction =  | {
 } | {
   type: Types.SET_FAVORITES
   payload: Song[]
+} | {
+  type: Types.DELETE_SONG
+  payload: Song
 }
 
 const musicPlayerReducer = (
@@ -54,6 +57,7 @@ const musicPlayerReducer = (
         songs: state.songs
           .map((song) => parseSongTo(song, false)!)
       }
+    
     case Types.PREVIOUS:
       const prevIndex = decrease(state.selectedIndex!, getLength(state.songs));
       return {
@@ -61,11 +65,7 @@ const musicPlayerReducer = (
         play: true,
         selectedIndex: prevIndex,
         selectedSong: parseSongTo(getFavorite(state.favorites, state.songs[prevIndex]), true) || state.selectedSong,
-        ...(
-          state.songs.length > 0 && {
-            songs: mapByIndex(state.songs, prevIndex)
-          }
-        )
+        songs: mapByIndex(state.songs, prevIndex)
       }
     case Types.NEXT:
       const nextIndex = increase(state.selectedIndex!, getLength(state.songs));
@@ -74,11 +74,7 @@ const musicPlayerReducer = (
         play: true,
         selectedSong: parseSongTo(getFavorite(state.favorites, state.songs[nextIndex]), true) || state.selectedSong,
         selectedIndex: nextIndex,
-        ...(
-          state.songs.length > 0 && {
-            songs: mapByIndex(state.songs, nextIndex)
-          }
-        )
+        songs: mapByIndex(state.songs, nextIndex)
       }
     case Types.SET_FAVORITES:
       return {
@@ -103,6 +99,14 @@ const musicPlayerReducer = (
         ...(state.category === 'Favorites' && { 
           songs: filter(state.songs, action.payload.id) 
         })
+      }
+    case Types.DELETE_SONG:
+      return {
+        ...state,
+        selectedIndex: state.songs.length - 1,
+        songs: state
+          .songs
+          .filter(song => song.id !== action.payload.id)
       }
     default: return state
   }

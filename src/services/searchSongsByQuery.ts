@@ -1,6 +1,7 @@
 import { Song, DirtyData } from '@/models/Song'
 import { clearAdapter, songAdapter } from '@/adapters/song'
 import { getFetch } from '@/utils'
+import getSongs from './getSongs'
 
 type Response = {
   tracks: {
@@ -23,8 +24,8 @@ const searchSongsByQuery = async (q: string): Promise<Song[]> => {
       .hits
       .map(clearResult)
       */
+    return getSongs('/charts/world')
     return []
-  
   } catch (_) {
     return []
   }

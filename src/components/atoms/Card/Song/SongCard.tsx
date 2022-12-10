@@ -1,20 +1,28 @@
+import { BiPlay, BiPause } from 'react-icons/bi'
 import { Song } from '@/models/Song'
+import { RightIcon } from './RightIcon'
 import SongTrack from './SongTrack'
 import './style.css'
 
+type VoidFunction = (song: Song) => void
+
 type Props = {
   song: Song
-  handlePlay?(_song: Song): void
-  onSelect?(_song: Song): void
+  rightIcon?: React.ReactElement
+  handlePlay?: VoidFunction
+  onSelect?: VoidFunction
+  rightIconAction?: VoidFunction
 }
 
 const SongCard = ({
   song,
   handlePlay,
-  onSelect
+  onSelect,
+  rightIcon,
+  rightIconAction
 }: Props) => {
 
-  const isSelected = song.isSelected
+  const isSelected = song.isSelected ? ' song-card--selected' : ''
 
   const onClick = () => {
     if (handlePlay) {
@@ -25,41 +33,37 @@ const SongCard = ({
   }
 
   return (
-    <div 
-      onClick={onClick} 
-      className={'song-card' + (isSelected ? ' song-card--selected' : '')}
-    >
-      {
-        handlePlay && (
-        <button>
+    <div className={'song-card' + isSelected}>
+      <div className='song__info' onClick={onClick}>
         {
-          song?.isPlaying ? (
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              width="25"
-              height="25"
-              viewBox="0 0 24 24"
-              fill="var(--primary)"
-            >
-              <path d="M8 7h3v10H8zm5 0h3v10h-3z"></path>
-            </svg>
+          handlePlay && (
+            <button>
+            {
+              song.isPlaying ? (
+                <BiPause
+                  size='2.3rem'
+                  color='var(--primary)' 
+                />
+              )
+              : (
+                <BiPlay
+                  size='2.1rem'
+                  color='var(--white)' 
+                />
+              )
+            }
+            </button>
           )
-            : (
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                width="24"
-                height="24"
-                viewBox="0 0 24 24"
-                fill="rgba(255, 255, 255, 0.87)"
-              >
-                <path d="M7 6v12l10-6z"></path>
-              </svg>
-            )
         }
-        </button>
-        )
-      }
       <SongTrack {...song} />
+      </div>
+      {
+        rightIcon ? (
+          <RightIcon onClick={() => rightIconAction!(song)}>
+            {rightIcon}
+          </RightIcon>
+        ) : null
+      }
     </div>
   )
 }
