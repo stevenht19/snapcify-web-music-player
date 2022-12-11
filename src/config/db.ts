@@ -55,11 +55,16 @@ export class Database extends Dexie {
   }
 
   deletePlaylist(id: Playlist['id']) {
-    return db
-      .playlists
+    Promise.all([
+      db.playlists
       .where('id')
       .equals(id)
+      .delete(),
+      db.songs
+      .where('playlist_id')
+      .equals(id)
       .delete()
+    ])
   }
 
   addSongsToPlaylist(songs: Song[]) {
