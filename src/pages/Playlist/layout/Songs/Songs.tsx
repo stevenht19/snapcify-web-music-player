@@ -10,7 +10,7 @@ const Songs = () => {
     songs, 
     category, 
     onPlay, 
-    onDeleteSongFromQueue 
+    deleteFromQueue
   } = useMusicPlayer()
   
   const { 
@@ -24,7 +24,7 @@ const Songs = () => {
   }
 
   const onDelete = (song: Song) => {
-    onDeleteSongFromQueue(song)
+    deleteFromQueue(song)
     deleteSong(song.id)
   }
 

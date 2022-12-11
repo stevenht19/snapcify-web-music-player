@@ -1,7 +1,7 @@
 import { RiAddFill } from 'react-icons/ri'
 import { useBoolean } from '@/hooks'
 import { Modal } from '@/components/atoms/Modal'
-import { SearchSong } from './SearchSong'
+import { SearchSongs } from './SearchSong'
 import '../style.css'
 
 export const AddSong = () => {
@@ -16,7 +16,7 @@ export const AddSong = () => {
       Add songs
     </button>
     <Modal show={boolean}>
-      <SearchSong onClose={onClose} />
+      <SearchSongs onClose={onClose} />
     </Modal>
   </>
 }

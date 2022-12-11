@@ -55,7 +55,7 @@ export const decrease = (index: number, maxLength: number) => {
 }
 
 export const increase = (index: number, maxLength: number) => {
-  return index === maxLength - 1 ? 0 : index + 1
+  return index >= maxLength - 1 ? 0 : index + 1
 }
 
 export const filter = (songs: Song[], id: Song['id']) => {

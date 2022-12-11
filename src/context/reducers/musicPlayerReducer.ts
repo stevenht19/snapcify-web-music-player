@@ -16,7 +16,7 @@ import {
 } from './utils'
 
 type ReducerAction =  | {
-  type: Types.PAUSE | Types.ADD_FAVORITE | Types.DELETE_FAVORITE,
+  type: Types.PAUSE | Types.ADD_FAVORITE | Types.DELETE_FAVORITE | Types.DELETE_SONG,
   payload: Song
 } | {
   type: Types.PREVIOUS | Types.NEXT
@@ -28,11 +28,8 @@ type ReducerAction =  | {
     songs?: Song[]
   }
 } | {
-  type: Types.SET_FAVORITES
+  type: Types.SET_FAVORITES | Types.ADD_TO_QUEUE
   payload: Song[]
-} | {
-  type: Types.DELETE_SONG
-  payload: Song
 }
 
 const musicPlayerReducer = (
@@ -103,10 +100,14 @@ const musicPlayerReducer = (
     case Types.DELETE_SONG:
       return {
         ...state,
-        selectedIndex: state.songs.length - 1,
         songs: state
           .songs
           .filter(song => song.id !== action.payload.id)
+      }
+    case Types.ADD_TO_QUEUE:
+      return {
+        ...state,
+        songs: [...state.songs, ...action.payload]
       }
     default: return state
   }

@@ -1,4 +1,4 @@
-import { useSearch } from '@/hooks'
+import { useMusicPlayer, useSearch } from '@/hooks'
 import { Song } from '@/models/Song'
 import { ModalHeader, ModalFooter } from '@/components/atoms/Modal'
 import { SearchInput } from '@/components/atoms/Input'
@@ -8,8 +8,8 @@ import { TailSpin } from '@/components/atoms/Spinner'
 import { usePlaylist } from '../hooks'
 import { Counter } from './Counter'
 
-export const SearchSong = ({ onClose }: {
-  onClose: () => void
+export const SearchSongs = ({ onClose }: {
+  onClose(): void
 }) => {
   const { 
     isTyping, 
@@ -18,6 +18,8 @@ export const SearchSong = ({ onClose }: {
     onChange, 
     onSelect 
   } = useSearch()
+
+  const { addSongsToQueue, category } = useMusicPlayer()
   
   const {
     songsSize,
@@ -29,18 +31,24 @@ export const SearchSong = ({ onClose }: {
 
   const onClickItem = (song: Song) => {
     const songAlreadyExists = songs.some(({ id }) => id === song.id)
-    if (songAlreadyExists && !song.isSelected) return
+
+    if (songAlreadyExists && !song.isSelected) return;
+
     onSelect(song)
     handleAddSong(song, songAlreadyExists)
   }
 
-  const onCloseSearch = () => {
+  const onCancel = () => {
     clearSongs()
     onClose()
   }
 
   const onSave = () => {
-    onSaveSongs(onClose)
+    onSaveSongs(
+      onClose, 
+      category, 
+      addSongsToQueue
+    )
   }
 
   return <>
@@ -81,7 +89,7 @@ export const SearchSong = ({ onClose }: {
     <ModalFooter>
       <Button
         isGray
-        onClick={onCloseSearch}
+        onClick={onCancel}
       >
         Cancel
       </Button>

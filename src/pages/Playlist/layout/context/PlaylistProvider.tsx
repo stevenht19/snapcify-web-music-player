@@ -10,7 +10,7 @@ interface PlaylistContext {
   playlistName: string
   clearSongs(): void
   handleAddSong(song: Song, exists: boolean): void
-  onSaveSongs(fn: Function):void
+  onSaveSongs(fn: Function, cat: string | null, queueFn: (songs: Song[]) => void):void
   deleteSong(id: Song['id']): void
 }
 
@@ -62,16 +62,22 @@ const PlaylistProvider = ({
       ...song, 
       playlist_id: playlistId 
     }))
+
   }
 
   const clearSongs = () => {
     setSongs([])
   }
 
-  const onSaveSongs = (fn: Function) => {
+  const onSaveSongs = (fn: Function, category: string | null, queueFn: (songs: Song[]) => void) => {
     const uniqueSongs = songAlreadyExists(savedSongs, songs)
-    db.addSongsToPlaylist(uniqueSongs)
+
+    if (category === playlistName) {
+      queueFn(uniqueSongs)
+    }
+
     setSavedSongs([...savedSongs, ...uniqueSongs])
+    db.addSongsToPlaylist(uniqueSongs)
     clearSongs()
     fn()
   }
