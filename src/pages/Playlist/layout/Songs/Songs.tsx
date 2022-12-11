@@ -1,4 +1,4 @@
-import { IoRemoveCircleOutline } from 'react-icons/io5'
+import { CgRemove } from 'react-icons/cg'
 import { useMusicPlayer } from '@/hooks'
 import { Song } from '@/models/Song'
 import { SongCard } from '@/components/atoms/Card'
@@ -6,8 +6,18 @@ import { SongList } from '@/components/atoms/Section'
 import { usePlaylist } from '../hooks'
 
 const Songs = () => {
-  const { songs, category, onPlay, onDeleteSongFromQueue } = useMusicPlayer()
-  const { savedSongs, playlistName, deleteSong } = usePlaylist()
+  const { 
+    songs, 
+    category, 
+    onPlay, 
+    onDeleteSongFromQueue 
+  } = useMusicPlayer()
+  
+  const { 
+    savedSongs, 
+    playlistName, 
+    deleteSong 
+  } = usePlaylist()
 
   const handlePlay = (song: Song) => {
     onPlay(song, playlistName, savedSongs);
@@ -28,7 +38,7 @@ const Songs = () => {
               song={song}
               handlePlay={handlePlay}
               rightIconAction={onDelete}
-              rightIcon={<IoRemoveCircleOutline />}
+              rightIcon={<CgRemove color='var(--primary)' />}
             />
           )) :
           savedSongs?.map((song) => (
@@ -37,7 +47,7 @@ const Songs = () => {
               song={song}
               handlePlay={handlePlay}
               rightIconAction={onDelete}
-              rightIcon={<IoRemoveCircleOutline />}
+              rightIcon={<CgRemove color='var(--primary)' />}
             />
           ))
       }

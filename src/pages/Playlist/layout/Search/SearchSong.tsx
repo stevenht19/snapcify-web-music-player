@@ -4,8 +4,9 @@ import { ModalHeader, ModalFooter } from '@/components/atoms/Modal'
 import { SearchInput } from '@/components/atoms/Input'
 import { Button } from '@/components/atoms/Button'
 import { SongCard } from '@/components/atoms/Card'
-import { usePlaylist } from '../hooks'
 import { TailSpin } from '@/components/atoms/Spinner'
+import { usePlaylist } from '../hooks'
+import { Counter } from './Counter'
 
 export const SearchSong = ({ onClose }: {
   onClose: () => void
@@ -22,12 +23,15 @@ export const SearchSong = ({ onClose }: {
     songsSize,
     handleAddSong,
     onSaveSongs,
-    clearSongs
+    clearSongs,
+    songs
   } = usePlaylist()
 
   const onClickItem = (song: Song) => {
+    const songAlreadyExists = songs.some(({ id }) => id === song.id)
+    if (songAlreadyExists && !song.isSelected) return
     onSelect(song)
-    handleAddSong(song)
+    handleAddSong(song, songAlreadyExists)
   }
 
   const onCloseSearch = () => {
@@ -40,12 +44,15 @@ export const SearchSong = ({ onClose }: {
   }
 
   return <>
-    <ModalHeader text='Search songs'>
+    <ModalHeader 
+      text='Search songs'
+    >
       {
-        isTyping ? (
-          <TailSpin />
-        )
-        : null
+        isTyping ? ( 
+          <TailSpin /> 
+        ) : ( 
+          <Counter value={songsSize} />
+        ) 
       }
     </ModalHeader>
     <div className='playlist__search'>

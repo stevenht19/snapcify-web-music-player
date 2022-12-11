@@ -14,7 +14,7 @@ const useSearch = () => {
   } = useBoolean()
 
   useEffect(() => {
-    if (searchTerm.trim().length < 3) {
+    if (searchTerm.trim().length < 2) {
       setIsNotTyping()
       return
     }
@@ -30,7 +30,7 @@ const useSearch = () => {
 
   const onChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setSearchTerm(e.target.value)
-    if (searchTerm.trim().length < 3) return
+    if (searchTerm.trim().length < 2) return
     setIsTyping()
   }
 

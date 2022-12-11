@@ -54,7 +54,3 @@
   margin-left: auto;
   font-size: 2rem;
 }
-.right-icon svg {
-  fill: var(--primary);
-  stroke: var(--primary);
-}

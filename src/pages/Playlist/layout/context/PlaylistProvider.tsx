@@ -9,9 +9,9 @@ interface PlaylistContext {
   songsSize: number
   playlistName: string
   clearSongs(): void
-  handleAddSong(_s: Song): void
+  handleAddSong(song: Song, exists: boolean): void
   onSaveSongs(fn: Function):void
-  deleteSong(_id: Song['id']): void
+  deleteSong(id: Song['id']): void
 }
 
 export const PlaylistContext = createContext<PlaylistContext>({
@@ -52,10 +52,8 @@ const PlaylistProvider = ({
     getData()
   }, [playlistId])
 
-  const handleAddSong = (song: Song) => {
-    const alreadyExists = songs.some(({ id }) => id === song.id)
-
-    if (alreadyExists) {
+  const handleAddSong = (song: Song, exists: boolean) => {
+    if (exists) {
       setSongs(songs => songs.filter(({ id }) => id !== song.id))
       return
     }

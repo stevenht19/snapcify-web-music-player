@@ -4,7 +4,6 @@ import ModalTitle from './ModalTitle'
 type Props = {
   text?: string
   children?: React.ReactNode
-  flex?: boolean
   onClose?: () => void
 }
 
