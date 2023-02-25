@@ -1,8 +1,10 @@
+import { Suspense, lazy } from 'react'
 import { useMusicPlayer } from '@/hooks'
 import Controls from './Controls'
 import Buttons from './Controls/Buttons'
-import Track from './Track'
 import './style.css'
+
+const Track = lazy(() => import('./Track'))
 
 const Player = () => {
   const {
@@ -20,11 +22,13 @@ const Player = () => {
     <div className='player'>
       {
         selectedSong ?
-          <Track
-            play={play}
-            song={selectedSong}
-            handleFavorite={handleFavorite}
-          />
+          <Suspense fallback={null}>
+            <Track
+              play={play}
+              song={selectedSong}
+              handleFavorite={handleFavorite}
+            />
+          </Suspense>
         : null
       }
       <Controls>

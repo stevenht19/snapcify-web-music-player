@@ -9,7 +9,6 @@ const Controls = ({ children }: {
 }) => {
   const {
     play,
-    onPlay,
     isDisabled, 
     selectedSong,
     category,

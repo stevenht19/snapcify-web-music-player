@@ -1,3 +1,4 @@
+import { Suspense, lazy } from 'react'
 import { 
   RouterProvider, 
   createBrowserRouter, 
@@ -5,12 +6,14 @@ import {
   Route
 } from 'react-router-dom'
 import { Layout } from '@/components/layout'
-import HomePage from '@/pages/Home'
-import ResultsPage, { loader } from '@/pages/Results'
-import Favorites from '@/pages/Favorites'
-import Playlist from '@/pages/Playlist'
-import Readme from '@/pages/Readme'
 import { Routes } from '@/utils/routes'
+import { loader } from '@/pages/Results/loader'
+import HomePage from '@/pages/Home'
+
+const Favorites = lazy(() => import('@/pages/Favorites'))
+const Playlist = lazy(() => import('@/pages/Playlist'))
+const Readme = lazy(() => import('@/pages/Readme'))
+const Results = lazy(() => import('@/pages/Results/Page'))
 
 const router = createBrowserRouter(
   createRoutesFromElements(
@@ -24,20 +27,36 @@ const router = createBrowserRouter(
       />
       <Route 
         path={Routes.SEARCH}
-        element={<ResultsPage />} 
+        element={
+          <Suspense fallback={null}>
+            <Results />
+          </Suspense>
+        } 
         loader={loader}
       />
       <Route
         path={Routes.FAVORITE}
-        element={<Favorites />}
+        element={
+          <Suspense fallback={null}>
+            <Favorites />
+          </Suspense>
+        }
       />
       <Route 
         path={Routes.README}
-        element={<Readme />}
+        element={
+          <Suspense fallback={null}>
+            <Readme />
+          </Suspense>
+        }
       />
       <Route 
         path={`${Routes.PLAYLIST}/:id`}
-        element={<Playlist />}
+        element={
+          <Suspense fallback={null}>
+            <Playlist />
+          </Suspense>
+        }
       />
     </Route>
 ))

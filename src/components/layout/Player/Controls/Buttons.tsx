@@ -1,4 +1,4 @@
-import { MusicPlayerState } from '@/types'
+import { MusicPlayerState } from '@/context/types'
 import { Song } from '@/models/Song'
 
 type Props = Functions & {

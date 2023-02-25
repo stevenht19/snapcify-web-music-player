@@ -33,7 +33,7 @@ export const ListOfPlaylists = () => {
     </Modal>
     <Divider text='Playlists' />
     {
-      playlists.map((playlist) => (
+      playlists?.map((playlist) => (
         <PlaylistItem
           key={playlist.id}
           playlist={playlist}

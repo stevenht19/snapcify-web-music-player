@@ -1,7 +1,7 @@
 import { Routes } from '@/utils/routes'
+import { IoMdInformationCircleOutline } from 'react-icons/io'
 import { AiOutlineCloud } from 'react-icons/ai'
 import { FaRegHeart } from 'react-icons/fa'
-import { IoMdInformationCircleOutline } from 'react-icons/io'
 import { NavItem } from './NavItem'
 import { Playlists } from './Playlists'
 
