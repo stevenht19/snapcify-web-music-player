@@ -1,0 +1,18 @@
+@keyframes tailSpin {
+  to {
+    transform: rotate(1turn);
+  }
+}
+.tail {
+  display: flex;
+  justify-content: center;
+}
+.tail::after {
+  content: '';
+  width: 2.2rem;
+  height: 2.2rem;
+  border: 3px solid var(--gray700);
+  border-radius: 50%;
+  border-top-color: var(--primary);
+  animation: tailSpin 1s linear infinite;
+}

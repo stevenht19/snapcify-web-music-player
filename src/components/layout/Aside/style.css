@@ -1,32 +1,91 @@
 .aside {
-  background-color: var(--gray700);
-  padding-block: 1.6rem;
-  padding-left: 2rem;
-  width: 20rem;
+  background-color: var(--gray900);
+  padding-block: 2rem;
+  padding-inline: 1.2rem;
 }
-.logo {
-  font-size: 2.2rem;
-}
-.navbar {
-  display: flex;
-  flex-direction: column;
-  gap: 2.4rem;
-  padding-top: 2rem;
-  font-weight: 700;
-  font-size: 1.5rem;
-}
-.navbar__item {
+.profile {
   display: flex;
   align-items: center;
-  gap: 1.8rem;
-  position: relative;
+  justify-content: space-between;
+  padding-inline: 1.2rem;
 }
-.navbar__item::after {
-  content: "";
-  position: absolute;
-  right: 0;
-  width: 3px;
-  height: 100%;
-  border-radius: 2px;
-  background-color: var(--primary);
+.profile__username {
+  font-size: 2rem;
+  font-weight: 700;
+  color: var(--white);
+}
+.nav__list {
+  padding-top: 1rem;
+  width: calc(var(--separation) * 4.6);
+  display: flex;
+  flex-direction: column;
+  gap: .7rem;
+}
+.nav__item {
+  display: flex;
+  overflow-x: hidden;
+  border-radius: .55rem;
+  align-items: center;
+  gap: 1.8rem;
+  color: var(--gray80);
+  font-size: 1.4rem;
+  font-weight: 700;
+  padding-block: 1.2rem;
+  padding-left: 1.2rem;
+}
+.nav__item:hover {
+  background-color: var(--gray700);
+  color: var(--gray50);
+}
+.nav__item:nth-child(4) {
+  cursor: pointer;
+  margin-top: 1rem;
+}
+.item__icon {
+  fill: var(--gray500);
+  width: 2rem;
+  font-size: 2rem;
+}
+.nav__item--active {
+  background-color: var(--gray700);
+  color: var(--gray50);
+}
+.nav__item--active .item__icon {
+  fill: var(--white);
+  stroke: var(--white);
+}
+.nav__section {
+  color: var(--gray400);
+  font-size: 1.2rem;
+  padding-block: 1rem;
+  padding-left: 1.2rem;
+  font-weight: 700;
+}
+.icons {
+  display: inherit;
+  margin-left: auto;
+  margin-right: .75rem;
+  opacity: 0;
+}
+.nav__item:hover .icons {
+  opacity: 1;
+}
+.action {
+  font-size: 1.6rem;
+  fill: var(--gray500);
+}
+.action:hover {
+  fill: var(--white);
+}
+.action--right {
+  opacity: 0;
+  fill: var(--gray500);
+  margin-left: auto;
+  margin-right: 1.2rem;
+}
+.action--right:hover {
+  fill: var(--white);
+}
+.nav__item:hover .action--right {
+  opacity: 1;
 }

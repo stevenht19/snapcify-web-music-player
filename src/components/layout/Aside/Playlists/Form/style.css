@@ -1,0 +1,13 @@
+.form__content {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+  font-size: 1.45rem;
+}
+.form__content div {
+  width: 100%;
+}
+.form__description {
+  height: 100%;
+  min-height: 10rem;
+}

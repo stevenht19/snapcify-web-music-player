@@ -1,0 +1,31 @@
+.top-card {
+  user-select: none;
+  cursor: pointer;
+}
+.top-card:hover .top__play {
+  opacity: 1;
+}
+.top__cover {
+  position: relative;
+  border-radius: 1rem;
+}
+.top-card:hover .top__image {
+  filter: opacity(0.55);
+}
+.top__play {
+  opacity: 0;
+  position: absolute;
+  transition: opacity .12s ease-in;
+  top: 50%;
+  left: 50%;
+  z-index: 19;
+  transform: translate(-50%, -50%);
+}
+.top__image {
+  border-radius: inherit;
+  transition: filter .22s ease;
+}
+.top__artist {
+  color: #9596A8;
+  font-size: 1.4rem;
+}

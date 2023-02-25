@@ -1,0 +1,11 @@
+.alert {
+  position: absolute;
+  left: 50%;
+  bottom: 13rem;
+  padding-inline: 3rem;
+  color: var(--white);
+  border-radius: .5rem;
+  font-size: 1.4rem;
+  transform: translateX(-50%);
+  background-color: var(--primary);
+}

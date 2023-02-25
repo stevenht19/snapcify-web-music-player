@@ -1,64 +1,86 @@
 .player {
   display: flex;
-  align-items: center;
   justify-content: space-between;
-  background-color: var(--gray500);
-  grid-column: 1 / 4;
-  padding-right: 3rem;
-  padding-left: 1rem;
+  align-items: center;
+  position: relative;
+  padding-right: 2rem;
+  background-color: var(--gray700);
+}
+.player__track {
+  align-items: inherit;
 }
 .player__controls {
   display: flex;
+  flex-direction: column;
   align-items: center;
-  gap: 1rem;
-  padding-block: 1rem;
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  gap: 1.2rem;
+  width: 75%;
+  padding-block: 1.15rem;
   padding-inline: 3rem;
-  border-radius: 2rem 2rem 0 0;
+}
+@media screen and (min-width: 52em) {
+  .player__controls {
+    width: 35%;
+  }
 }
 .player__buttons {
   display: flex;
   align-items: center;
-  gap: 1rem;
+  gap: .5rem;
 }
-.player__controls {
-  flex-basis: 35%;
-  flex-direction: column;
-  gap: .75rem;
+.player__buttons--disabled button:nth-of-type(2) {
+  background-color: var(--gray100);
 }
 .player__play {
   display: flex;
   align-items: center;
-  padding: 1rem;
+  padding: 1.3rem;
   border-radius: 1.7rem;
-  background-color: #fff;
+  background-color: var(--white);
+  transition: transform .75s cubic-bezier(0.19, 1, 0.22, 1);
+}
+.player__play--active:hover {
+  transform: scale(1.03);
+}
+.player__arrow--active:hover svg {
+  fill: var(--white);
 }
 .bar {
   display: flex;
   width: 100%;
-  overflow-x: hidden;
   align-items: center;
   gap: 1rem;
 }
 .bar__time {
+  display: inline-block;
   font-size: 1.1rem;
   color: #cbcbcb;
+  width: 2rem;
+  margin-inline: .5rem;
 }
-.bar__progress {
-  width: 100%;
-  background-color: var(--gray100);
-  overflow-x: hidden;
-  height: 5px;
-  position: relative;
-  border-radius: 1rem;
+.bar .css-2bvlrv-Slider {
+  flex: auto;
 }
-.bar__progress::before {
-  content: "";
-  height: inherit;
-  border-radius: inherit;
-  position: absolute;
-  background-color: var(--primary);
-  width: 100%;
-  left: -100%;
-  border-radius: inherit;
-  transform: translateX(20%);
+.player__volume, .player .player__track {
+  display: none;
+}
+.volume__button {
+  display: inherit;
+}
+@media screen and (min-width: 52em) {
+  .player .player__track {
+    display: flex;
+  }
+  .player__volume {
+    display: inherit;
+    align-items: inherit;
+    max-width: 18rem;
+    gap: 1rem;
+  } 
+  .volume__button:hover svg {
+    fill: var(--white);
+  }
 }

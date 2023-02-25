@@ -1,20 +1,14 @@
-.search__form {
-  position: relative;
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 2rem;
+  padding-right: var(--separation);
 }
-.search__form svg {
-  position: absolute;
-  left: 1.2rem;
-  top: 1.2rem;
+.header form {
+  width: 100%;
+  max-width: 38rem;
 }
-.search__input {
-  border-radius: .5rem;
-  padding-block: 1.2rem;
-  padding-left: 4.5rem;
-  background-color: var(--gray600);
-  color: inherit;
-  width: 30%;
-  border: 2px solid var(--gray400);
-}
-.search__input::placeholder {
-  color: var(--gray200);
+.header__open {
+  color: var(--white);
 }

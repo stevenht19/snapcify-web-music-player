@@ -1,0 +1,56 @@
+@keyframes onRotate {
+  to {
+    transform: rotate(360deg);
+  }
+}
+.song-card {
+  display: flex;
+  cursor: pointer;
+  align-items: center;
+  padding-inline: 1rem;
+  margin-block: .5rem;
+  transition: background-color .12s ease-in-out;
+}
+.song__info {
+  display: inherit;
+  align-items: inherit;
+  flex: 1;
+  padding-block: 1.1rem;
+}
+@media screen and (min-width: 62em) {
+  .song-card:hover {
+    background-color: #00000021;
+  } 
+}
+.song-card--selected, .song-card--selected:hover {
+  background-color: var(--primary);
+}
+.song-card--selected .song__content * {
+  color: var(--white);
+}
+.song__content {
+  display: flex;
+  align-items: center;
+  user-select: none;
+  padding-inline: 2rem;
+  gap: 1.2rem;
+}
+.song__title {
+  margin-top: 0;
+  margin-bottom: .2rem;
+  font-weight: 500;
+  font-size: 1.4rem;
+  color: var(--gray50);
+}
+.song__artist {
+  font-size: 1.3rem;
+  color: var(--gray200);
+}
+.song__image--active {
+  animation: onRotate 40s linear infinite;
+}
+.right-icon {
+  display: inherit;
+  margin-left: auto;
+  font-size: 2rem;
+}

@@ -1,0 +1,33 @@
+.icon-button {
+  display: flex;
+  align-items: center;
+  gap: .75rem;
+  cursor: pointer;
+  margin-right: auto;
+  font-size: 1.5rem;
+  color: var(--gray50);
+  fill: var(--gray50);
+}
+.icon-button:hover {
+  color: var(--white);
+  fill: var(--white);
+}
+.playlist__search {
+  width: 100%;
+  z-index: 139;
+  position: relative;
+}
+.search__title {
+  color: var(--gray50);
+  font-size: 1.9rem;
+  margin-top: 3rem;
+}
+.search__results {
+  display: inherit;
+  flex-direction: column;
+  height: 24rem;
+  background: #191920;
+  width: inherit;
+  overflow-y: scroll;
+  max-height: 24rem;
+}

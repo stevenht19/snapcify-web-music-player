@@ -1,0 +1,39 @@
+.skeleton {
+  display: flex;
+  align-items: center;
+  padding-block: 1rem;
+  margin-block: .5rem;
+  padding-left: 2rem;
+}
+.song__image--skeleton {
+  margin-left: 3.5rem;
+  margin-right: 2rem;
+  background-color: var(--gray700);
+}
+.skeleton__square {
+  width: 1.2rem;
+  height: 1.2rem;
+  background-color: var(--gray700);
+}
+.skeleton__body {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+.skeleton__title, .skeleton__text {
+  width: 18rem;
+  height: 1.3rem;
+  background-color: var(--gray700);
+}
+.skeleton__title {
+  width: 15rem;
+  height: 2.2rem;
+  margin-bottom: .4rem;
+}
+.skeleton__text {
+  width: 12rem;
+}
+.skeleton__cover {
+  border-radius: 1rem;
+  margin-bottom: 1.7rem;
+}
