@@ -1,5 +1,5 @@
-import { SliderEvent, SliderValues } from './utils/types'
 import Slider from '@/components/layout/Player/Slider'
+import { SliderEvent, SliderValues } from './utils/types'
 
 type Props = SliderValues & {
   isDisabled: boolean

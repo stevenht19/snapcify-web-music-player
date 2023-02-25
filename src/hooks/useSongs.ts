@@ -1,8 +1,7 @@
 import { useFetch, usePlay } from '@/hooks'
-import { Song } from '@/models/Song'
 import { getSongs } from '@/services'
 
-const fetcher = (args: string): Promise<Song[]> => getSongs(args!)
+const fetcher = (args: string) => getSongs(args!)
 
 const useSongs = (
   songCategory: string, 

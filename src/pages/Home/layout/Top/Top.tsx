@@ -5,8 +5,8 @@ import { TopSongSkeleton } from '@/components/atoms/Skeleton'
 import { TopSong } from '@/components/atoms/Card'
 import { getNumericArray } from '@/utils'
 
-const PATH = '/charts/country' 
-
+const PATH = '/charts/country?country_code=PE'
+ 
 const Top = () => {
   return (
     <section>

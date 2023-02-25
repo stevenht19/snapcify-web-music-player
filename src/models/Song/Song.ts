@@ -1,6 +1,6 @@
 interface Song {
   id: string
-  url: string
+  url?: string
   image: string
   title: string
   artist: string

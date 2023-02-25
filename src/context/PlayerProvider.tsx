@@ -63,6 +63,8 @@ export default function PlayerContextProvider({ children }: {
     category: MusicPlayerState['category'],
     songs?: Song[]
   ) => {
+    if (!song.url) return
+
     if (song.isPlaying) {
       dispatch({
         type: Types.PAUSE,

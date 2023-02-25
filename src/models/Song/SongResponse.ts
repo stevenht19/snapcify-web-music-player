@@ -13,15 +13,15 @@ type SongResponse = {
   properties: {}
 }
 type Images = {
-  background: string
-  coverart: string
-  coverarthq: string
+  background?: string
+  coverart?: string
+  coverarthq?: string
   joecolor: string
 }
 type Hub = {
   type: string
   image: string
-  actions: Action[]
+  actions?: Action[]
   options: any
   explicit: boolean
   displayname: string
