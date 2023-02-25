@@ -8,12 +8,7 @@ import { ListOfPlaylists } from './ListOfPlaylists'
 import { NavItem } from '../NavItem'
 
 export const Playlists = () => {
-  const { 
-    boolean, 
-    onOpen, 
-    onClose 
-  } = useBoolean()
-  
+  const { boolean, onOpen, onClose } = useBoolean()
   const { addPlaylist } = usePlaylists()
 
   const handleSubmit = (playlist: Playlist) => {

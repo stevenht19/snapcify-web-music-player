@@ -1,14 +1,16 @@
 import { useToast } from './hooks'
 import { Song } from '@/models/Song'
 import { Track } from '@/components/atoms/Card/Song'
-import { Alert } from '@/components/atoms/Alert'
 import { Heart } from '@/components/atoms/Icon'
+import { Suspense, lazy } from 'react'
 
 type Props = {
   play: boolean,
   song: Song,
   handleFavorite(song: Song): void
 }
+
+const Alert = lazy(() => import('@/components/atoms/Alert'))
 
 const SongTrack = ({
   play,
@@ -38,8 +40,10 @@ const SongTrack = ({
         {...song}
       />
       {
-        (isClicked && contentState?.title) ? 
-          <Alert {...contentState} /> 
+        (isClicked && contentState?.title) ?
+          <Suspense fallback={null}>
+            <Alert {...contentState} /> 
+          </Suspense>
         : null
       }
       <button onClick={onClick}>
