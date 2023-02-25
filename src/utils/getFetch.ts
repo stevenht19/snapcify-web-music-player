@@ -4,7 +4,7 @@ const headers = {
 }
 
 const getFetch = async (route: string) => {
-  const songs = await fetch(import.meta.env.VITE_API + route, {
+  const songs = await fetch(import.meta.env.VITE_RAPID_API_URL + route, {
     method: 'GET',
     headers
   }).then(res => res.json())
