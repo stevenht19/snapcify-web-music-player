@@ -2,6 +2,8 @@ import { Song } from '@/models/Song'
 import { List } from '@/components/layout/SongList'
 import { Search } from '@/components/layout/Search'
 import { useLoaderData } from 'react-router-dom'
+import { useMusicPlayer } from '@/hooks'
+import { useEffect } from 'react'
 
 type Response = {
   results: Song[],
@@ -15,7 +17,7 @@ export default function ResultsPage() {
     <Search />
     <List 
       items={results}
-      category='RESULTS'
+      category={query}
       title={`Results of ${query}`}
     />
   </>

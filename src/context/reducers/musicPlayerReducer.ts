@@ -28,7 +28,7 @@ type ReducerAction =  | {
     songs?: Song[]
   }
 } | {
-  type: Types.SET_FAVORITES | Types.ADD_TO_QUEUE
+  type: Types.SET_FAVORITES | Types.ADD_TO_QUEUE | Types.SET_SONGS
   payload: Song[]
 }
 
@@ -96,6 +96,11 @@ const musicPlayerReducer = (
         ...(state.category === 'Favorites' && { 
           songs: filter(state.songs, action.payload.id) 
         })
+      }
+    case Types.SET_SONGS:
+      return {
+        ...state,
+        songs: action.payload
       }
     case Types.DELETE_SONG:
       return {

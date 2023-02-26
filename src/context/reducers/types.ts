@@ -2,6 +2,7 @@ export const enum Types {
   PLAY = 'PLAY',
   PAUSE = 'PAUSE',
   PREVIOUS = 'PREVIOUS',
+  SET_SONGS = 'SET_SONGS',
   NEXT = 'NEXT',
   SET_FAVORITES = 'SET_FAVORITES',
   ADD_FAVORITE = 'ADD_FAVORITE',

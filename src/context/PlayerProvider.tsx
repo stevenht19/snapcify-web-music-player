@@ -16,10 +16,11 @@ const initialState: MusicPlayerState = {
 }
 
 interface PlayerContext extends MusicPlayerState { 
-  onPlay(_song: Song, category: string, songs?: Song[]): void
+  onPlay(song: Song, category: string, songs?: Song[]): void
   onPrevious(): void
   onNext(): void
   onSaveNext(): void
+  setSongs(song: Song[]): void
   addSongsToQueue(song: Song[]): void
   deleteFromQueue(song: Song): void
   handleFavorite(song: Song): void
@@ -32,6 +33,7 @@ export const MusicPlayerContext = createContext<PlayerContext>({
   onNext: () => {},
   onSaveNext: () => {},
   handleFavorite: () => {},
+  setSongs: () => {},
   addSongsToQueue: () => {},
   deleteFromQueue: () => {}
 })
@@ -124,6 +126,13 @@ export default function PlayerContextProvider({ children }: {
     })
   }
 
+  const setSongs = (songs: Song[]) => {
+    dispatch({
+      type: Types.SET_SONGS,
+      payload: songs
+    })
+  }
+
   return (
     <MusicPlayerContext.Provider value={{
       ...playerState,
@@ -131,6 +140,7 @@ export default function PlayerContextProvider({ children }: {
       onPrevious,
       onPlay,
       onNext,
+      setSongs,
       onSaveNext,
       handleFavorite,
       addSongsToQueue,

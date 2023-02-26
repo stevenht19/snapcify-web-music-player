@@ -6,7 +6,7 @@ const useFetch = <T>(
 ) => {
   const { data, error } = useSWR<T[]>(url, fetcher, {
     revalidateIfStale: false,
-    revalidateOnFocus: false
+    revalidateOnFocus: false,
   })
 
   return {
