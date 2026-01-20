@@ -1,9 +1,6 @@
 # snapcify-web-music-player
 
 Web music player developed using React + Typescript as a personal project.
-You can test it online here: https://storied-croissant-932672.netlify.app/
-
-![app](https://i.postimg.cc/D0bRdYJx/app.png)
 
 ## DISCLAIMER
 
